@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文介绍如何利用 Docker 方式创建 rabbitmq 集群。">
+<meta name="keywords" content="docker,rabbitmq,容器,镜像,cluster">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 docker-compose 安装搭建 RabbitMQ 集群">
+<meta property="og:url" content="https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="本文介绍如何利用 Docker 方式创建 rabbitmq 集群。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/6d9475f6ly1g3t3f9mb01j20hs0but9z.jpg">
+<meta property="og:image" content="http://img.mknight.cn/medivh/1553134452790.png">
+<meta property="og:updated_time" content="2024-06-30T08:25:14.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 docker-compose 安装搭建 RabbitMQ 集群">
+<meta name="twitter:description" content="本文介绍如何利用 Docker 方式创建 rabbitmq 集群。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/6d9475f6ly1g3t3f9mb01j20hs0but9z.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用 docker-compose 安装搭建 RabbitMQ 集群 | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">使用 docker-compose 安装搭建 RabbitMQ 集群<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy9kb2NrZXItcmFiYml0bXEtZW52Lm1k" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-07 20:49:11" itemprop="dateCreated datePublished" datetime="2019-06-07T20:49:11+08:00">2019-06-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2024-06-30 16:25:14" itemprop="dateModified" datetime="2024-06-30T16:25:14+08:00">2024-06-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/容器/" itemprop="url" rel="index"><span itemprop="name">容器</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://ws1.sinaimg.cn/large/6d9475f6ly1g3t3f9mb01j20hs0but9z.jpg" alt></p>
+<p>本文介绍如何利用 Docker 方式创建 rabbitmq 集群。</p>
+<a id="more"></a>
+<h2 id="rabbitmq-介绍"><a href="#rabbitmq-介绍" class="headerlink" title="rabbitmq 介绍"></a>rabbitmq 介绍</h2><p>在利用 Docker 创建 rabbitmq 容器之前，先了解 rabbitmq 的基础知识。</p>
+<h3 id="集群模式"><a href="#集群模式" class="headerlink" title="集群模式"></a>集群模式</h3><p>RabbitMQ 的 Cluster 集群模式一般分为两种，「普通模式」和「镜像模式」。</p>
+<ol>
+<li><p>普通模式：默认的集群模式，以两个节点（rabbit01、rabbit02）为例来进行说明。对于 Queue 来说，消息实体只存在于其中一个节点 rabbit01（或者 rabbit02），rabbit01 和 rabbit02 两个节点仅有相同的元数据，即队列的结构。当消息进入 rabbit01 节点的 Queue 后，consumer 从 rabbit02 节点消费时，RabbitMQ 会临时在 rabbit01、rabbit02 间进行消息传输，把 A 中的消息实体取出并经过 B 发送给 consumer。所以 consumer 应尽量连接每一个节点，从中取消息。即对于同一个逻辑队列，要在多个节点建立物理 Queue。否则无论 consumer 连 rabbit01 或 rabbit02，出口总在 rabbit01，会产生瓶颈。当 rabbit01 节点故障后，rabbit02 节点无法取到 rabbit01 节点中还未消费的消息实体。如果做了消息持久化，那么得等 rabbit01 节点恢复，然后才可被消费；如果没有持久化的话，就会产生消息丢失的现象。</p>
+</li>
+<li><p>镜像模式：将需要消费的队列变为镜像队列，存在于多个节点，这样就可以实现 RabbitMQ 的 HA 高可用性。作用就是消息实体会主动在镜像节点之间实现同步，而不是像普通模式那样，在 consumer 消费数据时临时读取。缺点就是，集群内部的同步通讯会占用大量的网络带宽。</p>
+</li>
+</ol>
+<h3 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h3><ul>
+<li>RAM node：内存节点将所有的队列、交换机、绑定、用户、权限和 vhost 的元数据定义存储在内存中，好处是可以使得像交换机和队列声明等操作更加的快速</li>
+<li>Disk node：将元数据存储在磁盘中，单节点系统只允许磁盘类型的节点，防止重启 RabbitMQ 的时候，丢失系统的配置信息</li>
+</ul>
+<div class="note warning no-icon">
+            <p>RabbitMQ 要求在集群中至少有一个磁盘节点，所有其他节点可以是内存节点，当节点加入或者离开集群时，必须要将该变更通知到至少一个磁盘节点。如果集群中唯一的一个磁盘节点崩溃的话，集群仍然可以保持运行，但是无法进行其他操作（增删改查），直到节点恢复。<br>解决方案：设置两个磁盘节点，至少有一个是可用的，可以保存元数据的更改。</p>
+          </div>
+<h3 id="安装知识点"><a href="#安装知识点" class="headerlink" title="安装知识点"></a>安装知识点</h3><ul>
+<li>建立集群时，节点中的 Erlang Cookie 值要一致，默认情况下，文件在 <code>/var/lib/rabbitmq/.erlang.cookie</code>。</li>
+<li>erlang 是通过主机名来连接服务，必须保证各个主机名之间可以 ping 通。可以通过编辑 <code>/etc/hosts</code> 来手工添加主机名和 IP 对应关系。如果主机名 ping 不通，rabbitmq 服务启动会失败。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rabbitmqctl stop_app # 停止rabbitmq服务</span><br><span class="line"><span class="meta">$</span> rabbitmqctl join_cluster rabbit@node1 # node2和node1构成集群, node2必须能通过node1的主机名ping通</span><br><span class="line"><span class="meta">$</span> rabbitmqctl start_app # 开启rabbitmq服务</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>–ram</code> 指的是作为内存节点,要是想做为磁盘节点的话,就不用加 <code>–ram</code> 这个参数了。在 RabbitMQ 集群里，必须至少有一个磁盘节点存在</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rabbitmqctl join_cluster --ram rabbit@node1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更改节点属性</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rabbitmqctl stop_app  # 停止rabbitmq服务</span><br><span class="line"><span class="meta">$</span> rabbitmqctl change_cluster_node_type ram # 更改节点为内存节点</span><br><span class="line">Turning rabbit@node2 into a ram node</span><br><span class="line"><span class="meta">$</span> rabbitmqctl change_cluster_node_type disc # 更改节点为磁盘节点</span><br><span class="line">Turning rabbit@node2 into a disc node</span><br><span class="line"><span class="meta">$</span> rabbitmqctl start_app # 开启rabbitmq服务</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看集群的状态</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmqctl cluster_status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开启 web 管理工具</li>
+</ul>
+<p>cluster 搭建起来后若在 web 管理工具中 rabbitmq_management 的 Overview 的 Nodes 部分看到 <code>Node statistics not available</code> 的信息，说明在该节点上web管理插件还未启用。 直接在显示提示信息的节点上运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq-plugins enable rabbitmq_management</span><br></pre></td></tr></table></figure>
+<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JpdG5hbWkvYml0bmFtaS1kb2NrZXItcmFiYml0bXE=" title="https://github.com/bitnami/bitnami-docker-rabbitmq">bitnami/bitnami-docker-rabbitmq<i class="fa fa-external-link"></i></span> 镜像，在一台机器上可以创建一个 rabbitmq cluster：</p>
+<p>docker-compose.yml 内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">version: '2'</span><br><span class="line">services:</span><br><span class="line">  stats:</span><br><span class="line">    image: bitnami/rabbitmq:3.7</span><br><span class="line">    environment:</span><br><span class="line">      - RABBITMQ_NODE_TYPE=stats</span><br><span class="line">      - RABBITMQ_NODE_NAME=rabbit@stats</span><br><span class="line">      - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3</span><br><span class="line">    ports:</span><br><span class="line">      - '15672:15672'</span><br><span class="line">    volumes:</span><br><span class="line">      - 'rabbitmqstats_data:/bitnami'</span><br><span class="line">  queue-disc1:</span><br><span class="line">    image: bitnami/rabbitmq:3.7</span><br><span class="line">    environment:</span><br><span class="line">      - RABBITMQ_NODE_TYPE=queue-disc</span><br><span class="line">      - RABBITMQ_NODE_NAME=rabbit@queue-disc1</span><br><span class="line">      - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats</span><br><span class="line">      - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3</span><br><span class="line">    volumes:</span><br><span class="line">      - 'rabbitmqdisc1_data:/bitnami'</span><br><span class="line">  queue-ram1:</span><br><span class="line">    image: bitnami/rabbitmq:3.7</span><br><span class="line">    environment:</span><br><span class="line">      - RABBITMQ_NODE_TYPE=queue-ram</span><br><span class="line">      - RABBITMQ_NODE_NAME=rabbit@queue-ram1</span><br><span class="line">      - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats</span><br><span class="line">      - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3</span><br><span class="line">    volumes:</span><br><span class="line">      - 'rabbitmqram1_data:/bitnami'</span><br><span class="line"></span><br><span class="line">volumes:</span><br><span class="line">  rabbitmqstats_data:</span><br><span class="line">    driver: local</span><br><span class="line">  rabbitmqdisc1_data:</span><br><span class="line">    driver: local</span><br><span class="line">  rabbitmqram1_data:</span><br><span class="line">    driver: local</span><br></pre></td></tr></table></figure>
+<p>docker-compose 语法格式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose [-f &lt;arg&gt;...] [options] [COMMAND] [ARGS...]`</span><br></pre></td></tr></table></figure>
+<p>运行 <code>docker-compose up -d</code> 运行，如果 docker-compose.yml 命名为其他名字，可以通过 <code>-f</code> 参数指定文件。该镜像默认账号密码是 ：<code>user/bitnami</code></p>
+<p>如上方式，会在主机上创建若干 volume，下面是一些关于 volume 的操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">删除不使用的本地 volumes</span><br><span class="line">docker volume prune</span><br><span class="line">docker volume ls</span><br><span class="line">docker volume rm &lt;volume name&gt;</span><br></pre></td></tr></table></figure>
+<p>如上创建好之后，是属于「普通模式」的集群。如果要设置为「镜像模式」，可以参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dpbnlfbG0vYXJ0aWNsZS9kZXRhaWxzLzgxMTI4MTgx" title="https://blog.csdn.net/winy_lm/article/details/81128181">Rabbitmq镜像集群部署<i class="fa fa-external-link"></i></span>，比较简单，在管理界面配置：</p>
+<p><img src="http://img.mknight.cn/medivh/1553134452790.png" alt></p>
+<ul>
+<li>Virtual host： 可选参数，针对指定vhost下的queue进行设置</li>
+<li>Name: policy的名称</li>
+<li>Pattern: queue的匹配模式(正则表达式)</li>
+<li>Definition：镜像定义，包括三个部分ha-mode, ha-params, ha-sync-mode<ul>
+<li>ha-mode:指明镜像队列的模式，有效值为 all/exactly/nodes<ul>
+<li>all：表示在集群中所有的节点上进行镜像</li>
+<li>exactly：表示在指定个数的节点上进行镜像，节点的个数由ha-params指定</li>
+<li>nodes：表示在指定的节点上进行镜像，节点名称通过ha-params指定</li>
+</ul>
+</li>
+<li>ha-params：ha-mode模式需要用到的参数</li>
+<li>ha-sync-mode：进行队列中消息的同步方式，有效值为automatic和manual</li>
+</ul>
+</li>
+<li>priority：可选参数，policy的优先级</li>
+</ul>
+<h2 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h2><h3 id="创建容器节点"><a href="#创建容器节点" class="headerlink" title="创建容器节点"></a>创建容器节点</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --hostname rabbit1 --name myrabbit1 -p 15672:15672 -p 5672:5672 -e RABBITMQ_ERLANG_COOKIE='rabbitcookie' rabbitmq:3.6.15-management</span><br><span class="line">docker run -d --hostname rabbit2 --name myrabbit2 -p 5673:5672 --link myrabbit1:rabbit1 -e RABBITMQ_ERLANG_COOKIE='rabbitcookie' rabbitmq:3.6.15-management</span><br><span class="line">docker run -d --hostname rabbit3 --name myrabbit3 -p 5674:5672 --link myrabbit1:rabbit1 --link myrabbit2:rabbit2 -e RABBITMQ_ERLANG_COOKIE='rabbitcookie' rabbitmq:3.6.15-management</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多个容器之间使用 <code>--link</code> 连接，此属性不能少；<code>--link &lt;docker-name or docker-id&gt;:alias</code>,<code>alias</code> 是源容器在 link 下的别名</li>
+<li>Erlang Cookie值必须相同，也就是 <code>RABBITMQ_ERLANG_COOKIE</code> 参数的值必须相同；</li>
+</ul>
+<p>要想知道 Erlang Cookie 位置，首先要取得 RabbitMQ 启动日志里面的 <code>home dir</code> 路径，作为根路径。使用：<code>docker logs 容器名称</code> 查看。</p>
+<h3 id="加入-RabbitMQ-节点到集群"><a href="#加入-RabbitMQ-节点到集群" class="headerlink" title="加入 RabbitMQ 节点到集群"></a>加入 RabbitMQ 节点到集群</h3><p>设置节点1：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it myrabbit1 bash</span><br><span class="line">rabbitmqctl stop_app</span><br><span class="line">rabbitmqctl reset</span><br><span class="line">rabbitmqctl start_app</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>设置节点2，加入到集群：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it myrabbit2 bash</span><br><span class="line">rabbitmqctl stop_app</span><br><span class="line">rabbitmqctl reset</span><br><span class="line">rabbitmqctl join_cluster --ram rabbit@rabbit1</span><br><span class="line">rabbitmqctl start_app</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数 <code>--ram</code> 表示设置为内存节点，忽略次参数默认为磁盘节点。</li>
+</ul>
+<p>设置节点3，加入到集群：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it myrabbit3 bash</span><br><span class="line">rabbitmqctl stop_app</span><br><span class="line">rabbitmqctl reset</span><br><span class="line">rabbitmqctl join_cluster --ram rabbit@rabbit1</span><br><span class="line">rabbitmqctl start_app</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>设置好之后，使用 <code>http://物理机ip:15672</code> 进行访问了，默认账号密码是 <code>guest/guest</code></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>MQ 安装：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxMDcwMjAyMA==" title="https://segmentfault.com/a/1190000010702020">CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务与使用<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vdmlwc3RvbmUvcC85MzYyMzg4Lmh0bWw=" title="https://www.cnblogs.com/vipstone/p/9362388.html">王磊的博客-RabbitMQ系列（五）使用Docker部署RabbitMQ集群<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZxeWRoay9hcnRpY2xlL2RldGFpbHMvODA2MjQ1NDc=" title="https://blog.csdn.net/fqydhk/article/details/80624547">docker-compose配置rabbitmq集群服务器<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucmFiYml0bXEuY29tL2NsdXN0ZXJpbmcuaHRtbCNwZWVyLWRpc2NvdmVyeS1ob3ctZG9lcy1pdC13b3Jr" title="https://www.rabbitmq.com/clustering.html#peer-discovery-how-does-it-work">官宣-Clustering Guide<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL21rbmlnaHQuY24vUmFiYml0TVElMjAlRTklOUIlODYlRTclQkUlQTQlRTklODMlQTglRTclQkQlQjIuaHRtbA==" title="http://mknight.cn/RabbitMQ%20%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2.html">RabbitMQ 集群部署<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>MQ 使用：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZGF0c2guY29tL3Bvc3QvZGV2L21xL3JhYmJpdG1xLWJsb2NrLw==" title="https://ddatsh.com/post/dev/mq/rabbitmq-block/">rabbbitmq 堆积分析<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uaW0vcG9zdC81Y2VmM2NjMzZmYjlhMDdmMDcwZTEwNTc=" title="https://juejin.im/post/5cef3cc36fb9a07f070e1057">RabbitMQ使用教程（四）如何通过持久化保证消息99.99%不丢失？<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/04/cicd-docker-jenkins/" rel="bookmark">利用 Docker 安装 CICD 神器 Jenkins</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/13/docker-compose-install-sonarqube/" rel="bookmark">使用 Docker Compose 方式搭建 SonarQube 服务</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/01/docker-centos-install/" rel="bookmark">Linux——CentOS 安装 Docker 教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/15/docker-compose-networks/" rel="bookmark">Docker Compose 方式下的容器网络基础知识点</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/02/docker-create-develop-environment/" rel="bookmark">使用容器 Docker 创建开发环境</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/" title="使用 docker-compose 安装搭建 RabbitMQ 集群">https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/容器/" rel="tag"># 容器</a>
+          
+            <a href="/tags/消息队列/" rel="tag"># 消息队列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/04/cicd-docker-jenkins/" rel="next" title="利用 Docker 安装 CICD 神器 Jenkins">
+                <i class="fa fa-chevron-left"></i> 利用 Docker 安装 CICD 神器 Jenkins
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/08/cicd-nginx-basic/" rel="prev" title="Nginx 基础知识学习">
+                Nginx 基础知识学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#rabbitmq-介绍"><span class="nav-number">1.</span> <span class="nav-text">rabbitmq 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集群模式"><span class="nav-number">1.1.</span> <span class="nav-text">集群模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点类型"><span class="nav-number">1.2.</span> <span class="nav-text">节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装知识点"><span class="nav-number">1.3.</span> <span class="nav-text">安装知识点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose"><span class="nav-number">2.</span> <span class="nav-text">docker-compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方式"><span class="nav-number">3.</span> <span class="nav-text">其他方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建容器节点"><span class="nav-number">3.1.</span> <span class="nav-text">创建容器节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入-RabbitMQ-节点到集群"><span class="nav-number">3.2.</span> <span class="nav-text">加入 RabbitMQ 节点到集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2019/06/07/docker-rabbitmq-env/";
+    this.page.identifier = "2019/06/07/docker-rabbitmq-env/";
+    this.page.title = '使用 docker-compose 安装搭建 RabbitMQ 集群';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
