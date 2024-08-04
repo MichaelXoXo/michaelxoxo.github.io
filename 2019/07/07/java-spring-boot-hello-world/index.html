@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简介目前没有系统学习过 Spring 框架，参与工作时，直接参与到了 Spring Boot 项目的开发。目前还比较菜，所以，你要是和我一样，不妨也跳过 Spring 框架的学习，直接学习 Sring Boot。">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot 实战 —— 入门">
+<meta property="og:url" content="https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="简介目前没有系统学习过 Spring 框架，参与工作时，直接参与到了 Spring Boot 项目的开发。目前还比较菜，所以，你要是和我一样，不妨也跳过 Spring 框架的学习，直接学习 Sring Boot。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/713950737e3e2019.jpeg">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/492cf11fedb2b02e.jpg">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/b563013b9d013d48.png">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/cb3afc79300ddea4.png">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/6d9475f6ly1g4rgt2r9iuj20wr0fbmzx.jpg">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/5537604915e92eee.png">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2019/07/62f76b56034ce959.jpg">
+<meta property="og:updated_time" content="2024-08-04T14:07:13.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot 实战 —— 入门">
+<meta name="twitter:description" content="简介目前没有系统学习过 Spring 框架，参与工作时，直接参与到了 Spring Boot 项目的开发。目前还比较菜，所以，你要是和我一样，不妨也跳过 Spring 框架的学习，直接学习 Sring Boot。">
+<meta name="twitter:image" content="https://i.bmp.ovh/imgs/2019/07/713950737e3e2019.jpeg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring Boot 实战 —— 入门 | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Spring Boot 实战 —— 入门<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy9qYXZhLXNwcmluZy1ib290LWhlbGxvLXdvcmxkLm1k" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-07 17:49:10" itemprop="dateCreated datePublished" datetime="2019-07-07T17:49:10+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2024-08-04 22:07:13" itemprop="dateModified" datetime="2024-08-04T22:07:13+08:00">2024-08-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.bmp.ovh/imgs/2019/07/713950737e3e2019.jpeg" alt="springboot2"></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>目前没有系统学习过 Spring 框架，参与工作时，直接参与到了 Spring Boot 项目的开发。目前还比较菜，所以，你要是和我一样，不妨也跳过 Spring 框架的学习，直接学习 Sring Boot。</p>
+<a id="more"></a>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzL2N1cnJlbnQvcmVmZXJlbmNlL2h0bWxzaW5nbGUvI2dldHRpbmctc3RhcnRlZC1pbnRyb2R1Y2luZy1zcHJpbmctYm9vdA==" title="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-introducing-spring-boot">官方文档<i class="fa fa-external-link"></i></span>的一段介绍：</p>
+<blockquote>
+<p>Spring Boot makes it easy to create stand-alone, production-grade Spring-based Applications that you can run. We take an opinionated view of the Spring platform and third-party libraries, so that you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration.</p>
+</blockquote>
+<blockquote>
+<p>You can use Spring Boot to create Java applications that can be started by using java -jar or more traditional war deployments. We also provide a command line tool that runs “spring scripts”.</p>
+</blockquote>
+<p>大体意思是说，Spring Boot 可以轻松创建可以运行的独立的，基于生产级 Spring 的应用程序。这个框架简化了我们 Spring 的配置。可以使用 Spring Boot 创建 Java 应用，只需要使用  <code>java -jar</code> 或 <code>war</code> 包部署方式就可以启动。也内嵌了 <code>Tomcat</code>，在开发时无需以 <code>war</code> 包也可以运行应用。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2F3ZXNvbWUtc3ByaW5nLWJvb3QtZXhhbXBsZXM=" title="https://github.com/michaelxoxo/awesome-spring-boot-examples">awesome-spring-boot-examples<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>下面是本文编写时，我机器的环境：</p>
+<ul>
+<li>Java 1.8.0_181</li>
+<li>Maven 3.5.4</li>
+</ul>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>本文目的是创建一个基本的 RESTful Web 服务。创建 Spring Boot 服务的方式主要有两种：</p>
+<ul>
+<li>在 IDEA 中使用 <code>Spring Initializr</code> 创建，我个人比较倾向这种方式，方便快捷；</li>
+<li>访问网站 <span class="exturl" data-url="aHR0cDovL3N0YXJ0LnNwcmluZy5pby8=" title="http://start.spring.io/">Spring Initializr<i class="fa fa-external-link"></i></span> 网站，勾选相关项目依赖，最后生成一个初始化项目，导入 IDE。</li>
+</ul>
+<p><img src="https://i.bmp.ovh/imgs/2019/07/492cf11fedb2b02e.jpg" alt="Spring Initializr 网站"></p>
+<p>下面主要介绍 IDEA 如何初始化一个 Sring Boot 项目：</p>
+<p>1.File-New-Porject，选择 <code>Spring Initializr</code>，选择 SDK 版本；<br>2.输入项目的元数据信息，关系到项目的路径、<code>pom</code> 文件中项目的 Maven 坐标（<code>GAV</code>）；</p>
+<p><img src="https://i.bmp.ovh/imgs/2019/07/b563013b9d013d48.png" alt="gav"></p>
+<p>3.选择需要的 Maven 依赖，这里 Spring Boot 版本，我选择了 <code>2.1.6</code> 版本；</p>
+<p><img src="https://i.bmp.ovh/imgs/2019/07/cb3afc79300ddea4.png" alt="dependency"></p>
+<p>4.最后一步指定项目存放位置；</p>
+<ul>
+<li><code>src/main/java</code> 中有项目代码文件，根目录下是入口类：<code>SpringBootHelloWorldApplication</code> 类。<code>@SpringBootApplication</code> 注解，这是整个 Spring Boot 的核心注解，它的目的就是开启 Spring Boot 的自动配置。</li>
+<li><code>src/main/resources</code> 下是配置文件：<code>application.properties</code></li>
+<li><code>src/test/</code> 下的测试入口：Chapter1ApplicationTests</li>
+</ul>
+<h2 id="添加控制器类-——-Controller"><a href="#添加控制器类-——-Controller" class="headerlink" title="添加控制器类 —— Controller"></a>添加控制器类 —— Controller</h2><p>通常在项目中对外提供的 API 都会放在叫做 <code>Controller</code> 的包下。</p>
+<p>我们创建一个 <code>Controller</code> 的包，并添加一个叫做 <code>HelloWorld</code> 的类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello World"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>@RestController</code> 注解加在这个类上，使之变为一个 <code>Controller</code></li>
+</ul>
+<p>这是我们启动项目，便可以通过地址 <code>localhost:8080/hello</code> 或 <code>127.0.0.1:8080/hello</code> 看到 <code>sayHello</code> 函数执行的内容。</p>
+<p><img src="https://ws1.sinaimg.cn/large/6d9475f6ly1g4rgt2r9iuj20wr0fbmzx.jpg" alt="启动"></p>
+<p>查看控制台的输出，我们可以知道 Spring Boot 项目启动时，默认的端口是 <code>8080</code></p>
+<p><img src="https://i.bmp.ovh/imgs/2019/07/5537604915e92eee.png" alt="default port"></p>
+<h2 id="Profile-配置文件"><a href="#Profile-配置文件" class="headerlink" title="Profile 配置文件"></a>Profile 配置文件</h2><p>官方文档中有关于 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzL2N1cnJlbnQvcmVmZXJlbmNlL2h0bWxzaW5nbGUvI2Jvb3QtZmVhdHVyZXMtZXh0ZXJuYWwtY29uZmlnLXByb2ZpbGUtc3BlY2lmaWMtcHJvcGVydGllcw==" title="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-profile-specific-properties">Profile<i class="fa fa-external-link"></i></span> 的描述。 <code>Prorile</code> 有 <code>轮廓、外形、简况</code>的含义，这里我就把它理解为「配置描述」好了。<code>src/main/resources</code> 目录是 Spring Boot 的配置目录，Spring Boot 的默认配置文件位置为：<code>src/main/resources/application.properties</code>。</p>
+<p>在实际项目中，生产、beta 不同环境将采用不同的配置，比如数据库配置等等。这时候，我们只需要创建多分 Profile 文件即可。</p>
+<p>除了 <code>application.properties</code> 文件，配置文件还可以采用下面的命名规则<code>application-{profile}.properties</code>。Environment 中具有一组可选的值。如果没有设置需要激活什么配置文件，就默认激活 <code>default</code> 配置，即 <code>application-default.properties</code>。</p>
+<div class="note info">
+            <p>指定的配置文件都是从同一个位置被激活，即从标准的配置文件 <code>application.properties</code>，这一点要记住！</p>
+          </div>
+<p>如果指定了多个配置文件，采取 <code>last-win</code> 策略，即「最后获胜侧率」。这句话意思是什么呢，就是说，在你的 <code>application.properties</code> 中如果指定了激活好几个配置文件，那么，最后指定的那个配置文件才会生效。</p>
+<p>我们分别创建两个环境配置文件：</p>
+<ul>
+<li><code>application-dev.properties</code> 测试环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.port=8081</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>application-prod.properties</code> 生产环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>server.port=8082</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Spring Boot 的配置文件除了可以使用 properties 文件之外，还支持的 YAML 文件</p>
+</blockquote>
+<h3 id="通过-application-prperties-指定-Profile"><a href="#通过-application-prperties-指定-Profile" class="headerlink" title="通过 application.prperties 指定 Profile"></a>通过 application.prperties 指定 Profile</h3><p><code>applcation.properties</code> 公共配置文件。激活 Dev 配置文件，需要在 <code>application.properties</code> 设置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>这里定义8080主要是为了看端口设置是否会被 dev 覆盖</span><br><span class="line">server.port=8080</span><br><span class="line">spring.profiles.active=dev</span><br></pre></td></tr></table></figure>
+<p>这时候启动程序时，我们查看控制台就可看到 <code>Dev</code> 环境被激活了，应用端口是 <code>8081</code>。这时候观察 <code>application.properties</code> 的端口设置是否会会生效。经过测试可以发现，此时<code>8080</code> 端口被 <code>Dev</code> 的配置覆盖了。</p>
+<p>接着，我们激活 <code>Prod</code> 配置，注意，此时我将 <code>Prod</code> 端口配置注释掉了，这时候观察 <code>application.properties</code> 的端口设置是否会会生效。经过测试可以发现，此时<code>8080</code> 端口生效了。</p>
+<h3 id="通过-Environment-指定-Profile"><a href="#通过-Environment-指定-Profile" class="headerlink" title="通过 Environment 指定 Profile"></a>通过 Environment 指定 Profile</h3><p>除了上面在 <code>application.properties</code> 指定激活的配置外，还可以在 Envirionment 中设置相关环境变量激活：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.profiles.active=dev</span><br></pre></td></tr></table></figure>
+<p>经过测试，我在 Environment 中设置环境变量激活了 <code>Dev</code> 的配置，然后在 <code>application.properties</code> 激活的是 <code>Prod</code> 的配置，最终控制台日志显示， <code>Dev</code> 配置被激活。</p>
+<h3 id="jar-方式运行时"><a href="#jar-方式运行时" class="headerlink" title="jar 方式运行时"></a>jar 方式运行时</h3><p>如果采用 <code>mvn clean package</code> 打出 <code>jar</code> 包，那么可以使用如下方式指定 Profile：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar spring-boot-hello-world-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev</span><br></pre></td></tr></table></figure>
+<p>在命令行方式启动 Spring Boot 应用时，连续的两个减号 <code>--</code> 就是对 <code>application.properties</code> 中的属性值进行赋值的标识。通过命令行来修改属性值是Spring Boot 非常重要的一个特性，通过此特性，理论上已经使得我们应用的属性在启动前是可变的，所以其中端口号也好、数据库连接也好，都是可以在应用启动时发生改变。</p>
+<p>补充：我们有时候利用 <code>java</code> 方式启动时，会带参数 <code>-D</code>，这个怎么理解呢？</p>
+<blockquote>
+<p>use -D to define system properties</p>
+</blockquote>
+<p>可以阅读下面两个链接：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Zlbmdsb25nbWlhby9hcnRpY2xlL2RldGFpbHMvODA1MTE1MTI=" title="https://blog.csdn.net/fenglongmiao/article/details/80511512">java程序启动参数-D详解<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNDQ3NDUyNjEvd2h5LWRvLWp2bS1hcmd1bWVudHMtc3RhcnQtd2l0aC1k" title="https://stackoverflow.com/questions/44745261/why-do-jvm-arguments-start-with-d">Why do JVM arguments start with “-D”?<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpBeE9EY3lOakV6TlE9PSZhbXA7bWlkPTIyNDc0ODc1NjgmYW1wO2lkeD0xJmFtcDtzbj0zMDFhNGUzNzAxODc0NWNlNjU5NjJmZWE1OWQyMDlkZCZhbXA7Y2hrc209OWJkMGJkYzhhY2E3MzRkZWM3MmQ1NDZjYTFjN2Y0ZTZkOTE5NTI0ZGIxMWEyYWM4ODkwYTQ2MGZjMDlkNzUzOGZkY2MxNWRhNGY0ZCZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0xJmFtcDtzcmNpZD0wNjExaW1QN3RxRTdJTnMzd2NFY1RTM0EjcmQ=" title="https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247487568&amp;idx=1&amp;sn=301a4e37018745ce65962fea59d209dd&amp;chksm=9bd0bdc8aca734dec72d546ca1c7f4e6d919524db11a2ac8890a460fc09d7538fdcc15da4f4d&amp;mpshare=1&amp;scene=1&amp;srcid=0611imP7tqE7INs3wcEcTS3A#rd">Spring Boot 配置文件中的花样，看这一篇足矣！<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="自定义属性参数"><a href="#自定义属性参数" class="headerlink" title="自定义属性参数"></a>自定义属性参数</h3><p>我们可以在 Profile 中指定一些 <code>propety</code> 的值，在程序中可以获取到。</p>
+<p>在 <code>application-dev.properties</code> 定义如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=8081</span><br><span class="line">author.name=Michael</span><br></pre></td></tr></table></figure>
+<p>接着，我们在 Controller 类中使用 <code>@Value</code> 注，即可获取到这个属性：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">    @Value(value = "$&#123;author.name&#125;")</span><br><span class="line">    private String authorName;</span><br><span class="line"></span><br><span class="line">    @GetMapping("/hello")</span><br><span class="line">    public String sayHello() &#123;</span><br><span class="line">        return "Hello World By " + authorName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.bmp.ovh/imgs/2019/07/62f76b56034ce959.jpg" alt="property"></p>
+<h3 id="使用随机数"><a href="#使用随机数" class="headerlink" title="使用随机数"></a>使用随机数</h3><p>在配置文件中，可以使用 <code>${random}</code> 来生成不同类型的随机数。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">book.value = $&#123;random.value&#125;</span><br><span class="line">book.intValue = $&#123;random.int&#125;</span><br><span class="line">book.longValue = $&#123;random.long&#125;</span><br><span class="line">book.uuid = $&#123;random.uuid&#125;</span><br><span class="line"><span class="meta">#</span> 1000 以内的随机数</span><br><span class="line">book.randomNumber = $&#123;random.int(1000)&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h2><p>只需要引入 <code>spring-boot-devtools</code> 依赖即可。引入依赖之后，重新编译修改的类文件或者配置文件， Spring Boot 框架会自动重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>在 IDEA 的顶部菜单栏的 <code>Build</code> 中可以看到编译相关的选项。</p>
+<h2 id="定制-Banner"><a href="#定制-Banner" class="headerlink" title="定制 Banner"></a>定制 Banner</h2><p>Banner 就是指我们在启动应用时控制台一开始打印的那个内容，默认是打印 <code>Spring Boot</code>。</p>
+<ol>
+<li><code>src/main/resorces</code> 下新建一个名为 <code>banner.txt</code> 的内容；</li>
+<li>复制你想显示的内容到 <code>banner.txt</code>。</li>
+</ol>
+<p>个性化 Banner 来源：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL3BhdG9yamsuY29tL3NvZnR3YXJlL3RhYWc=" title="http://patorjk.com/software/taag">http://patorjk.com/software/taag<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5uZXR3b3JrLXNjaWVuY2UuZGUvYXNjaWkv" title="http://www.network-science.de/ascii/">http://www.network-science.de/ascii/<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0JsYW5rai9hd2Vzb21lLWNvbW1lbnQ=" title="https://github.com/Blankj/awesome-comment">https://github.com/Blankj/awesome-comment<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>送一个有趣的 Banner：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">////////////////////////////////////////////////////////////////////</span><br><span class="line">//                          _ooOoo_                               //</span><br><span class="line">//                         o8888888o                              //</span><br><span class="line">//                         88" . "88                              //</span><br><span class="line">//                         (| ^_^ |)                              //</span><br><span class="line">//                         O\  =  /O                              //</span><br><span class="line">//                      ____/`---'\____                           //</span><br><span class="line">//                    .'  \\|     |//  `.                         //</span><br><span class="line">//                   /  \\|||  :  |||//  \                        //</span><br><span class="line">//                  /  _||||| -:- |||||-  \                       //</span><br><span class="line">//                  |   | \\\  -  /// |   |                       //</span><br><span class="line">//                  | \_|  ''\---/''  |   |                       //</span><br><span class="line">//                  \  .-\__  `-`  ___/-. /                       //</span><br><span class="line">//                ___`. .'  /--.--\  `. . ___                     //</span><br><span class="line">//              ."" '&lt;  `.___\_&lt;|&gt;_/___.'  &gt;'"".                  //</span><br><span class="line">//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //</span><br><span class="line">//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //</span><br><span class="line">//      ========`-.____`-.___\_____/___.-`____.-'========         //</span><br><span class="line">//                           `=---='                              //</span><br><span class="line">//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //</span><br><span class="line">//            佛祖保佑       永不宕机     永无BUG                  //</span><br><span class="line">////////////////////////////////////////////////////////////////////</span><br></pre></td></tr></table></figure>
+<h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h2><h3 id="spring-boot-starter"><a href="#spring-boot-starter" class="headerlink" title="spring-boot-starter"></a>spring-boot-starter</h3><p>Spring Boot 提供了很多”开箱即用“的依赖模块，都是以 <code>spring-boot-starter-xx</code> 作为命名的。下面列举一些常用的模块：</p>
+<ul>
+<li>spring-boot-starter-logging ：使用 Spring Boot 默认的日志框架 Logback。</li>
+<li>spring-boot-starter-log4j ：添加 Log4j 的支持。</li>
+<li>spring-boot-starter-web ：支持 Web 应用开发，包含 Tomcat 和 spring-mvc。</li>
+<li>spring-boot-starter-tomcat ：使用 Spring Boot 默认的 Tomcat 作为应用服务器。</li>
+<li>spring-boot-starter-jetty ：使用 Jetty 而不是默认的 Tomcat 作为应用服务器。</li>
+<li>spring-boot-starter-test ：包含常用的测试所需的依赖，如 JUnit、Hamcrest、Mockito 和 spring-test 等。</li>
+<li>spring-boot-starter-aop ：包含 spring-aop 和 AspectJ 来支持面向切面编程（AOP）。</li>
+<li>spring-boot-starter-security ：包含 spring-security。</li>
+<li>spring-boot-starter-jdbc ：支持使用 JDBC 访问数据库。</li>
+<li>spring-boot-starter-redis ：支持使用 Redis。</li>
+<li>spring-boot-starter-data-mongodb ：包含 spring-data-mongodb 来支持 MongoDB。</li>
+<li>spring-boot-starter-data-jpa ：包含 spring-data-jpa、spring-orm 和 Hibernate 来支持 JPA。</li>
+<li>spring-boot-starter-amqp ：通过 spring-rabbit 支持 AMQP。</li>
+<li>spring-boot-starter-actuator ： 添加适用于生产环境的功能，如性能指标和监测等功能。</li>
+</ul>
+<h3 id="SpringBoot-目录结构"><a href="#SpringBoot-目录结构" class="headerlink" title="SpringBoot 目录结构"></a>SpringBoot 目录结构</h3><p>常用目录结构理解：</p>
+<ul>
+<li>controller：控制层，前端控制器，负责页面访问控制，controller 是用来接收页面参数，并且调用逻辑处理，最后组织页面响应的地方。我们不可以在controller 进行逻辑处理，controller 只应该负责用户 API 入口和响应的处理。主要是对外提供的 API 接口，用户使用服务时的入口处，可以结合 swagger 生成对应的 API 文档</li>
+<li>service：业务层，逻辑层，主要是业务类代码，归档了前端控制器中相关服务的操作方法接口类，该文件夹下包含子 impl 文件夹，归档对应的实现接口</li>
+<li>domain：实体类，归档对应的实体（Entity），一个实体尝尝就对应着数据库中一张表</li>
+<li>dao：数据访问层，实体类对应的数据库操作接口类，它与数据库进行交互，封装了对数据库的 CURD 操作</li>
+<li>config：配置信息类</li>
+<li>utils：工具类</li>
+<li>constant：常量接口类</li>
+</ul>
+<p>当请求来了，controller 就会将相应的请求分发到相应的 service层，在 service 层中再调用 dao 层进行数据库交互。这里的 dao 层其实就是之前的 model 层，封装了对数据库的操作。这样一来，就把业务处理逻辑从 controller 中分离出来，从而实现了解耦。</p>
+<h3 id="领域模型"><a href="#领域模型" class="headerlink" title="领域模型"></a>领域模型</h3><p>分层领域模型规约，熟悉一下：</p>
+<ul>
+<li>DO（ Data Object）：<strong>与数据库表结构一一对应</strong>，通过 DAO 层向上传输数据源对象。★★★</li>
+<li>DTO（ Data Transfer Object）：数据传输对象，Service 或 Manager 向外传输的对象。★★★</li>
+<li>BO（ Business Object）：业务对象。 由 Service 层输出的封装业务逻辑的对象。</li>
+<li>AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。</li>
+<li>VO（ View Object）：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。★★★</li>
+<li>POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。</li>
+<li>Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。</li>
+</ul>
+<p>领域模型命名规约：</p>
+<ul>
+<li>数据对象：<code>xxxDO</code>，xxx即为数据表名。★★★</li>
+<li>数据传输对象：<code>xxxDTO</code>，<code>xxx</code> 为业务领域相关的名称。目前项目中，牵扯到和其他周边部署系统需要实体类接受数据时，这样的对象往往以 <code>DTO</code> 结尾 ★★★</li>
+<li>展示对象：<code>xxxVO</code>，<code>xxx</code> 一般为网页名称。目前项目中 Ctroller 层涉及的请求体，通常以 <code>VO</code> 结尾。★★★</li>
+<li>POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI3MDI1NDcvYXJ0aWNsZS9kZXRhaWxzLzUzNzQwMDQ3" title="https://blog.csdn.net/u012702547/article/details/53740047">江南一点雨-初识Spring Boot框架<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzL2N1cnJlbnQvcmVmZXJlbmNlL2h0bWxzaW5nbGUvI2Jvb3QtZmVhdHVyZXMtZXh0ZXJuYWwtY29uZmlnLXByb2ZpbGUtc3BlY2lmaWMtcHJvcGVydGllcw==" title="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-profile-specific-properties">boot-features-external-config-profile-specific-properties<i class="fa fa-external-link"></i></span> 官宣</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vamluZ21veHVrb25nL3AvMTAxNTE3ODUuaHRtbCNjb21tZW50Zm9ybQ==" title="https://www.cnblogs.com/jingmoxukong/p/10151785.html#commentform">博客园-静默虚空-Spring Boot 之 Profile 使用<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuaW5mb3EuY24vYXJ0aWNsZS9RLWVzZTRDeFYySVdtbHRzSmNHWA==" title="https://www.infoq.cn/article/Q-ese4CxV2IWmltsJcGX">InfoQ-胡正林-Spring Boot 多环境配置最佳实践<i class="fa fa-external-link"></i></span> 偏底层，了解 Profile 激活流程可查阅</li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuZGlkaXNwYWNlLmNvbS9zcHJpbmctYm9vdC1iYW5uZXIv" title="http://blog.didispace.com/spring-boot-banner/">新年彩蛋：Spring Boot自定义Banner<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuNzIwdWkuY29tLzIwMTYvc3ByaW5nYm9vdF8wMV9xdWlja3N0YXJ0Lw==" title="http://blog.720ui.com/2016/springboot_01_quickstart/">梁桂钊-Spring Boot 揭秘与实战（一） 快速上手<i class="fa fa-external-link"></i></span> spring-boot-starter</li>
+</ul>
+<p>目录结构参考</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE2NTkxNzIvYXJ0aWNsZS9kZXRhaWxzLzUyOTM0MjA2" title="https://blog.csdn.net/u011659172/article/details/52934206">Spring Boot工程结构(推荐)<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NtYWxsX01vdXNlMC9hcnRpY2xlL2RldGFpbHMvNzc4MjY5MDY/dXRtX3NvdXJjZT1ibG9neGd3ejE=" title="https://blog.csdn.net/Small_Mouse0/article/details/77826906?utm_source=blogxgwz1">【系统学习SpringBoot】目录结构（建议）<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cubG9uZ2ppYXp1by5jb20vYXJjaGl2ZXMvMTkwMw==" title="http://blog.longjiazuo.com/archives/1903">Spring Boot基础(三):Spring Boot项目推荐工程结构<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vc29uZ3hpbmd6aHUvcC85NTk3OTI3Lmh0bWw=" title="https://www.cnblogs.com/songxingzhu/p/9597927.html">使用SpringBoot的推荐项目目录结构<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0VhcmxfeXVhbi9hcnRpY2xlL2RldGFpbHMvNTAzODI0MzE=" title="https://blog.csdn.net/Earl_yuan/article/details/50382431">浅谈MVC分层架构中的层次<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95ZXpzaXRlaS5naXRodWIuaW8vc3ByaW5nYm9vdC8yMDE3LzEwLzI0L1NwcmluZy1Cb290LSVFOSVBMSVCOSVFNyU5QiVBRSVFNyVCQiU5MyVFNiU5RSU4NC8=" title="https://yezsitei.github.io/springboot/2017/10/24/Spring-Boot-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">YezhiweiBlog-Spring Boot 工程结构规范——项目定义级包结构<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vRWFzb25KaW0vcC83OTY3OTk5Lmh0bWw=" title="https://www.cnblogs.com/EasonJim/p/7967999.html">博客园-阿里巴巴Java开发手册中的DO、DTO、BO、AO、VO、POJO定义<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzM5NjUxOTI4" title="https://www.zhihu.com/question/39651928">知乎-PO BO VO DTO POJO DAO DO这些Java中的概念分别指一些什么？<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>Spring Boot 启动原理：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpJME16UXlNVFl6T1E9PSZhbXA7bWlkPTIyNDc0ODQ4MzcmYW1wO2lkeD0xJmFtcDtzbj03ZTFhZTBhNDUzOTg0YzdlM2JmNWEyNDgyNWRlODk3OSZhbXA7Y2hrc209ZTk2YzFkMGRkZTFiOTQxYjExMTdiYTVlNzgwZDA3YWUyNWIyZTNkNDI2ZGU4N2MwZTIyMDliMzU3MjI1NDFjMTMxNjUwZDAxMDM2NSZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0xJmFtcDtzcmNpZD0wMTA1bUtlNWc2djRUQ2RKY1lCdkJhV3YjcmQ=" title="https://mp.weixin.qq.com/s?__biz=MzI0MzQyMTYzOQ==&amp;mid=2247484837&amp;idx=1&amp;sn=7e1ae0a453984c7e3bf5a24825de8979&amp;chksm=e96c1d0dde1b941b1117ba5e780d07ae25b2e3d426de87c0e2209b35722541c131650d010365&amp;mpshare=1&amp;scene=1&amp;srcid=0105mKe5g6v4TCdJcYBvBaWv#rd">老钱-SpringBoot 究竟是如何跑起来的?<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/08/10/java-spring-boot-log4j2/" rel="bookmark">Spring Boot 实战 —— 日志框架 Log4j2 SLF4J 的学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/08/09/java-spring-boot-logback/" rel="bookmark">Spring Boot 实战 —— 日志框架 logback 的学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/07/04/java-basic-annotation/" rel="bookmark">Java 基础 —— 注解 Annotation</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/08/07/java-basic-class-load/" rel="bookmark">Java 基础 —— 类加载</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/08/09/java-basic-class-reflect/" rel="bookmark">Java 基础 —— 反射</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/" title="Spring Boot 实战 —— 入门">https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/23/video-tools-chrome-vimium/" rel="next" title="Chrome 扩展神器 Vimium 使用教程——快速搜索收藏的书签">
+                <i class="fa fa-chevron-left"></i> Chrome 扩展神器 Vimium 使用教程——快速搜索收藏的书签
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/14/java-spring-boot-swagger/" rel="prev" title="Spring Boot 实战 —— 集成 Swagger 生成 RESTful API 文档">
+                Spring Boot 实战 —— 集成 Swagger 生成 RESTful API 文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例代码"><span class="nav-number">2.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">3.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">4.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加控制器类-——-Controller"><span class="nav-number">5.</span> <span class="nav-text">添加控制器类 —— Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Profile-配置文件"><span class="nav-number">6.</span> <span class="nav-text">Profile 配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-application-prperties-指定-Profile"><span class="nav-number">6.1.</span> <span class="nav-text">通过 application.prperties 指定 Profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Environment-指定-Profile"><span class="nav-number">6.2.</span> <span class="nav-text">通过 Environment 指定 Profile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jar-方式运行时"><span class="nav-number">6.3.</span> <span class="nav-text">jar 方式运行时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义属性参数"><span class="nav-number">6.4.</span> <span class="nav-text">自定义属性参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用随机数"><span class="nav-number">6.5.</span> <span class="nav-text">使用随机数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热部署"><span class="nav-number">7.</span> <span class="nav-text">热部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制-Banner"><span class="nav-number">8.</span> <span class="nav-text">定制 Banner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充知识"><span class="nav-number">9.</span> <span class="nav-text">补充知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-boot-starter"><span class="nav-number">9.1.</span> <span class="nav-text">spring-boot-starter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot-目录结构"><span class="nav-number">9.2.</span> <span class="nav-text">SpringBoot 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#领域模型"><span class="nav-number">9.3.</span> <span class="nav-text">领域模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">10.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2019/07/07/java-spring-boot-hello-world/";
+    this.page.identifier = "2019/07/07/java-spring-boot-hello-world/";
+    this.page.title = 'Spring Boot 实战 —— 入门';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

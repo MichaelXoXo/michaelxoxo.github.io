@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Vultr 选择的是日本的节点，发现速度比较不错，油管视频 1080P 无压力！而且，感觉 Vultr 的界面也很清新，用着很方便。">
+<meta name="keywords" content="ss,vps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ss+vps+mac">
+<meta property="og:url" content="https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="Vultr 选择的是日本的节点，发现速度比较不错，油管视频 1080P 无压力！而且，感觉 Vultr 的界面也很清新，用着很方便。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.vultr.com/media/banners/banner_800x418.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/T0EYuk.jpg">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/aSx9r8.png">
+<meta property="og:updated_time" content="2024-08-04T14:07:13.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ss+vps+mac">
+<meta name="twitter:description" content="Vultr 选择的是日本的节点，发现速度比较不错，油管视频 1080P 无压力！而且，感觉 Vultr 的界面也很清新，用着很方便。">
+<meta name="twitter:image" content="https://www.vultr.com/media/banners/banner_800x418.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ss+vps+mac | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ss+vps+mac<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy90b29scy1zcy12cHMubWQ=" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-27 14:21:24" itemprop="dateCreated datePublished" datetime="2019-04-27T14:21:24+08:00">2019-04-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2024-08-04 22:07:13" itemprop="dateModified" datetime="2024-08-04T22:07:13+08:00">2024-08-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ToolsDaily/" itemprop="url" rel="index"><span itemprop="name">ToolsDaily</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Vultr 选择的是日本的节点，发现速度比较不错，油管视频 1080P 无压力！而且，感觉 Vultr 的界面也很清新，用着很方便。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudnVsdHIuY29tLz9yZWY9NzQ4ODkxOQ==" title="https://www.vultr.com/?ref=7488919"><img src="https://www.vultr.com/media/banners/banner_800x418.png" width="800" height="418"><i class="fa fa-external-link"></i></span></p>
+<a id="more"></a>
+<p>我自搭梯子，选择的是：<del><code>Shadowsocks-libev+开启simple-obs插键+BBR加速</code></del></p>
+<p>20191013 更新，发现使用 kcptun 加速效果更明显！于是改为<code>Shadowsocks-libev+开启simple-obs插键+ kcptun加速</code></p>
+<p>Vultr 通过我的链接注册充值，你我都可以获得 $10 账户返利，所以，如果有需要，就点击注册吧：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudnVsdHIuY29tLz9yZWY9NzQ4ODkxOQ==" title="https://www.vultr.com/?ref=7488919">Vultr 注册返利链接<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h2><p>vultr速度比较：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudnVsdHIuY29tL2ZhcS8jZG93bmxvYWRzcGVlZHRlc3Rz" title="https://www.vultr.com/faq/#downloadspeedtests">vultr-downloadspeedtests<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudGhldnVsdHIub3JnLw==" title="https://www.thevultr.org/">vultr中文网<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>我选择的节点是日本的节点，离得近，速度能快点。</p>
+<p>建议选择 Ubuntu 18 或者 CentOS 8 开始的版本，这样就默认开启了 BBR 的设置，有加速的效果。</p>
+<h3 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h3><p>时区保持一致很重要，尤其是 v2ray 方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 查看时间和本地时间是否一致</span><br><span class="line">date -R</span><br><span class="line"><span class="meta">#</span> 设置一致，东八区</span><br><span class="line">sudo -i</span><br><span class="line">cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br><span class="line">date -R</span><br></pre></td></tr></table></figure>
+<h3 id="BBR"><a href="#BBR" class="headerlink" title="BBR"></a>BBR</h3><p>BBR 开启，可以起到加速作用。如果用的是 CentOS 8 或者 Ubuntu 18 的话，可能都不需要开启，因为默认就开启了。</p>
+<p>BBR 一键安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
+<p>安装过程，需要重启机器一次。重启之后，输入 <code>lsmod | grep bbr</code> 看到输出有 <code>bbr</code> 则代表 OK 了。</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x5ZjMvc3MvaXNzdWVzLzE=" title="https://github.com/lyf3/ss/issues/1">上网配置<i class="fa fa-external-link"></i></span> bbr 开启和 ssr 搭建</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubW9lcmF0cy5jb20vYXJjaGl2ZXMvNjEyLw==" title="https://www.moerats.com/archives/612/">Ubuntu 18.04/18.10快速开启Google BBR的方法<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="辅助工具"><a href="#辅助工具" class="headerlink" title="辅助工具"></a>辅助工具</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly90b29scy5pcGlwLm5ldC90cmFjZXJvdXRlLnBocA==" title="https://tools.ipip.net/traceroute.php">https://tools.ipip.net/traceroute.php<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3BpbmcucGUvcGluZy5waHA=" title="http://ping.pe/ping.php">http://ping.pe/ping.php<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudXVpZGdlbmVyYXRvci5uZXQv" title="https://www.uuidgenerator.net/">https://www.uuidgenerator.net/<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="shadowsocks"><a href="#shadowsocks" class="headerlink" title="shadowsocks"></a>shadowsocks</h2><h3 id="安装-ss"><a href="#安装-ss" class="headerlink" title="安装 ss"></a>安装 ss</h3><p>在 VPS 机器上安装好 ss 客户端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">chmod +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>
+<p><strong>注意，建议选择 <code>Shadowsocks-libev</code> 版本。</strong></p>
+<p>按照提示，设置好端口、密码、选择加载 simple-obfs 插件。</p>
+<p>卸载的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure>
+<h3 id="ss-服务端相关配置"><a href="#ss-服务端相关配置" class="headerlink" title="ss 服务端相关配置"></a>ss 服务端相关配置</h3><p>启动脚本后面的参数含义，从左至右依次为：启动，停止，重启，查看状态。</p>
+<ul>
+<li>Shadowsocks-Python 版：<code>/etc/init.d/shadowsocks-python start | stop | restart | status</code></li>
+<li>ShadowsocksR 版：<code>/etc/init.d/shadowsocks-r start | stop | restart | status</code></li>
+<li>Shadowsocks-Go 版：<code>/etc/init.d/shadowsocks-go start | stop | restart | status</code></li>
+<li>Shadowsocks-libev 版：<code>/etc/init.d/shadowsocks-libev start | stop | restart | status</code></li>
+</ul>
+<p>配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Shadowsocks-Python 版：</span><br><span class="line">/etc/shadowsocks-python/config.json</span><br><span class="line"></span><br><span class="line">ShadowsocksR 版：</span><br><span class="line">/etc/shadowsocks-r/config.json</span><br><span class="line"></span><br><span class="line">Shadowsocks-Go 版：</span><br><span class="line">/etc/shadowsocks-go/config.json</span><br><span class="line"></span><br><span class="line">Shadowsocks-libev 版：</span><br><span class="line">/etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
+<p><code>netstat -nl | grep 12250</code> 或 <code>ss -nl | grep 12250</code> 可以查看 ss 服务的端口，12250 仅仅是示例，需要换成你自己设置的 ss 端口。</p>
+<p>ss 服务端配置参考：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@vultr ss]# cat /etc/shadowsocks-libev/config.json</span><br><span class="line">&#123;</span><br><span class="line">    "server":"0.0.0.0",</span><br><span class="line">    "server_port":12250,</span><br><span class="line">    "password":"xxxx",</span><br><span class="line">    "timeout":300,</span><br><span class="line">    "user":"nobody",</span><br><span class="line">    "method":"aes-256-gcm",</span><br><span class="line">    "fast_open":false,</span><br><span class="line">    "nameserver":"8.8.8.8",</span><br><span class="line">    "mode":"tcp_and_udp",</span><br><span class="line">    "plugin":"obfs-server",</span><br><span class="line">    "plugin_opts":"obfs=http"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="加速配置"><a href="#加速配置" class="headerlink" title="加速配置"></a>加速配置</h2><h3 id="kcptun"><a href="#kcptun" class="headerlink" title="kcptun"></a>kcptun</h3><p>除了上面介绍的 BBR 加速方式之外，还有 kcptun 的加速。二者选择一种即可。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/T0EYuk.jpg" alt="kcptun原理"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data &amp;&amp; cd /data</span><br><span class="line">wget --no-check-certificate https://github.com/kuoruan/shell-scripts/raw/master/kcptun/kcptun.sh</span><br><span class="line">chmod +x ./kcptun.sh</span><br><span class="line">./kcptun.sh</span><br></pre></td></tr></table></figure>
+<p>配置：</p>
+<ul>
+<li>端口：默认29900，即为KCPTUN与其客户端连接使用的端口，默认即可，这个端口号其实也是有用的，客户端启用 kcptun 插件时，端口要写这个，而不是 ss 的端口号！！！</li>
+<li>要加速的地址：默认 <code>127.0.0.1</code>。</li>
+<li>要加速的端口：设置为你的 SS/SSR 使用的端口，这里要注意！！！</li>
+<li>密码：自己设置，用于KCPTUN客户端连接使用，不要使用默认密码。</li>
+<li>加密方式选择：较强的加密方式会影响网速，建议默认aes或不加密。</li>
+<li>加速模式：默认fast即可。随后可以手动修改为其它模式，测试加速效果。</li>
+<li>MTU：默认1350即可。</li>
+<li>sndwnd：发送窗口大小，与服务器的上传带宽大小有关，这项与rcvwnd的比例会影响加速效果，可以暂时设置为默认的512，服务端的这个值和客户端的 rcvwnd 关系紧密，影响速度，需要调试</li>
+<li>rcvwnd：接收窗口大小，与服务器的下载带宽大小有关，也可以暂设置为默认的512，或者1024也可以。</li>
+<li>以下几项中，除了数据压缩外，其它保持默认参数即可。建议关闭数据压缩，可以在一定程度上提升传输效率。</li>
+</ul>
+<p>其余各项设置，保持默认即可，设置完成后，按任意键开始安装过程。</p>
+<p>安装好之后，记录下最后的输出信息，后面有用。</p>
+<p>kcptun 服务端配置参考：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@vultr ss]# cat /usr/local/kcptun/server-config.json</span><br><span class="line">&#123;</span><br><span class="line">  "listen": ":39901",</span><br><span class="line">  "target": "127.0.0.1:12250",</span><br><span class="line">  "key": "xxxx",</span><br><span class="line">  "crypt": "aes",</span><br><span class="line">  "mode": "fast2",</span><br><span class="line">  "mtu": 1350,</span><br><span class="line">  "sndwnd": 2048,</span><br><span class="line">  "rcvwnd": 2048,</span><br><span class="line">  "datashard": 10,</span><br><span class="line">  "parityshard": 3,</span><br><span class="line">  "dscp": 0,</span><br><span class="line">  "nocomp": false,</span><br><span class="line">  "quiet": false,</span><br><span class="line">  "tcp": false,</span><br><span class="line">  "pprof": false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>KCPTUN常用功能及命令：</p>
+<ul>
+<li>KCPTUN安装目录：<code>/usr/local/kcptun</code></li>
+<li>KCPTUN的参数配置文件：<code>/usr/local/kcptun/server-config.json</code></li>
+<li>启动：<code>supervisorctl start kcptun</code></li>
+<li>停止：<code>supervisorctl stop kcptun</code></li>
+<li>重启：<code>supervisorctl restart kcptun</code></li>
+<li>状态：<code>supervisorctl status kcptun</code></li>
+<li>打印出服务器信息：<code>./kcptun.sh show</code> ——— 多亏了这个命令，看到了 <code>remoteaddr</code> 值，这个也是启用 kcptun 插键后，你本地 ss 客户端要配置的 IP 和 端口号</li>
+<li>更新：<code>./kcptun.sh update</code></li>
+<li>查看日志：<code>./kcptun.sh log</code></li>
+<li>卸载：<code>./kcptun.sh uninstall</code></li>
+<li>更多使用说明 <code>cd /data &amp;&amp; ./kcptun.sh help</code></li>
+</ul>
+<p>配置参数调试：</p>
+<ul>
+<li>同时在两端逐步增大 client rcvwnd 和 server sndwnd;</li>
+<li>尝试下载，观察如果带宽利用率（服务器＋客户端两端都要观察）接近物理带宽则停止，否则跳转到第一步。</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5qb3V5cHViLmNvbS8yMDE5LzljNGRmNzAwZjBmNzY4NDhmNzA0Mjg1OGEyYjcxYThhLw==" title="http://www.jouypub.com/2019/9c4df700f0f76848f7042858a2b71a8a/">KCPTUN-网络加速方案<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1b3J1YW4vc2hlbGwtc2NyaXB0cw==" title="https://github.com/kuoruan/shell-scripts">kuoruan/shell-scripts<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmt1b3J1YW4uY29tLzExMC5odG1s" title="https://blog.kuoruan.com/110.html">Kcptun 服务端一键安装脚本<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sdmlpLmdpdGJvb2tzLmlvL291dG1hbi9jb250ZW50L2tjcHR1bi5odG1s" title="https://lvii.gitbooks.io/outman/content/kcptun.html">KCPTUN<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="ss-客户端"><a href="#ss-客户端" class="headerlink" title="ss 客户端"></a>ss 客户端</h2><h3 id="客户端下载"><a href="#客户端下载" class="headerlink" title="客户端下载"></a>客户端下载</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zaGFkb3dzb2Nrcy5vcmcvZW4vZG93bmxvYWQvY2xpZW50cy5odG1s" title="https://shadowsocks.org/en/download/clients.html">Shadowsocks各种客户端<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcw==" title="https://github.com/shadowsocks/ShadowsocksX-NG/releases">ShadowsocksX-NG/releases<i class="fa fa-external-link"></i></span> Mac 客户端下载</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3h0YWNpL2tjcHR1bi9yZWxlYXNlcw==" title="https://github.com/xtaci/kcptun/releases">xtaci/kcptun<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL3NoYWRvd3NvY2tzLWFuZHJvaWQvcmVsZWFzZXM=" title="https://github.com/shadowsocks/shadowsocks-android/releases">shadowsocks/shadowsocks-android<i class="fa fa-external-link"></i></span> Android</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL2tjcHR1bi1hbmRyb2lkL3JlbGVhc2Vz" title="https://github.com/shadowsocks/kcptun-android/releases">插键-shadowsocks/kcptun-android<i class="fa fa-external-link"></i></span> kcptun 加速需要使用的插键</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL3NpbXBsZS1vYmZzLWFuZHJvaWQvcmVsZWFzZXM=" title="https://github.com/shadowsocks/simple-obfs-android/releases">插键-shadowsocks/simple-obfs-android<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>shadowsocks 客户端要设置的是你 vps 上 kcptun 的默认端口，例如 29900，而不是你设置的 shadowsocks 端口，否则，你使用 kcptun 插键将不会生效，网络会无法访问，除非你客户端不启用 kcptun 插键。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/aSx9r8.png" alt="ss 配置"></p>
+<ul>
+<li>端口号填写 KCPTun 的端口号，这个注意点坑了我好久！</li>
+<li>加密方式填写 SS 的加密方式</li>
+<li>密码填写 SS 的密码</li>
+<li>插件直接手动输入 <code>kcptun</code>。</li>
+<li><p>插件选项填写 tcptun 安装完成图中的 手机参数可使用 下面的记录即可</p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy93aWtpL1NJUDAwMy1QbHVnaW4=" title="https://github.com/shadowsocks/ShadowsocksX-NG/wiki/SIP003-Plugin">NG 客户端插键配置<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+<p>kcptun 插键选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key=xxx;crypt=aes;mode=fast3;</span><br></pre></td></tr></table></figure>
+<p>simple-obfs 插键选项：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obfs=http;obfs-host=www.bing.com</span><br></pre></td></tr></table></figure>
+<h2 id="v2ray-方式"><a href="#v2ray-方式" class="headerlink" title="v2ray 方式"></a>v2ray 方式</h2><p>在使用 v2ray 之后，发现这个方式更加便捷一点，因为它既支持 shadowsocks 协议，又支持 vmess 协议，提供两种链接方式。</p>
+<p>于是，目前（20191103）就采用了 v2ray 的方式+bbr加速+kcptun加速，然后配置了 v2ray 和 ss 的链接方式。</p>
+<p>一键安装脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>v2ray 端口：62666</li>
+<li>选择安装 ss</li>
+<li>ss 端口：62888</li>
+</ul>
+<p>v2ray 配置生成器：<span class="exturl" data-url="aHR0cHM6Ly9pbnRtYWlucmV0dXJuMC5jb20vdjJyYXktY29uZmlnLWdlbi8=" title="https://intmainreturn0.com/v2ray-config-gen/">https://intmainreturn0.com/v2ray-config-gen/<i class="fa fa-external-link"></i></span></p>
+<ul>
+<li>输入 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接</li>
+<li>输入 v2ray ssqr 可生成 Shadowsocks 二维码链接</li>
+</ul>
+<p>相关路径：</p>
+<ul>
+<li>在 Linux 中，日志通常在 <code>/var/log/v2ray/access.log</code> 文件中</li>
+</ul>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudjJyYXkuY29tL2NoYXB0ZXJfMDAvaW5zdGFsbC5odG1s" title="https://www.v2ray.com/chapter_00/install.html">v2ray 官方文档<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90b3V0eXJhdGVyLmdpdGh1Yi5pby8=" title="https://toutyrater.github.io/">白话文教程<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ndWlkZS52MmZseS5vcmcv" title="https://guide.v2fly.org/">白话文教程-社区版<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95dWFuLmdhL3YycmF5LWNvbXBsZXRlLXR1dG9yaWFsLw==" title="https://yuan.ga/v2ray-complete-tutorial/">V2Ray完全使用教程<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueWVhaHd1LmNvbS9wb3N0cy84ZjdhYzE3MS5odG1s" title="https://www.yeahwu.com/posts/8f7ac171.html">服务端搭建Shadowsocks和V2Ray详解<i class="fa fa-external-link"></i></span> 这位博主，貌似真的把可用的账号提供出来了！</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1NbTZPV2VvOGRZVQ==" title="https://www.youtube.com/watch?v=Mm6OWeo8dYU">油管视频-V2Ray官方脚本搭建教程<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cudjJyYXkuY29tL2F3ZXNvbWUvdG9vbHMuaHRtbA==" title="https://www.v2ray.com/awesome/tools.html">神一样的工具们<i class="fa fa-external-link"></i></span> 官方文档里也放了链接（这个连接需要 FQ 才能打开），下面列一下我自己用的：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhbnVlL1YycmF5VS9yZWxlYXNlcw==" title="https://github.com/yanue/V2rayU/releases">yanue/V2rayU<i class="fa fa-external-link"></i></span> Mac 最新一次更新 20190920</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLzJkdXN0L3YycmF5TkcvcmVsZWFzZXM=" title="https://github.com/2dust/v2rayNG/releases">2dust/v2rayNG<i class="fa fa-external-link"></i></span> Andriod 最新一次更新 20191101</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3YycmF5L3YycmF5LWNvcmUvcmVsZWFzZXM=" title="https://github.com/v2ray/v2ray-core/releases">v2ray/v2ray-core<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><ul>
+<li>查看本地客户端的 ss 日志：点击小飞机-》显示日志-》<code>~/Libray/Logs/ss-local.log</code></li>
+<li>查看本地 kcptun 插键是否启动： <code>ps -ef | grep kcptun</code></li>
+<li>查看服务端 kcptun 的日志，如果本地请求正常发送，那么会有日志输出：<code>cd data &amp;&amp; ./kcptun.sh log</code></li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>Docker方式</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vaW5zdGFsbC9saW51eC9kb2NrZXItY2UvY2VudG9zLyNpbnN0YWxsLXVzaW5nLXRoZS1yZXBvc2l0b3J5" title="https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository">docker文档<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9zZWFyY2gvP2lzQXV0b21hdGVkPTAmYW1wO2lzT2ZmaWNpYWw9MCZhbXA7cGFnZT0xJmFtcDtwdWxsQ291bnQ9MSZhbXA7cT1zaGFkb3dzb2NrcyZhbXA7c3RhckNvdW50PTA=" title="https://hub.docker.com/search/?isAutomated=0&amp;isOfficial=0&amp;page=1&amp;pullCount=1&amp;q=shadowsocks&amp;starCount=0">docker-ss-搜索结果<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>网关方式：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1mOW9odlp5UXJtWSZhbXA7bGlzdD1QTHF5Yno3Tld5YndVZ1ItUzZtNzh0ZmQtbFY0c0J2R0ZHJmFtcDtpbmRleD0z" title="https://www.youtube.com/watch?v=f9ohvZyQrmY&amp;list=PLqybz7NWybwUgR-S6m78tfd-lV4sBvGFG&amp;index=3">油管达人分析的各种方式的优缺点<i class="fa fa-external-link"></i></span> 他最推荐的还是网关方式，此外还有 trojan、软路由等方式</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hhb2VsL2hhb2VsLmdpdGh1Yi5pbw==" title="https://github.com/haoel/haoel.github.io">haoel-科学上网<i class="fa fa-external-link"></i></span> 耗子叔写的</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb25nY29uZzA4MDYuZ2l0aHViLmlvLzIwMTgvMDQvMjAvU1Mv" title="https://congcong0806.github.io/2018/04/20/SS/">聪聪-SS/SSR 简介<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3ZjMnRlYS5jb20vd2hhdHMtc2hhZG93c29ja3Mv" title="http://vc2tea.com/whats-shadowsocks/">写给非专业人士看的 Shadowsocks 简介<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubGlhb3l1cWluLmNvbS9wb3N0L3Rvb2xzL2hhLWJpLWRhLXRpLXpp" title="https://www.liaoyuqin.com/post/tools/ha-bi-da-ti-zi">VPS+ShadowsocksR 搭建自己的 VPN<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucG9sYXJ4aW9uZy5jb20vYXJjaGl2ZXMvVWJ1bnR1LTE2LTA0JUU0JUI4JThCU2hhZG93c29ja3MlRTYlOUMlOEQlRTUlOEElQTElRTUlOTklQTglRTclQUIlQUYlRTUlQUUlODklRTglQTMlODUlRTUlOEYlOEElRTQlQkMlOTglRTUlOEMlOTYuaHRtbA==" title="https://www.polarxiong.com/archives/Ubuntu-16-04%E4%B8%8BShadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96.html">Ubuntu 16.04下Shadowsocks服务器端安装及优化<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90ZWRkeXN1bi5jb20vNTY5Lmh0bWw=" title="https://teddysun.com/569.html">秋水逸冰-使用 Docker 快速部署 Shadowsocks-libev + v2ray-plugin<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zc3UudHcvaW5kZXgucGhwL2FyY2hpdmVzLzMxLw==" title="https://ssu.tw/index.php/archives/31/">使用docker快速部署shadowsocks-libev+v2ray-plugin代理<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2016/09/03/blog-logfile/" rel="bookmark">博客建站日志</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/05/19/hexo-blog-full-note/" rel="bookmark">利用 Hexo + Github Pages 搭建博客并优化 Next 主题教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2015/11/30/hexo-gitcafe-github-deploy/" rel="bookmark">hexo之github\gitcafe多线路托管博客deploy及SSH设置问题</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/" title="ss+vps+mac">https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ss/" rel="tag"># ss</a>
+          
+            <a href="/tags/vps/" rel="tag"># vps</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/23/linux-lvm-partion/" rel="next" title="Linux lvm 分区知识笔记">
+                <i class="fa fa-chevron-left"></i> Linux lvm 分区知识笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/11/tools-dev-pycharm-idea/" rel="prev" title="JetBrains PyCharm/IDEA 使用技巧总结">
+                JetBrains PyCharm/IDEA 使用技巧总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">132</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VPS"><span class="nav-number">1.</span> <span class="nav-text">VPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置时区"><span class="nav-number">1.1.</span> <span class="nav-text">设置时区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BBR"><span class="nav-number">1.2.</span> <span class="nav-text">BBR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助工具"><span class="nav-number">1.3.</span> <span class="nav-text">辅助工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-ss"><span class="nav-number">2.1.</span> <span class="nav-text">安装 ss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ss-服务端相关配置"><span class="nav-number">2.2.</span> <span class="nav-text">ss 服务端相关配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加速配置"><span class="nav-number">3.</span> <span class="nav-text">加速配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kcptun"><span class="nav-number">3.1.</span> <span class="nav-text">kcptun</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ss-客户端"><span class="nav-number">4.</span> <span class="nav-text">ss 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端下载"><span class="nav-number">4.1.</span> <span class="nav-text">客户端下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置"><span class="nav-number">4.2.</span> <span class="nav-text">客户端配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2ray-方式"><span class="nav-number">5.</span> <span class="nav-text">v2ray 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#教程"><span class="nav-number">5.1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">5.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">6.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看日志"><span class="nav-number">6.1.</span> <span class="nav-text">查看日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2019/04/27/tools-ss-vps/";
+    this.page.identifier = "2019/04/27/tools-ss-vps/";
+    this.page.title = 'ss+vps+mac';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
