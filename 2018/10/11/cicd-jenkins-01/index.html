@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="环境准备安装JDK安装Oracle JDK">
+<meta name="keywords" content="DevOps,Jenkins,CICD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 安装 CICD 利器 Jenkins">
+<meta property="og:url" content="https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="环境准备安装JDK安装Oracle JDK">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/mw690/6d9475f6ly1fw72wbene1j20go09eqb4.jpg">
+<meta property="og:updated_time" content="2024-09-16T03:03:18.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 安装 CICD 利器 Jenkins">
+<meta name="twitter:description" content="环境准备安装JDK安装Oracle JDK">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/mw690/6d9475f6ly1fw72wbene1j20go09eqb4.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CentOS 安装 CICD 利器 Jenkins | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CentOS 安装 CICD 利器 Jenkins<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy9jaWNkLWplbmtpbnMtMDEubWQ=" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-11 23:09:45" itemprop="dateCreated datePublished" datetime="2018-10-11T23:09:45+08:00">2018-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2024-09-16 11:03:18" itemprop="dateModified" datetime="2024-09-16T11:03:18+08:00">2024-09-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://ws1.sinaimg.cn/mw690/6d9475f6ly1fw72wbene1j20go09eqb4.jpg" alt></p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><h4 id="安装Oracle-JDK"><a href="#安装Oracle-JDK" class="headerlink" title="安装Oracle JDK"></a>安装Oracle JDK</h4><a id="more"></a>
+<p>Jenkins 自身采用 Java 开发，所以要必须安装 JDK；</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy9wLzEwNDY3NzQ5Lmh0bWw=" title="https://www.cnblogs.com/michael-xiang/p/10467749.html">博客园-Linux安装JDK<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>创建软连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/java/jdk1.8.0_171/bin/java /usr/bin/java</span><br></pre></td></tr></table></figure>
+<p>注意：Java版本不能是<code>gcj</code>，会导致Jenkins有问题，<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNzA4Njc2NA==" title="https://segmentfault.com/a/1190000007086764">centos7搭建jenkins小记<i class="fa fa-external-link"></i></span>文章中提到的java版本问题导致CentOS下的Jenkins有问题。</p>
+<h4 id="安装openjdk的方法"><a href="#安装openjdk的方法" class="headerlink" title="安装openjdk的方法"></a>安装<code>openjdk</code>的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2thbmJlX2tvdG9yaS9hcnRpY2xlL2RldGFpbHMvNzA5NDg0MzA=" title="https://blog.csdn.net/kanbe_kotori/article/details/70948430">Centos7安装OpenJDK8<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL29wZW5qZGsuamF2YS5uZXQvaW5zdGFsbC8=" title="http://openjdk.java.net/install/">OpenJDK官网<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h3 id="规避磁盘过满问题"><a href="#规避磁盘过满问题" class="headerlink" title="规避磁盘过满问题"></a>规避磁盘过满问题</h3><p>1.方法1：创建软连接，准备较大空间</p>
+<p><code>/data</code>挂在了较大空间，然后在其中创建相关目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/jenkins</span><br><span class="line">ln -s /data/jenkins/ /var/lib/jenkins</span><br></pre></td></tr></table></figure>
+<p>2.方法2：丢弃构建</p>
+<p>设置构建最大保留天数或者保留个数，实现自动删除构建结果。</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xhbnRpYW4wODI1MS9hcnRpY2xlL2RldGFpbHMvNDEzODA0ODM=" title="https://blog.csdn.net/lantian08251/article/details/41380483">Jenkins服务器磁盘空间管理策略<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h2><h3 id="离线安装-推荐"><a href="#离线安装-推荐" class="headerlink" title="离线安装-推荐"></a>离线安装-推荐</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## http://pkg.jenkins-ci.org/redhat-stable/</span><br><span class="line">wget http://pkg.jenkins-ci.org/redhat/jenkins-2.39-1.1.noarch.rpm ## 下载(也可以Windows下载再转过来)</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key ## 导入公钥，发现离线安装，不需要导入公钥就能安装</span><br><span class="line">rpm -ih jenkins-2.7.2-1.1.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>自动安装完成之后：</p>
+<ul>
+<li><code>/usr/lib/jenkins/jenkins.war</code>    WAR包</li>
+<li><code>/etc/sysconfig/jenkins</code>       配置文件</li>
+<li><code>/var/lib/jenkins/</code>        默认的JENKINS_HOME目录</li>
+<li><code>/var/log/jenkins/jenkins.log</code>    Jenkins日志文件</li>
+</ul>
+<p>启动Jenkins:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable jenkins # 开机自启动Jenkins</span><br><span class="line">sudo systemctl start jenkins # 启动Jenkins</span><br></pre></td></tr></table></figure>
+<p>查看服务细节：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status jenkins.service</span><br></pre></td></tr></table></figure>
+<p>验证Jenkins Server访问链接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet &lt;ip&gt; 8080</span><br></pre></td></tr></table></figure>
+<p>如果访问有问题，需要把防火墙关了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld.service #重启不自动开启</span><br></pre></td></tr></table></figure>
+<p>通过如下两个命令查看防火墙是否关闭：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files|grep firewalld.service</span><br><span class="line">iptables -t nat -S</span><br></pre></td></tr></table></figure>
+<h3 id="在线安装"><a href="#在线安装" class="headerlink" title="在线安装"></a>在线安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 添加Jenkins源</span><br><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line">yum repolist # Update your package manager list to get the latest packages</span><br><span class="line"># 安装</span><br><span class="line">yum install java-1.8.0-openjdk jenkins</span><br><span class="line">service jenkins start # 启动</span><br></pre></td></tr></table></figure>
+<h3 id="基于Tomcat安装"><a href="#基于Tomcat安装" class="headerlink" title="基于Tomcat安装"></a>基于Tomcat安装</h3><ul>
+<li>在<span class="exturl" data-url="aHR0cHM6Ly90b21jYXQuYXBhY2hlLm9yZy9kb3dubG9hZC05MC5jZ2k=" title="https://tomcat.apache.org/download-90.cgi">Tomcat官网<i class="fa fa-external-link"></i></span>下载tar包</li>
+<li>将tar包拷贝至<code>/usr/local</code>目录并解压：<code>cd /usr/local/ &amp;&amp; tar zxvf apache-tomcat-9.0.12.tar.gz</code></li>
+<li>访问<span class="exturl" data-url="aHR0cDovL3BrZy5qZW5raW5zLWNpLm9yZy9yZWRoYXQtc3RhYmxlLw==" title="http://pkg.jenkins-ci.org/redhat-stable/">jenkins官网<i class="fa fa-external-link"></i></span>下载长期维护版本的<code>jenkins.war</code>拷贝至<code>/usr/local/apache-tomcat-9.0.12/webapps</code>，启动tomcat：<code>cd /usr/local/apache-tomcat-9.0.12</code></li>
+<li>访问：<code>http://ip:8080/jenkins</code></li>
+</ul>
+<p>管理员密码访问：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /root/.jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure></p>
+<p>基于这种方式安装的Jenkins位置处于<code>/root/.jenkins</code>，因此，为了避免Job占用空间过大，需要执行如下命令创建软连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /data/jenkins_jobs/ /root/.jenkins/jobs</span><br></pre></td></tr></table></figure>
+<h3 id="Jenkins设置"><a href="#Jenkins设置" class="headerlink" title="Jenkins设置"></a>Jenkins设置</h3><p>为了不因为权限出现各种问题，这里直接使用root</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## sudo vim /etc/sysconfig/jenkins</span><br><span class="line">JENKINS_USER=&quot;root&quot; ## 原值 &quot;jenkins&quot; 必须修改，否则权限不足</span><br><span class="line">JENKINS_PORT=&quot;8080&quot; ## 原值 &quot;8080&quot; 可以不修改</span><br></pre></td></tr></table></figure>
+<p>修改目录权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown -R root:root /var/lib/jenkins</span><br><span class="line">chown -R root:root /var/cache/jenkins</span><br><span class="line">chown -R root:root /var/log/jenkins</span><br></pre></td></tr></table></figure>
+<h3 id="Centos安装参考："><a href="#Centos安装参考：" class="headerlink" title="Centos安装参考："></a>Centos安装参考：</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuaHVnZXNlcnZlci5jb20va2IvaG93LWluc3RhbGwtamVua2lucy1jZW50b3M3Lw==" title="https://www.hugeserver.com/kb/how-install-jenkins-centos7/">How to install Jenkins on CentOS 7<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2tlZmVuZ3dhbmcvYXJ0aWNsZS9kZXRhaWxzLzU0MjMzNTg0" title="https://blog.csdn.net/kefengwang/article/details/54233584">Jenkins 持续集成综合实战<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vc3R1bHpxL3AvOTI5MTIzNy5odG1s" title="https://www.cnblogs.com/stulzq/p/9291237.html">CentOS 7 安装 Jenkins-提到配置权限<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6cW5scy9hcnRpY2xlL2RldGFpbHMvNzg1MDYxNDk=" title="https://blog.csdn.net/wzqnls/article/details/78506149">以root用户运行jenkins中shell命令<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAwNDYzOTMyNQ==" title="https://segmentfault.com/a/1190000004639325">CentOS 安装 Jenkins<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rZW4uaW8vbm90ZS9jZW50b3M3LWplbmtpbnMtaW5zdGFsbC10dXRvcmlhbA==" title="https://ken.io/note/centos7-jenkins-install-tutorial">ken的杂谈-CentOS 7 下Jenkins安装部署教程<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h2><ul>
+<li>下载<code>https://pkg.jenkins.io/debian/jenkins.io.key</code></li>
+<li><code>apt-key add jenkins.io.key</code></li>
+</ul>
+<p>以上两步，可以合二为一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>sh -c &#39;echo deb http://pkg.jenkins.io/debian-stable binary/ &gt; /etc/apt/sources.list.d/jenkins.list&#39;</code></li>
+<li><code>apt-get update</code></li>
+<li><code>apt-get install jenkins</code></li>
+<li><code>/etc/init.d/jenkins start</code>。或者<code>service  start jenkins</code>。启动Jenkins。</li>
+<li>通过：<code>http://{ip}:8080</code> 访问jenkins。</li>
+</ul>
+<p><code>cat /var/lib/jenkins/secrets/initialAdminPassword</code>得到默认密码填入下面的密码框中</p>
+<p>安装好之后，可以修改相关配置改变默认端口：</p>
+<ul>
+<li><code>/etc/default/jenkins</code></li>
+</ul>
+<h3 id="Ubuntu安装参考："><a href="#Ubuntu安装参考：" class="headerlink" title="Ubuntu安装参考："></a>Ubuntu安装参考：</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjgzNDA4NzcvaG93LXRvLWNoYW5nZS1wb3J0LW51bWJlci1mb3ItamVua2lucy1pbnN0YWxsYXRpb24taW4tdWJ1bnR1LTEyLTA0" title="https://stackoverflow.com/questions/28340877/how-to-change-port-number-for-jenkins-installation-in-ubuntu-12-04">how to change port number for Jenkins installation In Ubuntu 12.04<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuaHVnZXNlcnZlci5jb20va2IvaW5zdGFsbC1qZW5raW5zLXVidW50dS0xNi0wNC8=" title="https://www.hugeserver.com/kb/install-jenkins-ubuntu-16-04/">How to install Jenkins on Ubuntu 16.04<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins-master优化"><a href="#Jenkins-master优化" class="headerlink" title="Jenkins master优化"></a>Jenkins master优化</h2><h3 id="增加同时打开文件句柄数"><a href="#增加同时打开文件句柄数" class="headerlink" title="增加同时打开文件句柄数"></a>增加同时打开文件句柄数</h3><p>增加同时打开文件句柄数，linux默认一个进程能同时打开的文件句柄是1024个，在jenkins master肯定是不够的，需要调整成65535</p>
+<p>CentOS系统，修改<code>/etc/security/limits.conf</code>，在文件最后增加一行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root             -       nofile          65535</span><br></pre></td></tr></table></figure>
+<p>重启后生效，可以通过命令<code>ulimit -a</code>查看</p>
+<h3 id="设置tomcat-日志循环，限制日志的大小"><a href="#设置tomcat-日志循环，限制日志的大小" class="headerlink" title="设置tomcat 日志循环，限制日志的大小"></a>设置tomcat 日志循环，限制日志的大小</h3><p><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvODM0MjMzNi9ob3ctdG8tc2V0LW1heGltdW0tbnVtYmVyLW9mLXJvbGxzLWFuZC1tYXhpbXVtLWxvZy1zaXplLWZvci10b21jYXQ=" title="https://stackoverflow.com/questions/8342336/how-to-set-maximum-number-of-rolls-and-maximum-log-size-for-tomcat">https://stackoverflow.com/questions/8342336/how-to-set-maximum-number-of-rolls-and-maximum-log-size-for-tomcat<i class="fa fa-external-link"></i></span></p>
+<h2 id="Jenkisn配置"><a href="#Jenkisn配置" class="headerlink" title="Jenkisn配置"></a>Jenkisn配置</h2><h3 id="Jenkins用户"><a href="#Jenkins用户" class="headerlink" title="Jenkins用户"></a>Jenkins用户</h3><p>admin账号初始密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/lib/jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9mMWQzNzg1OTZhNjc=" title="https://www.jianshu.com/p/f1d378596a67">Jenkins使用 – 用户设置<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins使用"><a href="#Jenkins使用" class="headerlink" title="Jenkins使用"></a>Jenkins使用</h2><h3 id="Jenkins关闭、重启、重载"><a href="#Jenkins关闭、重启、重载" class="headerlink" title="Jenkins关闭、重启、重载"></a>Jenkins关闭、重启、重载</h3><p><code>http://localhost:8080/[exit/restart/reload]</code></p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2l0Zm9vdGJhbGwvYXJ0aWNsZS9kZXRhaWxzLzQ0ODc2NTE3" title="https://blog.csdn.net/itfootball/article/details/44876517">Jenkins的关闭、重启<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC83NjI1ZDE3NGMzMjc=" title="https://www.jianshu.com/p/7625d174c327">Ubuntu 16安装、配置Jenkins实践<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Jenkins-Job指定执行节点"><a href="#Jenkins-Job指定执行节点" class="headerlink" title="Jenkins Job指定执行节点"></a>Jenkins Job指定执行节点</h3><ul>
+<li>关联job，进入job的配置页面，勾选<code>Restrict where this project can be run</code></li>
+</ul>
+<p>利用了标签的功能</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8wNDczNjJiMTE0MDM=" title="https://www.jianshu.com/p/047362b11403">Jenkins使用教程之管理节点<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins升级"><a href="#Jenkins升级" class="headerlink" title="Jenkins升级"></a>Jenkins升级</h2><p>可以通过系统管理(System management)–&gt; 系统信息(System Info)查找<code>.war</code>的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">executable-war	/usr/lib/jenkins/jenkins.war</span><br></pre></td></tr></table></figure>
+<p>先列出官网地址：<span class="exturl" data-url="aHR0cHM6Ly9qZW5raW5zLmlvL2Rvd25sb2FkLw==" title="https://jenkins.io/download/">https://jenkins.io/download/<i class="fa fa-external-link"></i></span></p>
+<p>升级之前，停止Jenkins服务（记得备份原来的jenkins.war，以防万一）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://jenkinsIP:port/exit</span><br></pre></td></tr></table></figure>
+<p>从官网下载最新的war包，然后替换掉上面路径下的war。</p>
+<p>替换完成后，重启：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systecmctl start jenkins # centos</span><br><span class="line">service jenkins start # ubunutu</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZHpibG9nL3AvNjk2MjAwMC5odG1s" title="https://www.cnblogs.com/dzblog/p/6962000.html">Jenkins技巧：如何更新Jenkins到最新版本<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins插件"><a href="#Jenkins插件" class="headerlink" title="Jenkins插件"></a>Jenkins插件</h2><ul>
+<li>dashboard view：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FubGVnb3IvYXJ0aWNsZS9kZXRhaWxzLzQ0MDIzODc5" title="https://blog.csdn.net/Anlegor/article/details/44023879">Dashboard-view自定义jenkins任务集视图<i class="fa fa-external-link"></i></span></li>
+<li>Workspace Cleanup Plugin：这个插件可以再每次build之前清空workspace</li>
+<li>Monitoring：监控一些机器的状态信息了</li>
+<li>Folders View：新建任务时，支持创建文件夹。</li>
+<li>SSH Slaves：添加节点时，可以采用SSH方式链接；</li>
+<li>PostBuildScript：根据 Build 状态执行脚本</li>
+<li>Post Build Task</li>
+<li>Pipeline：必须 【请勾选】</li>
+<li>Build Pipeline Plugin：用于创建pipline视图</li>
+<li>Configuration Slicing：主要功能是可以批量设置job的属性，比如设置保留多少天的构建记录，神器之一，有效解决Jenkins磁盘过满的问题</li>
+<li>Multijob plugin：配置Multijob必备的插件；</li>
+<li>Timestamper</li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9pdGVjaC9wLzU2OTQ3MjguaHRtbA==" title="http://www.cnblogs.com/itech/p/5694728.html">Build Timeout plugin<i class="fa fa-external-link"></i></span>：构建超时插件</li>
+<li>Folders：可嵌套地定义文件夹来级别 views / jobs</li>
+<li>Custom Tools Plugin</li>
+<li>Git plugin：Git插件 【请勾选】</li>
+<li>Git Parameter</li>
+<li>GitLab</li>
+<li>Gitlab Hook Plugin</li>
+<li>Gitlab Authentication plugin</li>
+<li>Node and Label parameter plugin</li>
+<li>Publish Over SSH</li>
+<li>Groovy plugins：并发任务解决</li>
+<li>Windows Slaves Plugin：连接Windows Slaves，默认安装了</li>
+<li>Matrix Authorization Strategy Plugin：矩阵形式认证策略插件，默认安装了</li>
+</ul>
+<h3 id="插件使用参考："><a href="#插件使用参考：" class="headerlink" title="插件使用参考："></a>插件使用参考：</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hxenhzYzIwMDYvYXJ0aWNsZS9kZXRhaWxzLzUyMDg3ODc2" title="https://blog.csdn.net/hqzxsc2006/article/details/52087876">jenkins常用一些插件<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1Rob3VnaHRXb3Jrcy1DaGVuZ2R1LURldk9wcy1DbHViL3R3X2Rldm9wc193b3Jrc2hvcC93aWtpLyVFNyVBQyVBQyVFNCVCQSU4QyVFOCVBRiU5RCVFRiVCQyU5QUplbmtpbnMlRTUlQkYlODUlRTUlQTQlODclRTYlOEYlOTIlRTQlQkIlQjYlRTUlQUUlODklRTglQTMlODU=" title="https://github.com/ThoughtWorks-Chengdu-DevOps-Club/tw_devops_workshop/wiki/%E7%AC%AC%E4%BA%8C%E8%AF%9D%EF%BC%9AJenkins%E5%BF%85%E5%A4%87%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">thoughtworks-第二话：Jenkins必备插件安装<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy55dW54aWFvYmFpLm5ldC9hcmNoaXZlcy8xNQ==" title="http://www.yunxiaobai.net/archives/15">Jenkins常用插件介绍<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9iNTBlNjc5ZTI0MDk=" title="https://www.jianshu.com/p/b50e679e2409">小团队持续集成之实践【6】 - Jenkins - 安装与插件篇<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3NoYWRvdzAwMDkwMi5zcGFjZS8yMDE3LzA4LzE2L0plbmtpbnMlRTYlOEMlODElRTclQkIlQUQlRTklOUIlODYlRTYlODglOTAlRTUlQjklQjMlRTUlOEYlQjAlRTYlOTAlQUQlRTUlQkIlQkEv" title="http://shadow000902.space/2017/08/16/Jenkins%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">Jenkins持续集成平台搭建<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins-Slave"><a href="#Jenkins-Slave" class="headerlink" title="Jenkins Slave"></a>Jenkins Slave</h2><p>Slave机器上需要安装好git、配置好Java环境（尤其是一些类似JAVA_HOME的变量）。</p>
+<h3 id="通过SSH连接node–推荐"><a href="#通过SSH连接node–推荐" class="headerlink" title="通过SSH连接node–推荐"></a>通过SSH连接node–推荐</h3><ul>
+<li>先安装<code>SSH Slaves</code>插件，这样在新增节点时，ssh配置将更加友好。</li>
+<li>点击 <code>Credentials</code>， 点击 <code>Jenkins</code> -&gt; <code>Global credentials</code> -&gt; <code>Add Credentials</code>，<code>Username</code> 和 <code>Password</code> 表示执行机的账号和密码。</li>
+<li>新建节点，「启动方式」 选择 <code>Launch slave agents via SSH</code>。<code>Credentials</code> 选择刚刚新建的钥匙，<code>Host Key Verification Strategy</code> 选择 <code>Manually trusted Key Verification Stragegy</code>。</li>
+</ul>
+<p>最后<code>Launch agent</code>即可；</p>
+<h3 id="通过JNLP连接node"><a href="#通过JNLP连接node" class="headerlink" title="通过JNLP连接node"></a>通过JNLP连接node</h3><p>该方法比较麻烦，不详细介绍了。</p>
+<p>注意：需要下载两个文件到agent机器上：</p>
+<ul>
+<li><code>agent.jar</code></li>
+<li><code>slave-agent.jnlp</code></li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdWNodW5taW5nMDMzL2FydGljbGUvZGV0YWlscy81MjAyNTU0MQ==" title="https://blog.csdn.net/liuchunming033/article/details/52025541">两种常见挂载Jenkins slave节点的方法<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vc3BhcmtkZXYvcC83MTAyNjIyLmh0bWw=" title="https://www.cnblogs.com/sparkdev/p/7102622.html">Jenkins : 安装 master 和 slave<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jenkins-FAQ"><a href="#Jenkins-FAQ" class="headerlink" title="Jenkins FAQ"></a>Jenkins FAQ</h2><h3 id="Q1-忽略Jenkins升级提醒"><a href="#Q1-忽略Jenkins升级提醒" class="headerlink" title="Q1: 忽略Jenkins升级提醒"></a>Q1: 忽略Jenkins升级提醒</h3><p>对于轻微强迫症的我来说，看着升级提醒，还不能叉掉，实在忍不了，Google之后，有解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Manage Jenkins =&gt; Configure System =&gt; Administrative monitors configuration</span><br><span class="line">系统管理-》系统设置-》管理监控配置</span><br><span class="line">去掉“Jenkins更新通知”</span><br><span class="line">UnCheck &quot;Jenkins Update Notification&quot; and apply</span><br></pre></td></tr></table></figure>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNDQxNDI2MzgvaG93LXRvLWRpc2FibGUtZGlzcGxheWluZy1uZXctdmVyc2lvbi1vZi1qZW5raW5zLTItNjItaXMtYXZhaWxhYmxlLWZvci1kb3dubG8=" title="https://stackoverflow.com/questions/44142638/how-to-disable-displaying-new-version-of-jenkins-2-62-is-available-for-downlo">How to disable displaying “New version of Jenkins (2.62) is available for download (changelog)”?<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Q2-Cannot-run-program-“java”-error-2-No-such-file-or-directory"><a href="#Q2-Cannot-run-program-“java”-error-2-No-such-file-or-directory" class="headerlink" title="Q2: Cannot run program “java”: error=2, No such file or directory"></a>Q2: Cannot run program “java”: error=2, No such file or directory</h3><p>虽然登录到master机器或者执行机上，<code>java</code>都配置好了，但是仍然遇到了错误，后来看到一篇博客中提到的方法，在<code>usr/bin</code>下创建了一个Java的软连接，就解决了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/java/jdk1.8.0_171/bin/java /usr/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL2VjaG95dWFuLm1lLzIwMTcvMDcvMjkvamVua2lucy1jYW5ub3QtcnVuLXByb2dyYW0tbXZuLWVycm9yLTItbm8tc3VjaC1maWxlLW9yLWRpcmVjdG9yeS8=" title="http://echoyuan.me/2017/07/29/jenkins-cannot-run-program-mvn-error-2-no-such-file-or-directory/">enkins cannot run program mvn error 2 - No such file or directory Posted by Echo Yuan on July 2<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Q3-jenkins-JenkinsException-Error-in-request-Possibly-authentication-failed-500-Internal-Server-Error"><a href="#Q3-jenkins-JenkinsException-Error-in-request-Possibly-authentication-failed-500-Internal-Server-Error" class="headerlink" title="Q3: jenkins.JenkinsException: Error in request. Possibly authentication failed [500]: Internal Server Error"></a>Q3: jenkins.JenkinsException: Error in request. Possibly authentication failed [500]: Internal Server Error</h3><p>在JJB项目中，发生了上面的错误，定位问题了半天，发现可能是Jenkins本身出问题了，而不是项目出问题。以前运行OK的Jenkins怎么突然发生这个问题了呢？可能是如下原因造成：</p>
+<ul>
+<li><code>var/lib/jenkins/jobs</code>：目录下Job占据过多空间。<strong>在Jenkins<code>中的节点管理里查看master机器的</code>剩余磁盘空间`也可以观察到</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -ah --max-depth=1</span><br></pre></td></tr></table></figure>
+<p><code>/etc/rc.local</code>是啥？</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L291eWFuZ19wZW5nL2FydGljbGUvZGV0YWlscy83OTIyNTk5Mw==" title="https://blog.csdn.net/ouyang_peng/article/details/79225993">【Jenkins学习 】解决jenkins运行磁盘满的问题<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Q4-starting-jenkins-bash-usr-bin-java-permission-denied"><a href="#Q4-starting-jenkins-bash-usr-bin-java-permission-denied" class="headerlink" title="Q4: starting jenkins bash /usr/bin/java permission denied"></a>Q4: starting jenkins bash /usr/bin/java permission denied</h3><p>解决办法主要分了两步：</p>
+<ol>
+<li>将原本位于<code>/root/buildbox/javaxxx/</code>下的目录移到了<code>/usr/java/</code>下，重新配置java环境；</li>
+<li>在<code>vim /etc/init.d/jenkins</code>中的<code>candidates</code>字段补充上java路径<code>/usr/java/jdk1.8.0_151/bin/java</code>。</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9teS5vc2NoaW5hLm5ldC9haWJpbnhpYW8vYmxvZy8xNTc2Njc4" title="https://my.oschina.net/aibinxiao/blog/1576678">Jenkins在Linux下的安装与配置<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vandlbnRlc3QvcC84MjA2ODMxLmh0bWw=" title="https://www.cnblogs.com/jwentest/p/8206831.html">启动jenkins服务错误<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzk2MjEyNjMvamVua2lucy1mYWlscy13aGVuLXJ1bm5pbmctc2VydmljZS1zdGFydC1qZW5raW5z" title="https://stackoverflow.com/questions/39621263/jenkins-fails-when-running-service-start-jenkins">Jenkins fails when running “service start jenkins”<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Q5-执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白"><a href="#Q5-执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白" class="headerlink" title="Q5: 执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白"></a>Q5: 执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白</h3><p>原因：tomcat的日志（/home/apache-tomcat-8.0.30/logs）查看catalina.out日志，得知是java虚拟机内存空间溢出。<br>解决：到后台tomcat的bin目录下，修改 tomcat的启动脚本：startup.sh，在最上面添加 <code>export JAVA_OPTS=“-XX:MaxPermSize=1024m -Xms1024m -Xmx3096m”</code></p>
+<h3 id="Q6-构建完成后需要清除workspace"><a href="#Q6-构建完成后需要清除workspace" class="headerlink" title="Q6: 构建完成后需要清除workspace"></a>Q6: 构建完成后需要清除workspace</h3><p>需要安装“Workspace Cleanup Plugin插件”，在构建任务配置时，可以在“增加构建后操作步骤”中选择<code>Delete workspace when build is done</code></p>
+<h3 id="Q7-Linux环境变量问题，没有加载-etc-profile文件，获取不到需要的环境变量。"><a href="#Q7-Linux环境变量问题，没有加载-etc-profile文件，获取不到需要的环境变量。" class="headerlink" title="Q7: Linux环境变量问题，没有加载/etc/profile文件，获取不到需要的环境变量。"></a>Q7: Linux环境变量问题，没有加载/etc/profile文件，获取不到需要的环境变量。</h3><p>添加节点时，<code>Prefix Start Slave Command</code> 选择输入 <code>source /etc/profile &amp;&amp;</code></p>
+<p>加一个前置动作。注意<code>&amp;&amp;</code>之后要有空格！！！</p>
+<h3 id="Q8：Jenkins定时构建用法"><a href="#Q8：Jenkins定时构建用法" class="headerlink" title="Q8：Jenkins定时构建用法"></a>Q8：Jenkins定时构建用法</h3><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V6cmVhbF90YW8vYXJ0aWNsZS9kZXRhaWxzLzgwOTU5MTY2" title="https://blog.csdn.net/ezreal_tao/article/details/80959166">Jenkins定时构建<i class="fa fa-external-link"></i></span></p>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><ul>
+<li><a href="https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/">CICD-Jenkins搭建笔记一</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2021/05/17/es-code-debug/" rel="bookmark">基于 IDEA 针对 Elasticsearch 7.10 源码 Debug</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/04/cicd-docker-jenkins/" rel="bookmark">利用 Docker 安装 CICD 神器 Jenkins</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/08/cicd-centos-install-nginx/" rel="bookmark">CentOS Nginx 安装及配置</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/16/cicd-hexo-blog-travis/" rel="bookmark">Github 使用 Travis CI 实现 Hexo 博客自动部署</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/06/08/cicd-nginx-basic/" rel="bookmark">Nginx 基础知识学习</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/" title="CentOS 安装 CICD 利器 Jenkins">https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          
+            <a href="/tags/Jenkins/" rel="tag"># Jenkins</a>
+          
+            <a href="/tags/CICD/" rel="tag"># CICD</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/16/blog-interesting/" rel="next" title="那些有趣的博客">
+                <i class="fa fa-chevron-left"></i> 那些有趣的博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/28/tools-vscode/" rel="prev" title="打造性感好用的VS Code编辑器">
+                打造性感好用的VS Code编辑器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">133</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">147</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK"><span class="nav-number">1.1.</span> <span class="nav-text">安装JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Oracle-JDK"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装Oracle JDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装openjdk的方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装openjdk的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git"><span class="nav-number">1.2.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规避磁盘过满问题"><span class="nav-number">1.3.</span> <span class="nav-text">规避磁盘过满问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS"><span class="nav-number">2.</span> <span class="nav-text">CentOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离线安装-推荐"><span class="nav-number">2.1.</span> <span class="nav-text">离线安装-推荐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线安装"><span class="nav-number">2.2.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Tomcat安装"><span class="nav-number">2.3.</span> <span class="nav-text">基于Tomcat安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins设置"><span class="nav-number">2.4.</span> <span class="nav-text">Jenkins设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos安装参考："><span class="nav-number">2.5.</span> <span class="nav-text">Centos安装参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu"><span class="nav-number">3.</span> <span class="nav-text">Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu安装参考："><span class="nav-number">3.1.</span> <span class="nav-text">Ubuntu安装参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-master优化"><span class="nav-number">4.</span> <span class="nav-text">Jenkins master优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加同时打开文件句柄数"><span class="nav-number">4.1.</span> <span class="nav-text">增加同时打开文件句柄数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置tomcat-日志循环，限制日志的大小"><span class="nav-number">4.2.</span> <span class="nav-text">设置tomcat 日志循环，限制日志的大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkisn配置"><span class="nav-number">5.</span> <span class="nav-text">Jenkisn配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins用户"><span class="nav-number">5.1.</span> <span class="nav-text">Jenkins用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins使用"><span class="nav-number">6.</span> <span class="nav-text">Jenkins使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins关闭、重启、重载"><span class="nav-number">6.1.</span> <span class="nav-text">Jenkins关闭、重启、重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-Job指定执行节点"><span class="nav-number">6.2.</span> <span class="nav-text">Jenkins Job指定执行节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins升级"><span class="nav-number">7.</span> <span class="nav-text">Jenkins升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins插件"><span class="nav-number">8.</span> <span class="nav-text">Jenkins插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插件使用参考："><span class="nav-number">8.1.</span> <span class="nav-text">插件使用参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-Slave"><span class="nav-number">9.</span> <span class="nav-text">Jenkins Slave</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过SSH连接node–推荐"><span class="nav-number">9.1.</span> <span class="nav-text">通过SSH连接node–推荐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过JNLP连接node"><span class="nav-number">9.2.</span> <span class="nav-text">通过JNLP连接node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-FAQ"><span class="nav-number">10.</span> <span class="nav-text">Jenkins FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1-忽略Jenkins升级提醒"><span class="nav-number">10.1.</span> <span class="nav-text">Q1: 忽略Jenkins升级提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q2-Cannot-run-program-“java”-error-2-No-such-file-or-directory"><span class="nav-number">10.2.</span> <span class="nav-text">Q2: Cannot run program “java”: error=2, No such file or directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q3-jenkins-JenkinsException-Error-in-request-Possibly-authentication-failed-500-Internal-Server-Error"><span class="nav-number">10.3.</span> <span class="nav-text">Q3: jenkins.JenkinsException: Error in request. Possibly authentication failed [500]: Internal Server Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q4-starting-jenkins-bash-usr-bin-java-permission-denied"><span class="nav-number">10.4.</span> <span class="nav-text">Q4: starting jenkins bash /usr/bin/java permission denied</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q5-执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白"><span class="nav-number">10.5.</span> <span class="nav-text">Q5: 执行Jenkins服务器界面运行一段时间后就会卡死，界面显示空白</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q6-构建完成后需要清除workspace"><span class="nav-number">10.6.</span> <span class="nav-text">Q6: 构建完成后需要清除workspace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q7-Linux环境变量问题，没有加载-etc-profile文件，获取不到需要的环境变量。"><span class="nav-number">10.7.</span> <span class="nav-text">Q7: Linux环境变量问题，没有加载/etc/profile文件，获取不到需要的环境变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q8：Jenkins定时构建用法"><span class="nav-number">10.8.</span> <span class="nav-text">Q8：Jenkins定时构建用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原文链接"><span class="nav-number">11.</span> <span class="nav-text">原文链接</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2018/10/11/cicd-jenkins-01/";
+    this.page.identifier = "2018/10/11/cicd-jenkins-01/";
+    this.page.title = 'CentOS 安装 CICD 利器 Jenkins';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
