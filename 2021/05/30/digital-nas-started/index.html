@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言 很早之前就听说过 NAS 设备，但是苦于一直在租房的状态（其实是穷），一直没有入手。今年终于搬到新家了，加上近期老婆抱怨手机存储空间不够，已经塞满了吉宝的照片和视频了，因此，终于狠心剁手了一台群晖 920+ 的 NAS 设备。 本文主要就是围绕 NAS 到手后，我进行了哪些设置以及安装哪些好玩的套件。">
+<meta name="keywords" content="数码,多媒体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群晖 NAS 920+ 使用笔记">
+<meta property="og:url" content="https://michaelxoxo.github.io/2021/05/30/digital-nas-started/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="前言 很早之前就听说过 NAS 设备，但是苦于一直在租房的状态（其实是穷），一直没有入手。今年终于搬到新家了，加上近期老婆抱怨手机存储空间不够，已经塞满了吉宝的照片和视频了，因此，终于狠心剁手了一台群晖 920+ 的 NAS 设备。 本文主要就是围绕 NAS 到手后，我进行了哪些设置以及安装哪些好玩的套件。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/5ihVj4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230601234428.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/dhA0Nr.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/wLH56L.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/iCVvS7.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/dxOVgz.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/KXmeOu.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/p1XRb4.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/eBEGuV.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/9BNRO6.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/muC3tc.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/35K25i.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/meK4M9.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/ry2JoO.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/jr7IZR.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/5pEBal.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/Yrvjxu.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/RhkpfW.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/vH2hlG.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/FQmdJ8.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/M0wHxD.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/acqrhH.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230607000021.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/202306100100532.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230610005509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230608001727.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/202306100104975.png">
+<meta property="og:updated_time" content="2023-03-18T13:29:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="群晖 NAS 920+ 使用笔记">
+<meta name="twitter:description" content="前言 很早之前就听说过 NAS 设备，但是苦于一直在租房的状态（其实是穷），一直没有入手。今年终于搬到新家了，加上近期老婆抱怨手机存储空间不够，已经塞满了吉宝的照片和视频了，因此，终于狠心剁手了一台群晖 920+ 的 NAS 设备。 本文主要就是围绕 NAS 到手后，我进行了哪些设置以及安装哪些好玩的套件。">
+<meta name="twitter:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/5ihVj4.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2021/05/30/digital-nas-started/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>群晖 NAS 920+ 使用笔记 | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2021/05/30/digital-nas-started/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">群晖 NAS 920+ 使用笔记<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy9kaWdpdGFsLW5hcy1zdGFydGVkLm1k" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-30 21:29:08" itemprop="dateCreated datePublished" datetime="2021-05-30T21:29:08+08:00">2021-05-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-03-18 21:29:08" itemprop="dateModified" datetime="2023-03-18T21:29:08+08:00">2023-03-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数码/" itemprop="url" rel="index"><span itemprop="name">数码</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/5ihVj4.png" alt="NAS"></p>
+<p>很早之前就听说过 NAS 设备，但是苦于一直在租房的状态（其实是穷），一直没有入手。今年终于搬到新家了，加上近期老婆抱怨手机存储空间不够，已经塞满了吉宝的照片和视频了，因此，终于狠心剁手了一台群晖 920+ 的 NAS 设备。</p>
+<p>本文主要就是围绕 NAS 到手后，我进行了哪些设置以及安装哪些好玩的套件。</p>
+<a id="more"></a>
+<h2 id="NAS-网络"><a href="#NAS-网络" class="headerlink" title="NAS 网络"></a>NAS 网络</h2><p>近期发现访问 nas 里的 docker 套件，无法打开“注册表”，提示“注册表失败“。经过一番搜索发现，目前挂梯子无法正常访问 Docker hub <span class="exturl" data-url="aHR0cHM6Ly9yZWdpc3RyeS5odWIuZG9ja2VyLmNvbeOAguWboOatpO+8jOaIkeWwneivleWwhg==" title="https://registry.hub.docker.com。因此，我尝试将">https://registry.hub.docker.com。因此，我尝试将<i class="fa fa-external-link"></i></span> NAS 的网关设置为软路由地址，则正常访问了。</p>
+<p><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230601234428.png" alt></p>
+<blockquote>
+<p>在正常下载镜像以后，需要及时改回来。因为我改为软路由以后，发现外网是无法通过<strong>公网IP+端口号</strong>或者<strong>域名+端口号</strong>的方式来访问家里 NAS 里的服务的。这是因为网关指向软路由以后，好像会被软路由的防火墙规则拦截。具体没深入研究，多亏了<span class="exturl" data-url="aHR0cHM6Ly93d3cudjJleC5jb20vdC84NTY3MTI=" title="https://www.v2ex.com/t/856712">v2ex的帖子<i class="fa fa-external-link"></i></span>里的回复想起来了这个改动。</p>
+</blockquote>
+<h2 id="DS-video"><a href="#DS-video" class="headerlink" title="DS video"></a>DS video</h2><p>群晖安装套件：Video Station<br>电视盒子、手机安装：DS Video</p>
+<p>通过在 NAS 上安装好套件、添加好资源之后，可以在其他设备上安装 DS Video 来进行观看。会有视频的海报墙，比直接看文件夹或者视频文件更美观和直观。</p>
+<p>经过测试发现，对于 DTS、EAC3 格式的视频，群晖的这个 DS Video 播放就没有声音了。只能在电视盒子安装一个 VLC 播放器，这样，DS Video 不支持的视频资源可以选择用第三方播放器打开。</p>
+<blockquote>
+<p>网上有各种解决方案，比如 <span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2F6NWUzbmVwLw==" title="https://post.smzdm.com/p/az5e3nep/">群晖 Video Station 支持 DTS 和 eac3 解决方案<i class="fa fa-external-link"></i></span>，但是在我群晖 920+ 上都没好使。</p>
+</blockquote>
+<p>经过周末的折腾，利用 Jellyfin 搭建了家庭媒体服务中心，然后其他平台也都有 Jellyfin 的客户端，使用下来，效果也还可以，非常值得推荐！</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93b29kZW5yb2JvdC5tZS8yMDE5LzA4LzEyL3N5bi12ZWRpb3N0YXRpb24v" title="https://woodenrobot.me/2019/08/12/syn-vediostation/">群晖 Video Station 支持 DTS 和 eac3 解决方案<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Transmission-安装与汉化"><a href="#Transmission-安装与汉化" class="headerlink" title="Transmission 安装与汉化"></a>Transmission 安装与汉化</h2><p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/dhA0Nr.png" alt="Transmission"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90cmFuc21pc3Npb25idC5jb20vYWJvdXQv" title="https://transmissionbt.com/about/">Transmission<i class="fa fa-external-link"></i></span> 是一个开源的下载软件，可以用来下载 PT 站的资源。记得在大学时期使用六维空间时，经常为了做种需要将笔记本一直打开着。现在只需要在 NAS 中安装好这个 APP， 则可以使用 NAS 24 小时挂在后台进行资源的下载和上传。</p>
+<h3 id="安装-TR"><a href="#安装-TR" class="headerlink" title="安装 TR"></a>安装 TR</h3><p>在套件中心添加套件源 <code>http://packages.synocommunity.com</code>：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/wLH56L.png" alt="synocommunity"></p>
+<p>常规中设置信任：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/iCVvS7.png" alt="iCVvS7"></p>
+<p>在社群中搜索 Transmission，按照提示安装，安装好之后的访问地址：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/dxOVgz.png" alt="dxOVgz"></p>
+<h3 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h3><p>汉化的安装，可以阅读 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvbmdnYW5nL3RyYW5zbWlzc2lvbi13ZWItY29udHJvbC93aWtpL0xpbnV4LUluc3RhbGxhdGlvbi1DTg==" title="https://github.com/ronggang/transmission-web-control/wiki/Linux-Installation-CN">ronggang/transmission-web-control<i class="fa fa-external-link"></i></span>。以下简要介绍：</p>
+<p>在群晖控制中心，开启 NAS SSH 登录的功能：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/KXmeOu.png" alt="SSH"></p>
+<p>然后在终端命令行窗口即可登录 NAS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 登录账号名和 IP 得换成你自己的</span><br><span class="line">ssh 用户名@IP</span><br><span class="line"># 切换为 root，密码和你 admin 账户密码一样</span><br><span class="line">sudo -i</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/p1XRb4.png" alt="p1XRb4"></p>
+<p>注意：</p>
+<ul>
+<li>如果想要在下载时指定目录，需要对应目录需要添加群组： <code>sc-transmission</code>、<code>sc-download</code></li>
+</ul>
+<p>添加常用下载目录：<br><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/eBEGuV.png" alt="eBEGuV"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY29saW5qaWFuZy5jb20vYXJjaGl2ZXMvc3lub2xvZ3ktaW5zdGFsbC10cmFuc21pc3Npb24uaHRtbA==" title="https://www.colinjiang.com/archives/synology-install-transmission.html">君子不器/群晖安装Transmission<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubW9ld2FoLmNvbS9hcmNoaXZlcy8yNDIwLmh0bWw=" title="https://www.moewah.com/archives/2420.html">喵斯基俱乐部/群晖NAS安装及美化Transmission(PT)教程<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aG9uZ2NlLnNpbmEuY29tLmNuL2FydGljbGUvdmlldy84MDUyNy8=" title="https://zhongce.sina.com.cn/article/view/80527/">新浪众测/最强下载工具，玩转NAS影音竟然如此简单！<i class="fa fa-external-link"></i></span> 介绍了 Tr/万物下载、Plex/Kodi Jellfin</li>
+</ul>
+<h2 id="aria2"><a href="#aria2" class="headerlink" title="aria2"></a>aria2</h2><p>一个 BT 下载器</p>
+<h3 id="aria2-pro"><a href="#aria2-pro" class="headerlink" title="aria2 pro"></a>aria2 pro</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2E5MHE2ZzU3Lw==" title="https://post.smzdm.com/p/a90q6g57/">拥有NAS的生活 篇十五：群晖安装aria2 pro增强下载器<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj05aEJrd2N1eG5kSQ==" title="https://www.youtube.com/watch?v=9hBkwcuxndI">群晖NAS下载神器Aria2&amp;AriaNG/保姆级安装上手一次成功/让你拥有一个满速下载的助手（群晖/NAS/Docker/Aria2/AriaNG）<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wM3RlcnguY29tL2FyY2hpdmVzL3N5bm9sb2d5LW5hcy1kb2NrZXItYWR2YW5jZWQtdHV0b3JpYWwtZGVwbG95LWFyaWEyLXByby5odG1s" title="https://p3terx.com/archives/synology-nas-docker-advanced-tutorial-deploy-aria2-pro.html">p3terx/群晖 NAS Docker 进阶教程 - 部署全能下载工具 Aria2 Pro<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wM3RlcnguY29tL2FyY2hpdmVzL2FyaWEyLWZyb250ZW5kLWFyaWFuZy10dXRvcmlhbC5odG1s" title="https://p3terx.com/archives/aria2-frontend-ariang-tutorial.html">p3terx/Aria2 前端面板 ( GUI、WebUI ) AriaNg 使用教程<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wM3RlcnguY29tL2FyY2hpdmVzL3NvbHZlZC1hcmlhMi1jYW50LWRvd25sb2FkLW1hZ25ldGljLWxpbmstYnQtc2VlZC1hbmQtc2xvdy1zcGVlZC5odG1sP3V0bV9zb3VyY2U9cG9ja2V0X3NhdmVz" title="https://p3terx.com/archives/solved-aria2-cant-download-magnetic-link-bt-seed-and-slow-speed.html?utm_source=pocket_saves">p3terx/Aria2 无法下载磁力链接、BT种子和速度慢的解决方案<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Jellyfin-媒体中心"><a href="#Jellyfin-媒体中心" class="headerlink" title="Jellyfin 媒体中心"></a>Jellyfin 媒体中心</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
+<li>Jellyfin 支持硬件转码，在使用硬件转码推流的时候可以大幅降低 CPU 占用率，支持<strong>实时转码</strong>。硬件转码功能在 emby 和 plex 都是付费功能。</li>
+<li>Jellyfin 是在它的服务器上搭建影音资料库，这样，在任何客户端来访问资料库时，就不用再建立资料库。Kodi 在不同设备上需要重新建立存储在该设备上的资料库。观看的记录会保存在 Jellyfin 服务端，这样，在各个平台切换观看时，使用同一账户就可以方便继续观看了。</li>
+</ul>
+<p>Kodi 播放方式类似电脑上的播放器播放。直接从共享文件夹读取文件流，而非播放视频流。Kodi 的这种方式，占用的网络资源则由具体的文件的码率决定。由于解码由播放设备进行，所以实际效果取决于设备的解码能力。如果播放设备解码能力弱，直接播放视频文件，有时候就会造成卡顿或无法播放。而 Jellyfin 的这种方式，可以理解为你自己在 NAS 上搭建了一个多媒体服务器，它可以进行视频的解码，客户端播放能够流畅很多。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>通过打开 Docker 套件，在其中的注册表中搜索 <code>jellyfin</code> 镜像（映像）进行下载。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/9BNRO6.png" alt="9BNRO6"></p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/muC3tc.png" alt="muC3tc"></p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/35K25i.png" alt="35K25i"></p>
+<p>进入 jellyfin 服务器地址（NAS IP:8096），即可访问。</p>
+<p>需要进行一些设置。可以参考 <span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2E2bG54ZzNnLw==" title="https://post.smzdm.com/p/a6lnxg3g/">SMZDM阿文菌/使用群晖Docker 安装Jellyfin 家庭影院HTPC 比emby plex好用多了<i class="fa fa-external-link"></i></span>:</p>
+<ul>
+<li>国家选项里没有 China，而是要选择 Peoples’s Republic of China</li>
+<li>选择备用字体文件路径：控制台》播放》选择备用字体文件路径，提前在 <code>config</code> 下创建好 <code>font</code> 文件夹（可以自定义文件夹名），在其中放好下载的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWItcmVwb3NpdG9yeS1maWxlcy5naXRodWJ1c2VyY29udGVudC5jb20vMTY0MjIxOTI0LzQ0MzQyOTI/WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmYW1wO1gtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIxMDYwNiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JmFtcDtYLUFtei1EYXRlPTIwMjEwNjA2VDA1MTQxOFomYW1wO1gtQW16LUV4cGlyZXM9MzAwJmFtcDtYLUFtei1TaWduYXR1cmU9NTZlNDFjNDBkZDg0ODY3M2M2NjAyOWUwMjZhYjk0ZWQ0YWQ3YzU2NmFmY2QyZWQ2OTJjMjdjYTcwNzRiZGUyOCZhbXA7WC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFtcDthY3Rvcl9pZD04NTEwNDEwJmFtcDtrZXlfaWQ9MCZhbXA7cmVwb19pZD0xNjQyMjE5MjQmYW1wO3Jlc3BvbnNlLWNvbnRlbnQtZGlzcG9zaXRpb249YXR0YWNobWVudCUzQmZpbGVuYW1lJTNEbm90by56aXAmYW1wO3Jlc3BvbnNlLWNvbnRlbnQtdHlwZT1hcHBsaWNhdGlvbiUyRngtemlwLWNvbXByZXNzZWQ=" title="https://github-repository-files.githubusercontent.com/164221924/4434292?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210606%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210606T051418Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=56e41c40dd848673c66029e026ab94ed4ad7c566afcd2ed692c27ca7074bde28&amp;X-Amz-SignedHeaders=host&amp;actor_id=8510410&amp;key_id=0&amp;repo_id=164221924&amp;response-content-disposition=attachment%3Bfilename%3Dnoto.zip&amp;response-content-type=application%2Fx-zip-compressed">字体 noto.zip<i class="fa fa-external-link"></i></span>。这个主要为了解决 <code>ASS/SSA</code> 中文字幕会显示方块乱码。</li>
+</ul>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/meK4M9.png" alt="meK4M9"></p>
+<p>安装的步骤，<span class="exturl" data-url="aHR0cHM6Ly9qZWxseWZpbi5vcmcvZG9jcy9nZW5lcmFsL2FkbWluaXN0cmF0aW9uL2hhcmR3YXJlLWFjY2VsZXJhdGlvbi5odG1s" title="https://jellyfin.org/docs/general/administration/hardware-acceleration.html">Jellyfin 官网<i class="fa fa-external-link"></i></span>可以看做是如下命令的等同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=jellyfin2 \</span><br><span class="line">--device=/dev/dri:/dev/dri  \</span><br><span class="line">--device=/dev/dri/card0:/dev/dri/card0 \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">-v /volume1/docker/jellyfin/config:/config \</span><br><span class="line">-v /volume1/docker/jellyfin/cache:/cache \</span><br><span class="line">-v /volume1/video:/media \</span><br><span class="line">jellyfin/jellyfin:latest</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>之所以映射设备，是为了开启硬件加速</p>
+</blockquote>
+<h3 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h3><p>添加媒体库的步骤很简单，注意勾选：</p>
+<ul>
+<li>将媒体图像保存到媒体所在文件夹：方便将下载的资源归档到视频文件夹中</li>
+</ul>
+<h3 id="插键"><a href="#插键" class="headerlink" title="插键"></a>插键</h3><h4 id="字幕插键-Open-Subtitles"><a href="#字幕插键-Open-Subtitles" class="headerlink" title="字幕插键 Open Subtitles"></a>字幕插键 Open Subtitles</h4><p>安装 <code>Open Subtitles</code> 插件，这样的话，可以使用字幕下载的功能。使用该插件</p>
+<p>安装好插键之后，需要重启容器。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/ry2JoO.png" alt="重启容器"></p>
+<p>需要去 <span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnN1YnRpdGxlcy5vcmcvemg=" title="https://www.opensubtitles.org/zh">opensubtitles<i class="fa fa-external-link"></i></span> 注册账号，有了账号，需要去点击该插键进行配置。</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy45Mm5hcy5jb20vZm9ydW0ucGhwP21vZD12aWV3dGhyZWFkJmFtcDt0aWQ9MTQ3" title="http://www.92nas.com/forum.php?mod=viewthread&amp;tid=147">92Nas/Jellyfin中电影外挂ass格式字幕无法显示的解决方法<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2plbGx5ZmluL2plbGx5ZmluLXdlYi9pc3N1ZXMvOTM0" title="https://github.com/jellyfin/jellyfin-web/issues/934">All the Chinese plug-in subtitles in ASS format<i class="fa fa-external-link"></i></span> 中的解决方案进行配置</li>
+</ul>
+<h3 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h3><p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/jr7IZR.png" alt="播放数据"></p>
+<p>查看播放数据：</p>
+<ul>
+<li>播放信息：会显示播放方式，可以看出是转码播放还是直接播放的</li>
+<li>媒体源信息：表示播放的视频源的信息，可以看到码率、音频编码</li>
+<li>比特率：码率，视频文件 原本的码率，如果原本码率比较高，我们通过播放时设置低码率，那么，就会被自动转码</li>
+<li>转码信息：看到这个表示正在进行硬件转码，方便播放设备播放。可以看到，源文件的音频是 <code>EAC3</code>，播放时被自动转码成 <code>AAC</code> 了。</li>
+</ul>
+<h3 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h3><p>通过如下的设置开启硬件加速：</p>
+<ul>
+<li>开启转码：控制台》播放，选择硬件加速<code>Video Acceleration API(VAAPI)</code></li>
+</ul>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/5pEBal.png" alt="5pEBal"></p>
+<blockquote>
+<p>注意，上面能够成功开启的前提是，勾选了「使用高权限执行容器」</p>
+</blockquote>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/Yrvjxu.png" alt="Yrvjxu"></p>
+<p>通过 SSH 登录后台，<code>htop</code> 命令查看 CPU 占用率高的进程（jellyfin），查看是否开启验证加速：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/RhkpfW.png" alt="RhkpfW"></p>
+<p>此外，在 NAS 查看资源监控，播放视频时，CPU 如果没有飙升，一般也是开启硬件加速的效果。</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2EyNTltZ2syL3AzLyNjb21tZW50cw==" title="https://post.smzdm.com/p/a259mgk2/p3/#comments">分享一种简单得不能再简单的群晖DS918+下Jellyfin调用核显硬解的办法<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>Jellyfin 的 APP 死机概率非常高，没有网页版本好用。可以使用手机浏览器直接访问网页。利用 Chrome 访问 Jellyfin 的地址，然后在浏览器页面的右上角的菜单项中，点击「添加到主屏幕」，这样即可在手机桌面创建快捷方式。</p>
+<blockquote>
+<p>我的手机进行了权限管理，需要放开 Chrome 创建快捷方式的权限。</p>
+</blockquote>
+<h4 id="TV-端设置"><a href="#TV-端设置" class="headerlink" title="TV 端设置"></a>TV 端设置</h4><p><span class="exturl" data-url="aHR0cHM6Ly9qZWxseWZpbi5vcmcvY2xpZW50cy8=" title="https://jellyfin.org/clients/">Jellyfin/Clients<i class="fa fa-external-link"></i></span> 官网有提供客户端的下载，其中，有<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2plbGx5ZmluL2plbGx5ZmluLWFuZHJvaWR0di9yZWxlYXNlcy90YWcvdjAuMTEuNQ==" title="https://github.com/jellyfin/jellyfin-androidtv/releases/tag/v0.11.5">安卓 TV 的客户端<i class="fa fa-external-link"></i></span>。</p>
+<p>此外，也可以利用 kodi 来访问 Jellyfin 媒体中心。具体的使用方式，可以阅读 <span class="exturl" data-url="aHR0cHM6Ly9qZWxseWZpbi5vcmcvZG9jcy9nZW5lcmFsL2NsaWVudHMva29kaS5odG1s" title="https://jellyfin.org/docs/general/clients/kodi.html">kodi<i class="fa fa-external-link"></i></span> ，简要步骤如下：</p>
+<ul>
+<li>添加 jellyfin 源：进入插键菜单，插键浏览器，选择从 zip 文件安装，浏览服务器中已经下载好的压缩包</li>
+<li>从库安装 jellyfin 插键</li>
+<li>为了避免之前 kodi 中添加的媒体资源重复，可以使用使用 jellyfin 插键中的重置本地数据库的功能</li>
+</ul>
+<blockquote>
+<p>利用 kodi + jellyfin 插键的方式播放资源，不会对视频进行转码，这可能就会导致播放高质量视频时会有卡顿。</p>
+</blockquote>
+<p>具体的设置，可以阅读：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUFFNDExazdocg==" title="https://www.bilibili.com/video/BV1AE411k7hr">B站司波图/Jellyfin的外网访问姿势，如何通过安卓，IOS，电视访问Jellyfin服务器<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2E5OXZscG1wLw==" title="https://post.smzdm.com/p/a99vlpmp/">SMZDM/安卓TV端Kodi部署Jellyfin，使用Jellyfin打造最强媒体中心（篇二）<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="其他资源"><a href="#其他资源" class="headerlink" title="其他资源"></a>其他资源</h3><ul>
+<li>字幕网站：<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cub3BlbnN1YnRpdGxlcy5vcmcvemg=" title="https://www.opensubtitles.org/zh">opensubtitles<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYTRrLm5ldC8=" title="https://www.a4k.net/">a4k<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdWJoZC50dg==" title="https://subhd.tv">subhd<i class="fa fa-external-link"></i></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubW9ld2FoLmNvbS9hcmNoaXZlcy8xNTUyLmh0bWw=" title="https://www.moewah.com/archives/1552.html">喵斯基部落/群晖Docker安装Jellyfin媒体服务器<i class="fa fa-external-link"></i></span> 利用 Docker 部署 jellyfin 服务</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2E2bG54ZzNnLw==" title="https://post.smzdm.com/p/a6lnxg3g/">SMZDM/使用群晖Docker 安装Jellyfin 家庭影院HTPC 比emby plex好用多了<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMU1FNDExbzdIMg==" title="https://www.bilibili.com/video/BV1ME411o7H2">B站司波图/免费开源影音服务器Jellyfin部署全攻略，含群晖，OMV系统下Docker安装并启动硬件转码<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="电影刮削器-TinyMediaManager"><a href="#电影刮削器-TinyMediaManager" class="headerlink" title="电影刮削器 TinyMediaManager"></a>电影刮削器 TinyMediaManager</h2><h3 id="参考-2"><a href="#参考-2" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy45Mm5hcy5jb20vZm9ydW0ucGhwP21vZD12aWV3dGhyZWFkJmFtcDt0aWQ9OTg=" title="http://www.92nas.com/forum.php?mod=viewthread&amp;tid=98">92NAS/群晖Docker里安装电影剧集刮削器TinyMediaManager<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5rb2RpcGxheWVyLmNuL2NvdXJzZS8yOTQ1Lmh0bWw=" title="http://www.kodiplayer.cn/course/2945.html">KODI中文网/抛弃Kodi难用的刮削器 tinyMediaManager(TMM)刮削电影信息更方便<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="emby"><a href="#emby" class="headerlink" title="emby"></a>emby</h2><blockquote>
+<p>免费版，服务器硬件解码是不支持的，通过 web 浏览器观看影片时，则会容易造成 NAS CPU 负载很高。但是，比如你使用 Mac 上的 infuse 客户端连接 emby 观看时，它是支持自己解码的，效果不错。</p>
+</blockquote>
+<p>我尝试使用 docker 的方式安装 emby。</p>
+<h3 id="安装-emby-步骤"><a href="#安装-emby-步骤" class="headerlink" title="安装 emby 步骤"></a>安装 emby 步骤</h3><p>查询核显：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@michael-nas:~# ll /dev/dri</span><br><span class="line">total 0</span><br><span class="line">drwxr-xr-x  2 root root              80 Nov 21 17:35 .</span><br><span class="line">drwxr-xr-x 13 root root           13840 Nov 21 17:37 ..</span><br><span class="line">crw-------  1 root root        226,   0 Nov 21 17:35 card0</span><br><span class="line">crw-rw----  1 root videodriver 226, 128 Nov 21 17:35 renderD128</span><br></pre></td></tr></table></figure></p>
+<p>看到有结果，则表示具有核显，支持硬件解码。</p>
+<p>使用 docker 镜像来安装 emby server。</p>
+<ol>
+<li>先在docker 套件中，下载好 emby server 的镜像，镜像地址：<code>https://hub.docker.com/r/emby/embyserver</code> </li>
+<li>为了能够加载核显，支持硬件解码，需要通过 ssh 进入 nas 中进行相关操作：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x /dev/dri</span><br><span class="line">docker create \</span><br><span class="line">  --name=emby \</span><br><span class="line">  --device /dev/dri:/dev/dri \</span><br><span class="line">  emby/embyserver:latest</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>coker create</code> 命令类似 <code>docker run</code> 命令，是创建一个容器，区别在于，后者会启动这个容器，前者不会启动这个容器。参考<span class="exturl" data-url="aHR0cHM6Ly9oYWljb2Rlci5uZXQvZG9ja2VyL2RvY2tlci1jcmVhdGUuaHRtbA==" title="https://haicoder.net/docker/docker-create.html">Docker create命令<i class="fa fa-external-link"></i></span></p>
+</blockquote>
+<ol start="3">
+<li>在套件中心docker 套件中，设置容器配置</li>
+</ol>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/vH2hlG.png" alt="常规配置"></p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/FQmdJ8.png" alt="存储空间"></p>
+<p>第一列「文件/文件夹」是选择 nas 中的路径，「装载路径」是指容器中的路径，二者是一个映射关系，要确保 nas 中的路径给与对应用户权限。这些路径，可以看镜像文档作为参考。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/M0wHxD.png" alt="端口设置"></p>
+<p>da265c1209c81d4e9e286cdef08f9191</p>
+<p>设置 nas 实际端口和容器中的端口映射关系，如图，安装好之后，实际访问地址就是 <code>&lt;nas ip 地址&gt;:8090</code>。</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/acqrhH.png" alt="环境"></p>
+<p>通过 ssh 方式登录到 nas 后台，运行 <code>id &lt;用户名&gt;</code> 可以看到这些数据。<code>gidlist</code> 通过英文逗号配置 <code>gid</code> 的列表即可。</p>
+<blockquote>
+<p>这个非常关键，填写错误，emby 中媒体库将无法正确选择 NAS 中的文件</p>
+</blockquote>
+<h3 id="媒体库设置"><a href="#媒体库设置" class="headerlink" title="媒体库设置"></a>媒体库设置</h3><ul>
+<li>首选图像下载语言：English，这样图片会相对更丰富、准确</li>
+<li>元数据读取器：<code>Nfo</code></li>
+<li>电影的元数据下载器：选择 <code>TheMovieDb</code>，并调整到第一位</li>
+<li>元储存方式：勾选 <code>Nfo</code></li>
+<li>将媒体图像保存到媒体所在文件夹：勾选</li>
+<li>Series 元数据下载器：选择 <code>TheMovieDb</code>，并调整到第一位</li>
+<li>字幕下载：勾选 Chinese 相关的三个，不仅仅勾选了简体</li>
+<li>字幕下载器：勾选 Open Subtitles</li>
+</ul>
+<h3 id="参考-3"><a href="#参考-3" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMTlvNHkxRDd3Yj9mcm9tPXNlYXJjaCZhbXA7c2VpZD0xNTE3NzE1NTM4ODAzNTk3MzkzNyZhbXA7c3BtX2lkX2Zyb209MzMzLjMzNy4wLjA=" title="https://www.bilibili.com/video/BV19o4y1D7wb?from=search&amp;seid=15177155388035973937&amp;spm_id_from=333.337.0.0">群晖dsm7.0系统docker安装emby教程及解码测试<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wb3N0LnNtemRtLmNvbS9wL2F4MHI3cGU5Lw==" title="https://post.smzdm.com/p/ax0r7pe9/">[群晖NAS]Docker安装&amp;使用EMBY全流程图文教程-长文<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMTlvNHkxRDd3Yj9mcm9tPXNlYXJjaCZhbXA7c2VpZD0xNTE3NzE1NTM4ODAzNTk3MzkzNyZhbXA7c3BtX2lkX2Zyb209MzMzLjMzNy4wLjA=" title="https://www.bilibili.com/video/BV19o4y1D7wb?from=search&amp;seid=15177155388035973937&amp;spm_id_from=333.337.0.0">群晖dsm7.0系统docker安装emby教程及解码测试<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWtlNDExczdEbj9mcm9tPXNlYXJjaCZhbXA7c2VpZD0xNTE3NzE1NTM4ODAzNTk3MzkzNyZhbXA7c3BtX2lkX2Zyb209MzMzLjMzNy4wLjA=" title="https://www.bilibili.com/video/BV1ke411s7Dn?from=search&amp;seid=15177155388035973937&amp;spm_id_from=333.337.0.0">Emby在群晖下开启核显硬解转码4K，黑裙6.2.3如何启用核显<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="PT"><a href="#PT" class="headerlink" title="PT"></a>PT</h2><h3 id="下载客户端"><a href="#下载客户端" class="headerlink" title="下载客户端"></a>下载客户端</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly90cmFuc21pc3Npb25idC5jb20v" title="https://transmissionbt.com/">Transmission<i class="fa fa-external-link"></i></span> Linux/MacOS</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cudXRvcnJlbnQuY29tL2Rvd25sb2Fkcy9tYWM=" title="https://www.utorrent.com/downloads/mac">uTorrent<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy52dXplLmNvbS9kb3dubG9hZC5waHA=" title="http://www.vuze.com/download.php">Azureus<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="m-team"><a href="#m-team" class="headerlink" title="m-team"></a>m-team</h3><p>馒头，通过捐赠即可获得账号+1 个月的 VIP：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLm0tdGVhbS5jYy9pbmRleC5waHA/dGl0bGU9JUU1JUI4JUIzJUU4JTk5JTlGJUU0JUJGJTlEJUU3JTk1JTk5JUU4JUE2JThGJUU1JTg5JTg3X0FjY291bnRfUGFya2luZ18sX0tlZXBpbmdfUnVsZXM=" title="https://wiki.m-team.cc/index.php?title=%E5%B8%B3%E8%99%9F%E4%BF%9D%E7%95%99%E8%A6%8F%E5%89%87_Account_Parking_,_Keeping_Rules">账号保留规则<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wdC5tLXRlYW0uY2MvcGF5LnBocA==" title="https://pt.m-team.cc/pay.php">m-team 馒头捐赠页面<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rcC5tLXRlYW0uY2MvaW5kZXgucA==" title="https://kp.m-team.cc/index.p">登录地址<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9iYnMubS10ZWFtLmNjLw==" title="https://bbs.m-team.cc/">M-Team 外站<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="heimdall-导航"><a href="#heimdall-导航" class="headerlink" title="heimdall 导航"></a>heimdall 导航</h2><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2xpbnV4c2VydmVyL2hlaW1kYWxsLw==" title="https://hub.docker.com/r/linuxserver/heimdall/">linuxserver/heimdall<i class="fa fa-external-link"></i></span>上有该镜像的使用说明，安装也很简单。</p>
+<ol>
+<li>注册中心中先双击下载镜像（无法打开注册中心的，需要先去网络将网关改为软路由IP）<br><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230607000021.png" alt></li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sYW9zdS5tbC8yMDIwLzEyLzExL0hlaW1kYWxsJUU2JTg5JTkzJUU5JTgwJUEwJUU0JUI4JUFBJUU0JUJBJUJBJUU1JUFGJUJDJUU4JTg4JUFBJUU5JUExJUI1Lw==" title="https://laosu.ml/2020/12/11/Heimdall%E6%89%93%E9%80%A0%E4%B8%AA%E4%BA%BA%E5%AF%BC%E8%88%AA%E9%A1%B5/">Heimdall打造个人导航页<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><p><span class="exturl" data-url="aHR0cHM6Ly9yZWdpc3RyeS5odWIuZG9ja2VyLmNvbS9fL215c3FsLw==" title="https://registry.hub.docker.com/_/mysql/">mysql 数据库<i class="fa fa-external-link"></i></span></p>
+<p>创建好相关持久化目录：</p>
+<p><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/202306100100532.png" alt></p>
+<blockquote>
+<p>注意，这个config目录下的<code>conf.d</code>目录要创建好，因为后面启动时设置配置目录的挂载，如果里面缺少这目录，会启动失败。尽管只需要一个空目录，那也是必不可少的。</p>
+</blockquote>
+<p>高级设置中设置环境变量 <code>MYSQL_ROOT_PASSWORD</code>，定义root用户的密码和时区：</p>
+<p>环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TZ=Asia/Shanghai</span><br><span class="line">MYSQL_ROOT_PASSWORD=123456</span><br></pre></td></tr></table></figure></p>
+<p>磁盘映射：</p>
+<p><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230610005509.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/20230608001727.png" alt="交互窗口"></p>
+<p>登录命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里的 mysql 是我的容器名。</p>
+</blockquote>
+<p>一开始报如下错误 <code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code>：<br><img src="https://raw.githubusercontent.com/MichaelXoXo/markdown_images/master/PicGo/202306100104975.png" alt></p>
+<p>但是等待了几分钟以后，该文件 <code>/var/run/mysqld/mysqld.sock</code> 便生成了，可以成功登录了。</p>
+<p>查看用户主机关系：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Host,<span class="keyword">User</span>,<span class="keyword">plugin</span> <span class="keyword">from</span> mysql.user;</span><br></pre></td></tr></table></figure>
+<p>可以看到root的Host列为 % ，代表root账户任何地方都可连接，localhost的代表只有本机ip可连接</p>
+<p>具体使用方式可以查看：<a href="https://michaelxoxo.github.io/2019/06/02/docker-create-develop-environment/">使用容器 Docker 创建开发环境</a></p>
+<h2 id="Mac-Time-Machine-备份到-NAS"><a href="#Mac-Time-Machine-备份到-NAS" class="headerlink" title="Mac Time Machine 备份到 NAS"></a>Mac Time Machine 备份到 NAS</h2><p>参考群晖官网的设置，可以指定 NAS 的共享文件夹作为 Mac Time Machine 的备份文件存储磁盘，群晖官网的指导已经更新为 DSM 7.0，资料真是更新及时：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rYi5zeW5vbG9neS5jbi96aC1jbi9EU00vdHV0b3JpYWwvSG93X3RvX2JhY2tfdXBfZmlsZXNfZnJvbV9NYWNfdG9fU3lub2xvZ3lfTkFTX3dpdGhfVGltZV9NYWNoaW5l" title="https://kb.synology.cn/zh-cn/DSM/tutorial/How_to_back_up_files_from_Mac_to_Synology_NAS_with_Time_Machine">如何使用Time Machine将文件从Mac备份到Synology NAS？<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="Alist"><a href="#Alist" class="headerlink" title="Alist"></a>Alist</h2><h3 id="更新-alist-容器实例版本"><a href="#更新-alist-容器实例版本" class="headerlink" title="更新 alist 容器实例版本"></a>更新 alist 容器实例版本</h3><p>这里介绍介绍群辉 nas 如何更新容器实例的版本。</p>
+<ol>
+<li>去”注册表”搜索”alist”拉取下载 <code>xhofe/alist</code> 最新的镜像版本，群辉里称为“映像”，但我还是习惯称为“镜像” 。</li>
+<li>“停止”旧的容器实例。</li>
+<li>右键进入容器详情，在“设置”中修改容器名称，比如加个 <code>-backup</code> 后缀的标识。此外，如果查看容器“网络”是不是 <code>bridge</code>，如果是，则需要同时清除一下端口的映射关系，因为，两个容器使用相同的本地端口是不被允许的，尽管一个容器是停止状态也不行。注意，截图保存备忘。</li>
+<li>返回容器列表，右键旧容器，选择“复制设置”，等新容器创建OK 以后，把旧容器的端口映射信息填入新容器的网络设置中。</li>
+<li>启动新容器即可。如果验证没问题，就可以删除旧容器实例了。</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUt1NDExODdpQi8=" title="https://www.bilibili.com/video/BV1Ku41187iB/">群晖Synology Container Manager更新Docker容器<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="xiaoya-alist"><a href="#xiaoya-alist" class="headerlink" title="xiaoya alist"></a>xiaoya alist</h3><ol>
+<li>去”注册表”搜索”alist”拉取下载 <code>xiaoyaliu/alist</code> 最新的镜像版本 。</li>
+<li>去 <code>File Station</code> 创建一个目录给 <code>xiaoya</code>：<code>/docker/alist-xiaoya</code></li>
+<li>去“映像“界面运行，会进入配置引导：<ul>
+<li>端口设置：本地端口设置 5678，映射端口 80</li>
+<li>存储空间设置：选择刚刚创建的 <code>/docker/alist-xiaoya</code> 映射 <code>/data</code></li>
+</ul>
+</li>
+<li>准备三个文件，将下面三个文件夹存入nas 创建的目录 <code>/docker/alist-xiaoya</code> ：<ul>
+<li>mytoken.txt：<span class="exturl" data-url="aHR0cHM6Ly9hbGlzdC5ubi5jaS96aC9ndWlkZS9kcml2ZXJzL2FsaXl1bmRyaXZlLmh0bWw=" title="https://alist.nn.ci/zh/guide/drivers/aliyundrive.html">alist 官方文档<i class="fa fa-external-link"></i></span> 介绍了，阿里云盘 APP 扫描后，获取到 token；</li>
+<li>myopentoken.txt：<span class="exturl" data-url="aHR0cHM6Ly9hbGlzdC5ubi5jaS96aC9ndWlkZS9kcml2ZXJzL2FsaXl1bmRyaXZlX29wZW4uaHRtbA==" title="https://alist.nn.ci/zh/guide/drivers/aliyundrive_open.html">阿里云盘 Open<i class="fa fa-external-link"></i></span>，点击 <code>https://alist.nn.ci/tool/aliyundrive/request</code> 选择扫描二维码，获取token；</li>
+<li>temp_transfer_folder_id.txt：去网页版阿里云盘，在“资源盘”下新建一个文件件 <code>xiaoya-cache</code>，进入该文件夹，地址栏 <code>resouce</code> 后面的字符，就是文件件 id</li>
+</ul>
+</li>
+<li>启动容器即可</li>
+</ol>
+<blockquote>
+<p>注意！注意！注意！首次访问时，由于小雅需要进行索引，启动时间会比较慢，根据网络情况，需要1-5分钟不等</p>
+</blockquote>
+<p>因为实现原理还是会将播放的资源转存到个人网盘中，那么，需要设置一个定时任务去清理，通过 SSH 登录 NAS 后台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 模式 3 创建一个名为 xiaoyakeeper 的docker定时运行小雅转存清理并升级小雅镜像</span><br><span class="line">bash -c &quot;$(curl -s https://xiaoyahelper.ddsrem.com/aliyun_clear.sh | tail -n +2)&quot; -s 3 -tg</span><br></pre></td></tr></table></figure></p>
+<p>定时的时间，我通过写入 myruntime.txt 文件（该文件也放在了上面小雅容器的路径下 <code>/docker/alist-xiaoya</code>）来实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">06:00,12:00,18:00</span><br></pre></td></tr></table></figure></p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly94aWFveWFsaXUubm90aW9uLnNpdGUveGlhb3lhLWRvY2tlci02OTQwNGFmODQ5NTA0ZmE1YmNmOWYyZGQ1ZWNhYTc1Zg==" title="https://xiaoyaliu.notion.site/xiaoya-docker-69404af849504fa5bcf9f2dd5ecaa75f">xiaoya notion 使用说明<i class="fa fa-external-link"></i></span></li>
+<li>TG - xiaoya文档 群组</li>
+</ul>
+<h2 id="开启-SMB-服务"><a href="#开启-SMB-服务" class="headerlink" title="开启 SMB 服务"></a>开启 SMB 服务</h2><p>控制面板》文件共享》文件服务SMB。</p>
+<p>注意点：高级设置，勾选“启动 Local Master Browser`，这样局域网中设备就可以看到共享文件件了。</p>
+<h2 id="参考-4"><a href="#参考-4" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuaHVha2luZ3MuY24vY2F0ZWdvcnkvbmFzLzgv" title="https://www.huakings.cn/category/nas/8/">花王群晖教程<i class="fa fa-external-link"></i></span> </li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2021/04/24/digital-r4s/" rel="bookmark">R4S 使用笔记</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2023/03/12/digital-software-kodi/" rel="bookmark">Kodi 使用教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2021/02/11/digital-mobile-app-backup/" rel="bookmark">安卓手机必备 APP 清单</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2023/04/03/digital-monitor-dell/" rel="bookmark">戴尔 Dell U3223QE 显示器体验</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2023/03/25/digital-nas-net-https/" rel="bookmark">群晖 NAS 开启 HTTPS 访问协议，提升安全性</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2021/05/30/digital-nas-started/" title="群晖 NAS 920+ 使用笔记">https://michaelxoxo.github.io/2021/05/30/digital-nas-started/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数码/" rel="tag"># 数码</a>
+          
+            <a href="/tags/多媒体/" rel="tag"># 多媒体</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/18/tools-dev-sdkman/" rel="next" title="sdkman 来管理多 JDK 版本的环境">
+                <i class="fa fa-chevron-left"></i> sdkman 来管理多 JDK 版本的环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/12/digital-xiaomi-tv/" rel="prev" title="小米电视大师 82 寸的使用心得">
+                小米电视大师 82 寸的使用心得 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">134</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">151</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAS-网络"><span class="nav-number">2.</span> <span class="nav-text">NAS 网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DS-video"><span class="nav-number">3.</span> <span class="nav-text">DS video</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transmission-安装与汉化"><span class="nav-number">4.</span> <span class="nav-text">Transmission 安装与汉化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-TR"><span class="nav-number">4.1.</span> <span class="nav-text">安装 TR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#汉化"><span class="nav-number">4.2.</span> <span class="nav-text">汉化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.3.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#aria2"><span class="nav-number">5.</span> <span class="nav-text">aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#aria2-pro"><span class="nav-number">5.1.</span> <span class="nav-text">aria2 pro</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jellyfin-媒体中心"><span class="nav-number">6.</span> <span class="nav-text">Jellyfin 媒体中心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">6.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">6.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加媒体库"><span class="nav-number">6.3.</span> <span class="nav-text">添加媒体库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插键"><span class="nav-number">6.4.</span> <span class="nav-text">插键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字幕插键-Open-Subtitles"><span class="nav-number">6.4.1.</span> <span class="nav-text">字幕插键 Open Subtitles</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放"><span class="nav-number">6.5.</span> <span class="nav-text">播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件加速"><span class="nav-number">6.6.</span> <span class="nav-text">硬件加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">6.7.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TV-端设置"><span class="nav-number">6.7.1.</span> <span class="nav-text">TV 端设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他资源"><span class="nav-number">6.8.</span> <span class="nav-text">其他资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-1"><span class="nav-number">6.9.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电影刮削器-TinyMediaManager"><span class="nav-number">7.</span> <span class="nav-text">电影刮削器 TinyMediaManager</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-2"><span class="nav-number">7.1.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emby"><span class="nav-number">8.</span> <span class="nav-text">emby</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-emby-步骤"><span class="nav-number">8.1.</span> <span class="nav-text">安装 emby 步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体库设置"><span class="nav-number">8.2.</span> <span class="nav-text">媒体库设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考-3"><span class="nav-number">8.3.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PT"><span class="nav-number">9.</span> <span class="nav-text">PT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载客户端"><span class="nav-number">9.1.</span> <span class="nav-text">下载客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m-team"><span class="nav-number">9.2.</span> <span class="nav-text">m-team</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#heimdall-导航"><span class="nav-number">10.</span> <span class="nav-text">heimdall 导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">11.</span> <span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-Time-Machine-备份到-NAS"><span class="nav-number">12.</span> <span class="nav-text">Mac Time Machine 备份到 NAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alist"><span class="nav-number">13.</span> <span class="nav-text">Alist</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-alist-容器实例版本"><span class="nav-number">13.1.</span> <span class="nav-text">更新 alist 容器实例版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xiaoya-alist"><span class="nav-number">13.2.</span> <span class="nav-text">xiaoya alist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启-SMB-服务"><span class="nav-number">14.</span> <span class="nav-text">开启 SMB 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考-4"><span class="nav-number">15.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2021/05/30/digital-nas-started/";
+    this.page.identifier = "2021/05/30/digital-nas-started/";
+    this.page.title = '群晖 NAS 920+ 使用笔记';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

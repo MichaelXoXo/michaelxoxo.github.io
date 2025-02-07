@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="编辑器之神 —— Vim   Vim 学习系列：  Vim 基础 Vim 插件及配置 neovim 安装及插键配置  平日使用 vim 经常编辑文件，想想使用时的痛点，决定研究一下插件的使用。">
+<meta name="keywords" content="Tools,Vim,Plugin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 插件及配置">
+<meta property="og:url" content="https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="编辑器之神 —— Vim   Vim 学习系列：  Vim 基础 Vim 插件及配置 neovim 安装及插键配置  平日使用 vim 经常编辑文件，想想使用时的痛点，决定研究一下插件的使用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/6d9475f6ly1fy7rsa016rj20hs0bu76g.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxrioguwosj30f902mdg7.jpg">
+<meta property="og:updated_time" content="2025-02-07T16:17:13.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim 插件及配置">
+<meta name="twitter:description" content="编辑器之神 —— Vim   Vim 学习系列：  Vim 基础 Vim 插件及配置 neovim 安装及插键配置  平日使用 vim 经常编辑文件，想想使用时的痛点，决定研究一下插件的使用。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/6d9475f6ly1fy7rsa016rj20hs0bu76g.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vim 插件及配置 | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Vim 插件及配置<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy90b29scy12aW0tcGx1Z2luLWNvbmZpZy5tZA==" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-02 20:25:42" itemprop="dateCreated datePublished" datetime="2018-12-02T20:25:42+08:00">2018-12-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-02-08 00:17:13" itemprop="dateModified" datetime="2025-02-08T00:17:13+08:00">2025-02-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ToolsDev/" itemprop="url" rel="index"><span itemprop="name">ToolsDev</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://ws1.sinaimg.cn/large/6d9475f6ly1fy7rsa016rj20hs0bu76g.jpg" alt></p>
+<blockquote class="blockquote-center"><p>编辑器之神 —— Vim </p>
+</blockquote>
+<p>Vim 学习系列：</p>
+<ul>
+<li><a href="https://michaelxoxo.github.io/2018/12/02/tools-vim-basic/">Vim 基础</a></li>
+<li><a href="https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/">Vim 插件及配置</a></li>
+<li><a href="https://michaelxoxo.github.io/2019/11/17/tools-vim-plugin-neovim-plug/">neovim 安装及插键配置</a></li>
+</ul>
+<p>平日使用 vim 经常编辑文件，想想使用时的痛点，决定研究一下插件的使用。</p>
+<a id="more"></a>
+<blockquote>
+<p>Vim的扩展通常也被成为bundle或插件。</p>
+</blockquote>
+<p>软件版本：</p>
+<ul>
+<li>Mac OS X 10.14.1</li>
+<li>vim 8.1</li>
+</ul>
+<h2 id="插件安装-Vundle"><a href="#插件安装-Vundle" class="headerlink" title="插件安装-Vundle"></a>插件安装-Vundle</h2><p>众多文章中都提到<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1Z1bmRsZVZpbS9WdW5kbGUudmlt" title="https://github.com/VundleVim/Vundle.vim">Vundle<i class="fa fa-external-link"></i></span>，那我就选用它好了！</p>
+<p>有一个 Vim 的插键网站，专门有相关插键的配置介绍：<span class="exturl" data-url="aHR0cHM6Ly92aW1hd2Vzb21lLmNvbS8=" title="https://vimawesome.com/">VimAwesome<i class="fa fa-external-link"></i></span></p>
+<h3 id="1-将Vundle下载到本地，后面下载的插件也将会下载到-vim-bundle路径下。"><a href="#1-将Vundle下载到本地，后面下载的插件也将会下载到-vim-bundle路径下。" class="headerlink" title="1.将Vundle下载到本地，后面下载的插件也将会下载到~/.vim/bundle路径下。"></a>1.将Vundle下载到本地，后面下载的插件也将会下载到<code>~/.vim/bundle</code>路径下。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim</span><br></pre></td></tr></table></figure>
+<h3 id="2-插件配置，将如下的内容粘贴到-vimrc的顶部-前提是，你本身-vimrc里一开始没有什么其他内容-。"><a href="#2-插件配置，将如下的内容粘贴到-vimrc的顶部-前提是，你本身-vimrc里一开始没有什么其他内容-。" class="headerlink" title="2.插件配置，将如下的内容粘贴到~/.vimrc的顶部(前提是，你本身.vimrc里一开始没有什么其他内容)。"></a>2.插件配置，将如下的内容粘贴到<code>~/.vimrc</code>的顶部(前提是，你本身<code>.vimrc</code>里一开始没有什么其他内容)。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">set nocompatible              &quot; be iMproved, required</span><br><span class="line">filetype off                  &quot; required</span><br><span class="line"></span><br><span class="line">&quot; set the runtime path to include Vundle and initialize</span><br><span class="line">set rtp+=~/.vim/bundle/Vundle.vim</span><br><span class="line">call vundle#begin()</span><br><span class="line">&quot; alternatively, pass a path where Vundle should install plugins</span><br><span class="line">&quot;call vundle#begin(&apos;~/some/path/here&apos;)</span><br><span class="line"></span><br><span class="line">&quot; let Vundle manage Vundle, required</span><br><span class="line">Plugin &apos;VundleVim/Vundle.vim&apos;</span><br><span class="line"></span><br><span class="line">&quot; The following are examples of different formats supported.</span><br><span class="line">&quot; Keep Plugin commands between vundle#begin/end.</span><br><span class="line">&quot; plugin on GitHub repo</span><br><span class="line">&quot; Plugin &apos;tpope/vim-fugitive&apos;</span><br><span class="line">&quot; plugin from http://vim-scripts.org/vim/scripts.html</span><br><span class="line">&quot; Plugin &apos;L9&apos;</span><br><span class="line">&quot; Git plugin not hosted on GitHub</span><br><span class="line">&quot; Plugin &apos;git://git.wincent.com/command-t.git&apos;</span><br><span class="line">&quot; git repos on your local machine (i.e. when working on your own plugin)</span><br><span class="line">&quot; Plugin &apos;file:///home/gmarik/path/to/plugin&apos;</span><br><span class="line">&quot; The sparkup vim script is in a subdirectory of this repo called vim.</span><br><span class="line">&quot; Pass the path to set the runtimepath properly.</span><br><span class="line">&quot; Plugin &apos;rstacruz/sparkup&apos;, &#123;&apos;rtp&apos;: &apos;vim/&apos;&#125;</span><br><span class="line">&quot; Install L9 and avoid a Naming conflict if you&apos;ve already installed a</span><br><span class="line">&quot; different version somewhere else.</span><br><span class="line">&quot; Plugin &apos;ascenator/L9&apos;, &#123;&apos;name&apos;: &apos;newL9&apos;&#125;</span><br><span class="line"></span><br><span class="line">&quot; All of your Plugins must be added before the following line</span><br><span class="line">call vundle#end()            &quot; required</span><br><span class="line">filetype plugin indent on    &quot; required</span><br><span class="line">&quot; To ignore plugin indent changes, instead use:</span><br><span class="line">&quot;filetype plugin on</span><br><span class="line">&quot;</span><br><span class="line">&quot; Brief help</span><br><span class="line">&quot; :PluginList       - lists configured plugins</span><br><span class="line">&quot; :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span><br><span class="line">&quot; :PluginSearch foo - searches for foo; append `!` to refresh local cache</span><br><span class="line">&quot; :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span><br><span class="line">&quot;</span><br><span class="line">&quot; see :h vundle for more details or wiki for FAQ</span><br><span class="line">&quot; Put your non-Plugin stuff after this line</span><br></pre></td></tr></table></figure>
+<h3 id="3-安装插件"><a href="#3-安装插件" class="headerlink" title="3.安装插件"></a>3.安装插件</h3><p>将需要安装的插键放入<code>.vimrc</code>文件中即可，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;scrooloose/nerdtree&apos;</span><br><span class="line">&quot;Plugin &apos;scrooloose/nerdtree&apos;  &quot; 如果暂时不启用，就将该插件注释掉</span><br></pre></td></tr></table></figure></p>
+<p>打开vim，然后输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim # 打开 vim</span><br><span class="line">:PluginInstall</span><br><span class="line">:PluginList # 查看已安装插键列表</span><br></pre></td></tr></table></figure>
+<h3 id="4-升级与卸载插件"><a href="#4-升级与卸载插件" class="headerlink" title="4.升级与卸载插件"></a>4.升级与卸载插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 注释下面这段话</span><br><span class="line"># Plugin &apos;Valloric/YouCompleteMe&apos;</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:PluginUpdate # 这个命令本身可以一键升级所有插件</span><br><span class="line">:PlugginClean</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1Z1bmRsZVZpbS9WdW5kbGUudmltL2lzc3Vlcy83MzM=" title="https://github.com/VundleVim/Vundle.vim/issues/733">How to unInstall plugin?<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="5-帮助文档"><a href="#5-帮助文档" class="headerlink" title="5.帮助文档"></a>5.帮助文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:h vundle</span><br></pre></td></tr></table></figure>
+<h2 id="NERDTree"><a href="#NERDTree" class="headerlink" title="NERDTree"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Njcm9vbG9vc2UvbmVyZHRyZWU=" title="https://github.com/scrooloose/nerdtree">NERDTree<i class="fa fa-external-link"></i></span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;scrooloose/nerdtree&apos;</span><br><span class="line"></span><br><span class="line">&quot;F2开启和关闭树&quot;</span><br><span class="line">map &lt;F2&gt; :NERDTreeToggle&lt;CR&gt;</span><br><span class="line">let NERDTreeChDirMode=1</span><br><span class="line">&quot;显示书签&quot;</span><br><span class="line">let NERDTreeShowBookmarks=1</span><br><span class="line">&quot;设置忽略文件类型&quot;</span><br><span class="line">let NERDTreeIgnore=[&apos;\~$&apos;, &apos;\.pyc$&apos;, &apos;\.swp$&apos;]</span><br><span class="line">&quot;窗口大小&quot;</span><br><span class="line">let NERDTreeWinSize=25</span><br></pre></td></tr></table></figure>
+<h2 id="python-mode"><a href="#python-mode" class="headerlink" title="python-mode"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5dGhvbi1tb2RlL3B5dGhvbi1tb2Rl" title="https://github.com/python-mode/python-mode">python-mode<i class="fa fa-external-link"></i></span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;klen/python-mode&apos; &quot; https://vimawesome.com/plugin/python-mode</span><br></pre></td></tr></table></figure>
+<p>编写 Python 文件保存时，就会进行语法检查了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let g:pymode_rope = 1</span><br><span class="line">let g:pymode_rope_completion = 1</span><br><span class="line">let g:pymode_rope_completion_bind = &apos;&lt;C-p&gt;&apos;  &quot;为了自动补全有效，需要将 set paste 设置不启用</span><br><span class="line">let g:pymode_rope_goto_definition_bind = &apos;&lt;C-c&gt;g&apos;</span><br><span class="line">let g:pymode_python = &apos;python&apos; &quot; 默认检查 Python2</span><br><span class="line">&quot;Autofix PEP8 errors</span><br><span class="line">nnoremap &lt;leader&gt;f :PymodeLintAuto&lt;CR&gt;</span><br></pre></td></tr></table></figure></p>
+<p>快捷键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">K 显示内置函数文档</span><br><span class="line">&lt;leader&gt;r 运行 python 文件 # let mapleader=&quot;, &quot; &quot; 设置 leader 为空格，那么`,+r`就可以运行 python 文件了</span><br></pre></td></tr></table></figure></p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj02N09aTnA5WjBDUQ==" title="https://www.youtube.com/watch?v=67OZNp9Z0CQ">油管-python-mode<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjE2Mjg3NDMvY2FudC1nZXQtdGhlLWplZGktdmltLXBsdWdpbi10by13b3JrLzQxNTc0NzYw" title="https://stackoverflow.com/questions/21628743/cant-get-the-jedi-vim-plugin-to-work/41574760">Can’t get the jedi-vim plugin to work<i class="fa fa-external-link"></i></span> 解决了 python-mode 不自动补全的问题</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5dGhvbi1tb2RlL3B5dGhvbi1tb2RlL2Jsb2IvZGV2ZWxvcC9kb2MvcHltb2RlLnR4dA==" title="https://github.com/python-mode/python-mode/blob/develop/doc/pymode.txt">python-mode/doc/pymode.txt<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="vim-airline"><a href="#vim-airline" class="headerlink" title="vim-airline"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZpbS1haXJsaW5lL3ZpbS1haXJsaW5l" title="https://github.com/vim-airline/vim-airline">vim-airline<i class="fa fa-external-link"></i></span></h2><p>一个状态栏美化工具，颜控必备。附带功能可以一目了然的区分各种编辑状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;vim-airline/vim-airline&apos; &quot;https://github.com/vim-airlin    e/vim-airline</span><br><span class="line">Plugin &apos;vim-airline/vim-airline-themes&apos; &quot;  https://github.com/v    im-airline/vim-airline-themes https://github.com/vim-airline/vi    m-airline/wiki/Screenshots</span><br></pre></td></tr></table></figure>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZpbS1haXJsaW5lL3ZpbS1haXJsaW5lL3dpa2kvU2NyZWVuc2hvdHM=" title="https://github.com/vim-airline/vim-airline/wiki/Screenshots">主题预览<i class="fa fa-external-link"></i></span></p>
+<blockquote>
+<p>To use solarized dark, set :AirlineTheme solarized and add the following to your .vimrc: let g:airline_solarized_bg=’dark’</p>
+</blockquote>
+<p>配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let g:airline_powerline_fonts = 1</span><br><span class="line">let g:airline_theme=&apos;deus&apos;</span><br><span class="line">let g:Powerline_symbols=&apos;fancy&apos;</span><br><span class="line">let Powerline_symbols=&apos;fancy&apos;</span><br><span class="line">set t_Co=256 &quot; 状态栏就有颜色了</span><br></pre></td></tr></table></figure>
+<h2 id="Yggdroot-indentLine"><a href="#Yggdroot-indentLine" class="headerlink" title="Yggdroot/indentLine"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1lnZ2Ryb290L2luZGVudExpbmU=" title="https://github.com/Yggdroot/indentLine">Yggdroot/indentLine<i class="fa fa-external-link"></i></span></h2><p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;Yggdroot/indentLine&apos;</span><br></pre></td></tr></table></figure></p>
+<p>配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let g:indentLine_enabled = 1</span><br><span class="line">let g:indentLine_color_term = 239</span><br></pre></td></tr></table></figure></p>
+<p>为了这个插件能够有效果，也是折腾了半天。在 CentOS 平台是正常的，但是在 Mac 上的缩进线显示不正确，为何会这样呢？<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNTI0NTI3Mzgvd2h5LWlzLWFwcGxlLXZpbS1jb21waWxlZC13aXRob3V0LWNvbmNlYWwtZmVhdHVyZQ==" title="https://stackoverflow.com/questions/52452738/why-is-apple-vim-compiled-without-conceal-feature">SOF-Why is apple vim compiled WITHOUT conceal feature?<i class="fa fa-external-link"></i></span>，原来 Mac 上自带的 Vim 版本虽然是8.0版本，但是没有<code>concel</code>这个 Feature ，而<code>indentLine</code>插件要显示对齐线依赖这个，<span class="exturl" data-url="aHR0cDovL3ZpbWNkb2Muc291cmNlZm9yZ2UubmV0L2RvYy91c3JfMDEuaHRtbA==" title="http://vimcdoc.sourceforge.net/doc/usr_01.html">坚线和星号在使用  conceal  功能<i class="fa fa-external-link"></i></span>。</p>
+<p>那么该怎么添加这个特性呢？搜了一圈，可以重新安装 Vim，可以参考<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL2EvMTE5MDAwMDAxNTg4NTcxMiNhcnRpY2xlSGVhZGVyMzU=" title="https://segmentfault.com/a/1190000015885712#articleHeader35">这篇文章<i class="fa fa-external-link"></i></span>安装 Vim。</p>
+<p>经过安装设置之后，可以通过<code>vim --version|grep con</code>或者<code>:echo has(&quot;conceal&quot;)</code>查看是否已经具有 conceal 特性：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxrioguwosj30f902mdg7.jpg" alt></p>
+<h2 id="rking-ag-vim"><a href="#rking-ag-vim" class="headerlink" title="rking/ag.vim"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JraW5nL2FnLnZpbQ==" title="https://github.com/rking/ag.vim">rking/ag.vim<i class="fa fa-external-link"></i></span></h2><p>ag 的语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ag [FILE-TYPE] [OPTIONS] PATTERN [PATH]</span><br></pre></td></tr></table></figure></p>
+<p>ag 这个 vim 插键主要是基于这个项目 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dncmVlci90aGVfc2lsdmVyX3NlYXJjaGVy" title="https://github.com/ggreer/the_silver_searcher">ggreer/the_silver_searcher<i class="fa fa-external-link"></i></span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ag --list-file-types # 查看支持自定义哪些文件类型</span><br></pre></td></tr></table></figure>
+<p>安装了这个插键后，在 vim  的命令模式下，可以使用<code>:Ag [options] {pattern} [{directory}]</code>搜索了。</p>
+<h2 id="majutsushi-tagbar"><a href="#majutsushi-tagbar" class="headerlink" title="majutsushi/tagbar"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hanV0c3VzaGkvdGFnYmFy" title="https://github.com/majutsushi/tagbar">majutsushi/tagbar<i class="fa fa-external-link"></i></span></h2><p>安装 vim 插键之前，机器本身需要<code>ctags</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># ubuntu</span><br><span class="line">sudo apt-get install ctags</span><br><span class="line"># centos</span><br><span class="line">sudo yum install ctags</span><br><span class="line"># mac</span><br><span class="line">brew install ctags</span><br></pre></td></tr></table></figure></p>
+<p>在这时使用 vim-tagbar 插件可以帮你快速了解当前文件中的类、方法等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;majutsushi/tagbar&apos; &quot; https://github.com/majutsushi/tagbar</span><br></pre></td></tr></table></figure></p>
+<p>配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;F8&gt; :TagbarToggle&lt;CR&gt;</span><br></pre></td></tr></table></figure></p>
+<p>关于 tagbar 的使用，看查看这篇文章 <span class="exturl" data-url="aHR0cDovL3d3dy53a2xrZW4ubWUvcG9zdHMvMjAxNS8wNi8wNy92aW0tcGx1Z2luLXRhZ2Jhci5odG1s" title="http://www.wklken.me/posts/2015/06/07/vim-plugin-tagbar.html">wklken-大纲式导航<i class="fa fa-external-link"></i></span></p>
+<h2 id="YouCompleteMe"><a href="#YouCompleteMe" class="headerlink" title="YouCompleteMe"></a><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1ZhbGxvcmljL1lvdUNvbXBsZXRlTWUjaW5zdGFsbGF0aW9u" title="https://github.com/Valloric/YouCompleteMe#installation">YouCompleteMe<i class="fa fa-external-link"></i></span></h2><p>目前主要涉及的是 Python 开发，所以，YCM 目前没有配置，如下仅供参考。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;Valloric/YouCompleteMe&apos;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential cmake</span><br><span class="line">sudo apt-get install python-dev python3-dev</span><br><span class="line">cd ~/.vim/bundle/YouCompleteMe</span><br><span class="line">./install.py --all</span><br><span class="line"></span><br><span class="line">cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;YouCompleteMe配置相关</span><br><span class="line">let g:ycm_server_python_interpreter=&apos;/usr/bin/python&apos;</span><br><span class="line">let g:ycm_global_ycm_extra_conf=&apos;~/.vim/.ycm_extra_conf.py&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>安装主题的方法比较简单，例如需要安装<code>molokai</code>主题，手动安装则按照如下步骤操作：</p>
+<ul>
+<li>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZhdGloL21vbG9rYWk=" title="https://github.com/fatih/molokai">https://github.com/fatih/molokai<i class="fa fa-external-link"></i></span> 下载<code>molokai.vim</code>文件，放入<code>~/.vim/colors</code>中</li>
+<li>然后在<code>~/.vimrc</code>文件中加入行<code>colorscheme molokai</code>即可。</li>
+</ul>
+<p>因为我在 <a href="https://michaelxoxo.github.io/2018/10/28/tools-vscode/">VSCode</a> 和 Iterm2 中都采用了 <span class="exturl" data-url="aHR0cHM6Ly9kcmFjdWxhdGhlbWUuY29tL3ZpbS8=" title="https://draculatheme.com/vim/">Dracula<i class="fa fa-external-link"></i></span> 的主题，因此，vim 主题我也同样偏爱它，可以采用插键的方式安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plugin &apos;dracula/vim&apos;</span><br><span class="line">:PluginInstall</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>然后在<code>~/.vimrc</code>文件中加入行<code>colorscheme dracula</code>即可。</li>
+</ul>
+<p>主题相关的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:colorscheme   &quot;查看当前主题</span><br><span class="line">:colorscheme space tab &quot;列出所有主题</span><br><span class="line">:colorscheme your-theme &quot;切换主题</span><br></pre></td></tr></table></figure>
+<h2 id="设置vim"><a href="#设置vim" class="headerlink" title="设置vim"></a>设置vim</h2><p>为了让vim使用起来更加得心应手，先做一些简单的配置。</p>
+<p>编辑VIM配置文件，可能一开始没有这个文件，不过没关系，直接<code>vi ~/.vimrc</code>保存这个文件即可。</p>
+<p>今天学习到<code>&lt;leader&gt;</code> 这个概念，很强大，快捷键很方便！</p>
+<ul>
+<li><code>nnoremap</code> 将一个组合快捷键映射为另一个快捷键。</li>
+</ul>
+<p>关于<code>leader</code>以及其他<code>map</code>知识，可以查看如下文章：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL2Jsb2cuam9iYm9sZS5jb20vODc0ODEv" title="http://blog.jobbole.com/87481/">提高 Vim 使用效率的 12 个技巧<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0phc29uRGluZzEzNTQvYXJ0aWNsZS9kZXRhaWxzLzQ1MzcyMDA3" title="https://blog.csdn.net/JasonDing1354/article/details/45372007">【Vim】使用map自定义快捷键<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="个人vim配置"><a href="#个人vim配置" class="headerlink" title="个人vim配置"></a>个人vim配置</h3><p>参考多人的配置，打造属于自己的Vim配置，这个配置不涉及插件的设置，因为常常生产环境是网络不通的，要迅速配置能用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">let mapleader=&quot;,&quot; &quot; 设置 leader</span><br><span class="line">let g:mapleader = &apos;,&apos;</span><br><span class="line"></span><br><span class="line">&quot; 分屏窗口移动, Smart way to move between windows</span><br><span class="line">map &lt;C-j&gt; &lt;C-W&gt;j</span><br><span class="line">map &lt;C-k&gt; &lt;C-W&gt;k</span><br><span class="line">map &lt;C-h&gt; &lt;C-W&gt;h</span><br><span class="line">map &lt;C-l&gt; &lt;C-W&gt;l</span><br><span class="line"></span><br><span class="line">&quot; Go to home and end using capitalized directions</span><br><span class="line">&quot; H和L跳转到行首行末, 实在不想按0和$, 太远</span><br><span class="line">noremap H ^</span><br><span class="line">noremap L $</span><br><span class="line"></span><br><span class="line">&quot; 命令行模式增强，ctrl - a到行首， -e 到行尾</span><br><span class="line">cnoremap &lt;C-a&gt; &lt;Home&gt;</span><br><span class="line">cnoremap &lt;C-e&gt; &lt;End&gt;</span><br><span class="line"></span><br><span class="line">&quot; 去掉搜索高亮</span><br><span class="line">noremap &lt;silent&gt;&lt;leader&gt;/ :nohls&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; 快速保存和退出</span><br><span class="line">&quot; Quickly close the current window</span><br><span class="line">nnoremap &lt;leader&gt;q :q&lt;CR&gt;</span><br><span class="line">&quot; Quickly save the current file</span><br><span class="line">nnoremap &lt;leader&gt;w :w&lt;CR&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">syntax on &quot; 自动语法高亮</span><br><span class="line">set cursorline &quot; 突出显示当前行</span><br><span class="line">set encoding=utf-8</span><br><span class="line">set fileencoding=utf-8</span><br><span class="line">set fileformat=unix &quot;从Win上复制文件时，避免换行符错误</span><br><span class="line">set hlsearch &quot; 搜索时高亮显示被找到的文本</span><br><span class="line">set ignorecase smartcase &quot; 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感</span><br><span class="line">set incsearch &quot; 输入搜索内容时就显示搜索结果</span><br><span class="line">set laststatus=2 &quot; 显示状态栏 (默认值为 1, 无法显示状态栏)</span><br><span class="line">set magic &quot; 设置魔术</span><br><span class="line">set nocompatible &quot; 关闭 vi 兼容模式</span><br><span class="line">set number &quot; 显示行号</span><br><span class="line">set paste  &quot; 解决拷贝的时遇到注释会自动注释后续所有行的问题</span><br><span class="line">set ruler &quot; 打开状态栏标尺</span><br><span class="line">set shiftwidth=4 &quot; 设定 &lt;&lt; 和 &gt;&gt; 命令移动时的宽度为 4</span><br><span class="line">set softtabstop=4 &quot; 使得按退格键时可以一次删掉 4 个空格</span><br><span class="line">set smartindent &quot; 开启新行时使用智能自动缩进</span><br><span class="line">set tabstop=4 &quot; 设定 tab 长度为 4</span><br><span class="line">set ambiwidth=double &quot; 设置为双字宽显示，否则无法完整显示如:☆</span><br></pre></td></tr></table></figure></p>
+<p>vim配置文件中的注释，末尾用<code>&quot;</code>隔开即可。保留注释，对于了解配置内容有利。</p>
+<h3 id="vim配置参考"><a href="#vim配置参考" class="headerlink" title="vim配置参考"></a>vim配置参考</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL215LWNvbmZpZy1maWxlcw==" title="https://github.com/michaelxoxo/my-config-files">michaelxoxo/my-config-files<i class="fa fa-external-link"></i></span> 个人总结的配置文件</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3drbGtlbi9rLXZpbQ==" title="https://github.com/wklken/k-vim">wklken/k-vim<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWxkLWZsYW1lLmdpdGh1Yi5pby9ndWlkZXMvZG9jcy9tYWMtb3MteC1zZXR1cC1ndWlkZS9pbnN0YWxsX3ZpbQ==" title="https://wild-flame.github.io/guides/docs/mac-os-x-setup-guide/install_vim">Mac OS X 配置指南-vim<i class="fa fa-external-link"></i></span> 同时也有关于 macOS 介绍</li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9tYTYxNzQvYXJjaGl2ZS8yMDExLzEyLzEwLzIyODMzOTMuaHRtbA==" title="http://www.cnblogs.com/ma6174/archive/2011/12/10/2283393.html">强大的vim配置文件，让编程更随意<i class="fa fa-external-link"></i></span> 有vim配置的中文注释</li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="1-github访问速度慢，下载插件失败"><a href="#1-github访问速度慢，下载插件失败" class="headerlink" title="1. github访问速度慢，下载插件失败"></a>1. github访问速度慢，下载插件失败</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FsaWNlaHpqL2FydGljbGUvZGV0YWlscy83NzY3OTEwNQ==" title="https://blog.csdn.net/Alicehzj/article/details/77679105">ubuntu上解决访问github慢的方法<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="2-mac上iterm2中-tmux里面鼠标复制-无法选中一行内容"><a href="#2-mac上iterm2中-tmux里面鼠标复制-无法选中一行内容" class="headerlink" title="2. mac上iterm2中, tmux里面鼠标复制, 无法选中一行内容"></a>2. mac上iterm2中, tmux里面鼠标复制, 无法选中一行内容</h3><p>然后你会发现你想复制terminal上的东西的时候，死活复制不了，这时按住 <code>Option (Alt)</code>键就行了。</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3c1Njg4NDE0L2FydGljbGUvZGV0YWlscy84MjkxNzU4Mg==" title="https://blog.csdn.net/w5688414/article/details/82917582">ubuntu tmux复制粘贴总结<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cDovL3B5dGxhYi5vcmcvMjAxNy8wMy8yNi8lRTQlQkMlOTglRTklOUIlODUlRTclOUElODQlRTUlOUMlQTglRTclQkIlODglRTclQUIlQUYlRTQlQjglQUQlRTclQkMlOTYlRTUlODYlOTlQeXRob24v" title="http://pytlab.org/2017/03/26/%E4%BC%98%E9%9B%85%E7%9A%84%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E7%BC%96%E5%86%99Python/">pytlab-优雅的在终端中编写Python<i class="fa fa-external-link"></i></span> 同时介绍了 Tmux 和 Vim 的配置</li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy56bG92ZXpsLmNuL2FydGljbGVzL3ZpbS1wbHVnaW5zLWNhbm5vdC1saXZlLXdpdGhvdXQv" title="http://www.zlovezl.cn/articles/vim-plugins-cannot-live-without/">那些离了就活不了的 VIM 插件<i class="fa fa-external-link"></i></span> 介绍了一些经典的插键</li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTgvMDkvdmltcmMuaHRtbA==" title="http://www.ruanyifeng.com/blog/2018/09/vimrc.html">阮一峰-Vim 配置入门<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNTYyNjQyMQ==" title="https://zhuanlan.zhihu.com/p/35626421">YouCompleteMe 安装配置方法<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yMjQ0MDYwNw==" title="https://zhuanlan.zhihu.com/p/22440607">知乎-Vim 8.0 正式发布<i class="fa fa-external-link"></i></span> 提到了 Vim 编译安装的一些好教程</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2018/12/02/tools-vim-basic/" rel="bookmark">Vim 基础</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/11/17/tools-vim-plugin-neovim-plug/" rel="bookmark">neovim 安装及插键配置</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2018/11/24/git-advance/" rel="bookmark">Git使用教程笔记</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/06/06/git-cherry-pick/" rel="bookmark">Git 的 cherry-pick 命令还没用过？快来看看它的厉害！</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/06/14/git-diff-patch/" rel="bookmark">Git 基本命令 -- 你用过 git diff 吗？补习一下吧</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/" title="Vim 插件及配置">https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Vim/" rel="tag"># Vim</a>
+          
+            <a href="/tags/Plugin/" rel="tag"># Plugin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/24/git-advance/" rel="next" title="Git使用教程笔记">
+                <i class="fa fa-chevron-left"></i> Git使用教程笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/02/tools-vim-basic/" rel="prev" title="Vim 基础">
+                Vim 基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">134</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">151</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-Vundle"><span class="nav-number">1.</span> <span class="nav-text">插件安装-Vundle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-将Vundle下载到本地，后面下载的插件也将会下载到-vim-bundle路径下。"><span class="nav-number">1.1.</span> <span class="nav-text">1.将Vundle下载到本地，后面下载的插件也将会下载到~/.vim/bundle路径下。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-插件配置，将如下的内容粘贴到-vimrc的顶部-前提是，你本身-vimrc里一开始没有什么其他内容-。"><span class="nav-number">1.2.</span> <span class="nav-text">2.插件配置，将如下的内容粘贴到~/.vimrc的顶部(前提是，你本身.vimrc里一开始没有什么其他内容)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装插件"><span class="nav-number">1.3.</span> <span class="nav-text">3.安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-升级与卸载插件"><span class="nav-number">1.4.</span> <span class="nav-text">4.升级与卸载插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-帮助文档"><span class="nav-number">1.5.</span> <span class="nav-text">5.帮助文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NERDTree"><span class="nav-number">2.</span> <span class="nav-text">NERDTree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-mode"><span class="nav-number">3.</span> <span class="nav-text">python-mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-airline"><span class="nav-number">4.</span> <span class="nav-text">vim-airline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yggdroot-indentLine"><span class="nav-number">5.</span> <span class="nav-text">Yggdroot/indentLine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rking-ag-vim"><span class="nav-number">6.</span> <span class="nav-text">rking/ag.vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#majutsushi-tagbar"><span class="nav-number">7.</span> <span class="nav-text">majutsushi/tagbar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YouCompleteMe"><span class="nav-number">8.</span> <span class="nav-text">YouCompleteMe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题"><span class="nav-number">9.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置vim"><span class="nav-number">10.</span> <span class="nav-text">设置vim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人vim配置"><span class="nav-number">10.1.</span> <span class="nav-text">个人vim配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim配置参考"><span class="nav-number">10.2.</span> <span class="nav-text">vim配置参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">11.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-github访问速度慢，下载插件失败"><span class="nav-number">11.1.</span> <span class="nav-text">1. github访问速度慢，下载插件失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-mac上iterm2中-tmux里面鼠标复制-无法选中一行内容"><span class="nav-number">11.2.</span> <span class="nav-text">2. mac上iterm2中, tmux里面鼠标复制, 无法选中一行内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">12.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2018/12/02/tools-vim-plugin-config/";
+    this.page.identifier = "2018/12/02/tools-vim-plugin-config/";
+    this.page.title = 'Vim 插件及配置';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

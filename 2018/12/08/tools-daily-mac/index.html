@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="Do2-Y57dQrf0FcvbVYK0qwYjcmDrfHnM3VPGrH2Atz0">
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="今年终于在推出 2018 款 MBP 时，看到升级了 CPU，我就果断下手「拔草」。本文记录使用 Mac 的一些配置，会长期更新。 为了控制文章的篇幅，我将 Mac 使用配置分成了两篇：  Mac 配置教程-日常篇 Mac 配置教程-开发篇">
+<meta name="keywords" content="mac,config,develop,app,tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac 配置教程-日常篇">
+<meta property="og:url" content="https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/index.html">
+<meta property="og:site_name" content="Michael翔">
+<meta property="og:description" content="今年终于在推出 2018 款 MBP 时，看到升级了 CPU，我就果断下手「拔草」。本文记录使用 Mac 的一些配置，会长期更新。 为了控制文章的篇幅，我将 Mac 使用配置分成了两篇：  Mac 配置教程-日常篇 Mac 配置教程-开发篇">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/computer-mac.jpg">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/YtXi85.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/09O85q.png">
+<meta property="og:image" content="https://gitee.com/michael_xiang/images/raw/master/uPic/c5qdPi.png">
+<meta property="og:updated_time" content="2025-02-07T16:17:13.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac 配置教程-日常篇">
+<meta name="twitter:description" content="今年终于在推出 2018 款 MBP 时，看到升级了 CPU，我就果断下手「拔草」。本文记录使用 Mac 的一些配置，会长期更新。 为了控制文章的篇幅，我将 Mac 使用配置分成了两篇：  Mac 配置教程-日常篇 Mac 配置教程-开发篇">
+<meta name="twitter:image" content="https://gitee.com/michael_xiang/images/raw/master/computer-mac.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Michael翔" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mac 配置教程-日常篇 | Michael翔</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-158916947-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-158916947-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c9958c951d5a7661571422e0340e156";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="referrer" content="never">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael翔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">因上努力，果上随缘！</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tools">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tools/" rel="section"><i class="menu-item-icon fa fa-fw fa-location-arrow"></i> <br>利器</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>阅读</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-think">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/think" rel="section"><i class="menu-item-icon fa fa-fw fa-lightbulb-o"></i> <br>一言</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></span>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael翔">
+      <meta itemprop="description" content="DevOps，公众号『Coder魔法院』">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael翔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Mac 配置教程-日常篇<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhZWx4b3hvL2Jsb2cvYmxvYi9tYXN0ZXIvc291cmNlL19wb3N0cy90b29scy1kYWlseS1tYWMubWQ=" title="编辑"><i class="fa fa-pencil"></i></span>
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-08 15:29:13" itemprop="dateCreated datePublished" datetime="2018-12-08T15:29:13+08:00">2018-12-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2025-02-08 00:17:13" itemprop="dateModified" datetime="2025-02-08T00:17:13+08:00">2025-02-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ToolsDaily/" itemprop="url" rel="index"><span itemprop="name">ToolsDaily</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://gitee.com/michael_xiang/images/raw/master/computer-mac.jpg" alt></p>
+<p>今年终于在推出 2018 款 MBP 时，看到升级了 CPU，我就果断下手「拔草」。本文记录使用 Mac 的一些配置，会长期更新。</p>
+<p>为了控制文章的篇幅，我将 Mac 使用配置分成了两篇：</p>
+<ul>
+<li><a href="https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/">Mac 配置教程-日常篇</a></li>
+<li><a href="https://michaelxoxo.github.io/2019/04/14/tools-dev-mac/">Mac 配置教程-开发篇</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h2><p>记录一些 Mac 系统配置方面的技巧，让使用起来更方便。</p>
+<h3 id="按键整理"><a href="#按键整理" class="headerlink" title="按键整理"></a>按键整理</h3><ul>
+<li><code>Enter</code>：选中一个文件按下 <code>Enter</code>，直接改名</li>
+<li><code>Ctrl</code> 多用于命令行快捷键</li>
+<li><code>Command</code> 多用于图形化快捷键</li>
+<li><code>Option</code> 键有点像“换挡”键，比如按住<code>Option</code>键再去点击左上角的苹果图标，会多显示“系统信息”，再比如想强制退出某个软件时，按住<code>Option</code>键，会看到“强制退出”的选项。</li>
+</ul>
+<ul>
+<li>选中桌面的所有需归档资料，<code>Command+Shift+n</code>，会将文件归档到一个文件夹下</li>
+<li>调度中心设置：右 <code>Ctrl</code>，显示桌面</li>
+<li>触发角</li>
+</ul>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/YtXi85.png" alt></p>
+<ul>
+<li>辅助功能-鼠标与控制板-触控板选项-启用拖移</li>
+<li><code>Option+Command+v</code> 类似剪切的功能，就是粘贴后，原来文件会被剪切过来。复制文件后，除了用快捷键，还可以在文件夹空白处右键，然后再按住 <code>「⌥」</code>，原本的「粘贴项目」就变成了「将项目移动到这里」</li>
+<li>删除文件：<ul>
+<li><code>Command+Delete</code></li>
+<li>工具栏添加垃圾箱，然后选择待删除文件，点击垃圾箱即可删除</li>
+</ul>
+</li>
+<li><code>Command+Option+c</code> 复制文件路径</li>
+<li>按住 <code>Option</code> 很多菜单会发生些小变化，比如左上角苹果图标点开，按住 <code>Option</code> 『关于本机』会变成『系统信息』</li>
+<li><code>Control + Command + Space</code> emoji 表情</li>
+<li><code>Command+Up</code>：回到上一层文件夹</li>
+<li><code>Command+Down</code>：如果是文件夹就进入文件夹，如果是文件就打开</li>
+<li><code>Ctrl+⬅️/➡️</code>：移动桌面空间</li>
+<li><code>Ctrl + Command + q</code> 锁屏</li>
+<li>单词，选中，三指，自动翻译单词</li>
+<li><code>Command+Shift+.</code> 临时性切换显示/隐藏</li>
+<li><code>Command+Alt+i</code>: Chrome开发者工具，F12功能</li>
+<li><code>command＋shift＋G</code> Finder中如何输入路径直接跳转，<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vd29ybWRheS9hcmNoaXZlLzIwMTEvMDUvMDQvMjAzNTk4NC5odG1s" title="https://www.cnblogs.com/wormday/archive/2011/05/04/2035984.html">参考<i class="fa fa-external-link"></i></span><ul>
+<li><code>command+shift+C</code> 电脑</li>
+<li><code>command+shift+H</code> 个人</li>
+<li><code>command+shift+D</code> 桌面</li>
+<li><code>command+shift+A</code> 程序</li>
+</ul>
+</li>
+</ul>
+<h3 id="终端快捷键"><a href="#终端快捷键" class="headerlink" title="终端快捷键"></a>终端快捷键</h3><ul>
+<li><code>Ctrl + A</code>：移动到行首</li>
+<li><code>Ctrl + E</code>：移动到行尾</li>
+<li><code>Ctrl + K</code>：删除到行尾</li>
+<li><code>Ctrl + U</code>：删除到行头</li>
+<li><code>Ctrl + N</code>：移动到下一行</li>
+<li><code>Ctrl + P</code>：移动到上一行</li>
+</ul>
+<h3 id="设置允许「任何来源」的应用-——-解决文件已损坏报错"><a href="#设置允许「任何来源」的应用-——-解决文件已损坏报错" class="headerlink" title="设置允许「任何来源」的应用 —— 解决文件已损坏报错"></a>设置允许「任何来源」的应用 —— 解决文件已损坏报错</h3><p>有时候会遇到这种错误「报错：无法打开已损坏的安装包」，打开终端，键入命令，输入密码，然后回车：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br><span class="line">defaults write com.apple.LaunchServices LSQuarantine -bool false</span><br></pre></td></tr></table></figure>
+<p>打开「安全性与隐私」，发现久违的「任何来源」回来了。</p>
+<h3 id="改键"><a href="#改键" class="headerlink" title="改键"></a>改键</h3><p>为了将外置键盘和 Mac 键盘的 option 键、command 键保持一致的顺序，做如下修改：<br>设置-键盘-修饰键-选择键盘（选择外设键盘）-调整顺序</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/09O85q.png" alt></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82NjkyMmIyYmM4YzM=" title="https://www.jianshu.com/p/66922b2bc8c3">Mac系统切换机械键盘win和alt键<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="使用-Shift-键"><a href="#使用-Shift-键" class="headerlink" title="使用 Shift 键"></a>使用 Shift 键</h3><p>Shift 键类似于可视模式，比如在某个位置点击光标并按住 Shift 键不松开，再去另一个位置点击一次，就可以选中两次点击位置之间的文本内容。</p>
+<h3 id="触控板"><a href="#触控板" class="headerlink" title="触控板"></a>触控板</h3><ul>
+<li>四指捏合，展开全部应用</li>
+<li>辅助功能-鼠标 开启三指拖拽</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zc3BhaS5jb20vcG9zdC80NDE3Mw==" title="https://sspai.com/post/44173">用了那么久 Mac，才知道触控板原来还有这些功能<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="Mac-Split-View屏幕分割"><a href="#Mac-Split-View屏幕分割" class="headerlink" title="Mac Split View屏幕分割"></a>Mac Split View屏幕分割</h3><p>长按左上角放大的绿色按钮，选择放置应用的区域，方便屏幕同时显示多个 app 界面。</p>
+<p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qaW5neWFuLmJhaWR1LmNvbS9hcnRpY2xlL2EzYTNmODExZWI3MTJkOGRhMmViOGE5NS5odG1s" title="https://jingyan.baidu.com/article/a3a3f811eb712d8da2eb8a95.html">Mac Split View屏幕分割<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h3 id="更改默认文件打开方式"><a href="#更改默认文件打开方式" class="headerlink" title="更改默认文件打开方式"></a>更改默认文件打开方式</h3><p>两指轻按文件，显示简介中，可以看到打开方式选项。</p>
+<h3 id="菜单栏显示投屏的按钮"><a href="#菜单栏显示投屏的按钮" class="headerlink" title="菜单栏显示投屏的按钮"></a>菜单栏显示投屏的按钮</h3><p>升级 macOS Big Sur 系统之后，发现菜单栏上找不到投屏的按钮，需要进行设置。系统偏好设置-》控制中心-》屏幕镜像，勾选「在菜单栏中显示」，选择「始终」：</p>
+<p><img src="https://gitee.com/michael_xiang/images/raw/master/uPic/c5qdPi.png" alt="屏幕镜像"></p>
+<h3 id="电池"><a href="#电池" class="headerlink" title="电池"></a>电池</h3><ul>
+<li>按住 Option 键并点按菜单栏中的电池图标，以显示电池状态菜单</li>
+</ul>
+<h3 id="设置-finder-显示目录绝对路径"><a href="#设置-finder-显示目录绝对路径" class="headerlink" title="设置 finder 显示目录绝对路径"></a>设置 finder 显示目录绝对路径</h3><p>在 finder 页面，点击左上角的“显示”按钮，点击“显示路径栏“就可以看到完整的绝对路径啦。</p>
+<h3 id="电脑改名"><a href="#电脑改名" class="headerlink" title="电脑改名"></a>电脑改名</h3><p>电脑改名: 系统偏好设置 - 共享 - 电脑名称</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpBeE56Y3dNVEE0Tmc9PSZhbXA7bWlkPTIyNDc0ODc5MjQmYW1wO2lkeD0xJmFtcDtzbj1hZjkzZTY1NjM2Mjc3YTg5MDVhMDM4OWNlZmNhMmM3ZiZhbXA7Y2hrc209OWJlMGQwMDVhYzk3NTkxMzQzNjk0MzllNDA2ODRlZDhiNDFkZmE4MWJkOWE0N2U4MmJjZDc1NjhiNzI2MjlkY2IxNWEwMmRmNWY0ZiZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0xJmFtcDtzcmNpZD0jcmQ=" title="https://mp.weixin.qq.com/s?__biz=MzAxNzcwMTA4Ng==&amp;mid=2247487924&amp;idx=1&amp;sn=af93e65636277a8905a0389cefca2c7f&amp;chksm=9be0d005ac9759134369439e40684ed8b41dfa81bd9a47e82bcd7568b72629dcb15a02df5f4f&amp;mpshare=1&amp;scene=1&amp;srcid=#rd">如何更改 Mac 帐户和个人文件夹的名称<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpBeE56Y3dNVEE0Tmc9PSZhbXA7bWlkPTIyNDc0ODc5MjQmYW1wO2lkeD0yJmFtcDtzbj1mNGFmMDU2NTY3MzRmMzc0M2JjMjg2MWM1NmRiNTAxYiZhbXA7Y2hrc209OWJlMGQwMDVhYzk3NTkxMzRiNGQ2YjEwM2ZiOTQwMmFmMjdlNTkyZmE2YzQxZGJiYTc3NDkxZTFmYzlkNjJiMDM4OGJiOTliMjYyZCZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0xJmFtcDtzcmNpZD0jcmQ=" title="https://mp.weixin.qq.com/s?__biz=MzAxNzcwMTA4Ng==&amp;mid=2247487924&amp;idx=2&amp;sn=f4af05656734f3743bc2861c56db501b&amp;chksm=9be0d005ac9759134b4d6b103fb9402af27e592fa6c41dbba77491e1fc9d62b0388bb99b262d&amp;mpshare=1&amp;scene=1&amp;srcid=#rd">Mac修改账户名称和个人目录后，进不去系统怎么办？<i class="fa fa-external-link"></i></span></li>
+</ul>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><h3 id="创建多个桌面"><a href="#创建多个桌面" class="headerlink" title="创建多个桌面"></a>创建多个桌面</h3><p>可以创建多个桌面，使用常见快速切换。</p>
+<p>四指在触控板往上滑动，然后右上角可以点击加号新建桌面。四指左右滑动，可以在不同桌面之间切换。</p>
+<h2 id="日常软件"><a href="#日常软件" class="headerlink" title="日常软件"></a>日常软件</h2><p>单独整理了一篇文章：<a href="https://michaelxoxo.github.io/2023/04/17/tools-daily-mac-softwars/">Mac 常用办公软件清单</a></p>
+<h2 id="Mac-相关好文"><a href="#Mac-相关好文" class="headerlink" title="Mac 相关好文"></a>Mac 相关好文</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWxkLWZsYW1lLmdpdGh1Yi5pby9ndWlkZXMvZG9jcy9tYWMtb3MteC1zZXR1cC1ndWlkZS9ndWlkZS1pbnRyb2R1Y3Rpb24=" title="https://wild-flame.github.io/guides/docs/mac-os-x-setup-guide/guide-introduction">推荐-Mac OS X 配置指南 | Mac OS X Setup Guide<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zc3BhaS5jb20vdG9waWMvMTQ1" title="https://sspai.com/topic/145">你每天都能用上的 Mac 快捷键<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zc3BhaS5jb20vcG9zdC80MTQ3Nw==" title="https://sspai.com/post/41477">少数派-macOS 上都有哪些既免费、又实用的工具？| 新手问号<i class="fa fa-external-link"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZW1vbi5xcS5jb20vbGFiLw==" title="https://lemon.qq.com/lab/">柠檬精选<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2023/04/17/tools-daily-mac-softwars/" rel="bookmark">Mac 常用办公软件清单</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2020/09/23/tools-dev-mac-alfred/" rel="bookmark">Mac 效率工具必备神器 —— Alfred</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2016/09/03/blog-logfile/" rel="bookmark">博客建站日志</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2019/05/19/hexo-blog-full-note/" rel="bookmark">利用 Hexo + Github Pages 搭建博客并优化 Next 主题教程</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="/2015/11/30/hexo-gitcafe-github-deploy/" rel="bookmark">hexo之github\gitcafe多线路托管博客deploy及SSH设置问题</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/images/wechat-subscribe.jpg" alt="Michael翔 wechat" style="width: 200px; max-width: 100%;">
+  <div>ヾﾉ≧∀≦)o  欢迎订阅公众号「Coder魔法院」☑工具控 ☑编程 ☑读书☑电影</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>「🤓 码字不易，来杯Coffee👇」</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="Michael翔 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="Michael翔 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Michael翔</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/" title="Mac 配置教程-日常篇">https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/tools-vim-basic/" rel="next" title="Vim 基础">
+                <i class="fa fa-chevron-left"></i> Vim 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/09/python-argparse-note/" rel="prev" title="Python 标准库 argparse 的用法">
+                Python 标准库 argparse 的用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Michael翔">
+            
+              <p class="site-author-name" itemprop="name">Michael翔</p>
+              <div class="site-description motion-element" itemprop="description">DevOps，公众号『Coder魔法院』</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">134</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">151</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01pY2hhZWw3Mjg=" title="GitHub &rarr; https://github.com/Michael728"><i class="fa fa-fw fa-github"></i>GitHub</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93ZWliby5jb20vMTgzODQ0NjA3MC9wcm9maWxlP3RvcG5hdj0xJnd2cj02" title="微博 &rarr; https://weibo.com/1838446070/profile?topnav=1&wvr=6"><i class="fa fa-fw fa-weibo"></i>微博</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbWljaGFlbC14aWFuZy8=" title="博客园 &rarr; https://www.cnblogs.com/michael-xiang/"><i class="fa fa-fw fa-globe"></i>博客园</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9taWNoYWVsWG9Y" title="知乎 &rarr; https://www.zhihu.com/people/michaelXoX"><i class="fa fa-fw fa-globe"></i>知乎</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS83MjhfbWljaGFlbA==" title="Twitter &rarr; https://twitter.com/728_michael"><i class="fa fa-fw fa-twitter"></i>Twitter</span>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL21pY2hhZWx4aWFuZw==" title="Telegram &rarr; https://t.me/michaelxiang"><i class="fa fa-fw fa-telegram"></i>Telegram</span>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                关注列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE4LzA5LzE2L2Jsb2ctaW50ZXJlc3Rpbmcv" title="https://michael728.github.io/2018/09/16/blog-interesting/">Blog List</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly96Y2hlbmcucmVuL3Bvc3RzLw==" title="https://zcheng.ren/posts/">ZeeCoder</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9laGx4ci5tZS8=" title="https://ehlxr.me/">ehlxr</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cua2F3YWJhbmdnYS5jb20v" title="https://www.kawabangga.com/">卡瓦邦噶-蚂蚁SRE</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnN0ZGlvYS5jb20v" title="https://blog.stdioa.com/">David Dai</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9iZXN0enVvLmNuLw==" title="https://bestzuo.cn/">Sanarous</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuemh5b25nLmNuLw==" title="https://www.zhyong.cn/">ZhangYong-爱折腾软件</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFsYW95YW5nLmNuLw==" title="https://www.dalaoyang.cn/">Dalaoyang-SpringBoot</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL3d3dy53dWxpYW9sZS5jb20vaW5kZXguaHRtbA==" title="http://www.wuliaole.com/index.html">无聊小博</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cDovL2lsb3ZleS5saXZlLw==" title="http://ilovey.live/">低调小熊猫-Java开发</span>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <span class="exturl" data-url="aHR0cHM6Ly9taWNoYWVsNzI4LmdpdGh1Yi5pby8yMDE2LzA5LzAzL2Jsb2ctbG9nZmlsZS8=" title="https://michael728.github.io/2016/09/03/blog-logfile/">建站日志</span>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统配置"><span class="nav-number">1.</span> <span class="nav-text">系统配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按键整理"><span class="nav-number">1.1.</span> <span class="nav-text">按键整理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端快捷键"><span class="nav-number">1.2.</span> <span class="nav-text">终端快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置允许「任何来源」的应用-——-解决文件已损坏报错"><span class="nav-number">1.3.</span> <span class="nav-text">设置允许「任何来源」的应用 —— 解决文件已损坏报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改键"><span class="nav-number">1.4.</span> <span class="nav-text">改键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Shift-键"><span class="nav-number">1.5.</span> <span class="nav-text">使用 Shift 键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触控板"><span class="nav-number">1.6.</span> <span class="nav-text">触控板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-Split-View屏幕分割"><span class="nav-number">1.7.</span> <span class="nav-text">Mac Split View屏幕分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改默认文件打开方式"><span class="nav-number">1.8.</span> <span class="nav-text">更改默认文件打开方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单栏显示投屏的按钮"><span class="nav-number">1.9.</span> <span class="nav-text">菜单栏显示投屏的按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电池"><span class="nav-number">1.10.</span> <span class="nav-text">电池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-finder-显示目录绝对路径"><span class="nav-number">1.11.</span> <span class="nav-text">设置 finder 显示目录绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电脑改名"><span class="nav-number">1.12.</span> <span class="nav-text">电脑改名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.13.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧"><span class="nav-number">2.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建多个桌面"><span class="nav-number">2.1.</span> <span class="nav-text">创建多个桌面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日常软件"><span class="nav-number">3.</span> <span class="nav-text">日常软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-相关好文"><span class="nav-number">4.</span> <span class="nav-text">Mac 相关好文</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2025</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael翔</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.1.1"></script>
+
+
+  
+
+  
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://michaelxoxo.github.io/2018/12/08/tools-daily-mac/";
+    this.page.identifier = "2018/12/08/tools-daily-mac/";
+    this.page.title = 'Mac 配置教程-日常篇';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://michaelxiang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    $(function() {
+      var offsetTop = $('#comments').offset().top - $(window).height();
+      if (offsetTop <= 0) {
+        // load directly when there's no a scrollbar
+        loadComments();
+      } else {
+        $(window).on('scroll.disqus_scroll', function() {
+          // offsetTop may changes because of manually resizing browser window or lazy loading images.
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          var scrollTop = $(window).scrollTop();
+
+          // pre-load comments a bit? (margin or anything else)
+          if (offsetTop - scrollTop < 60) {
+            $(window).off('.disqus_scroll');
+            loadComments();
+          }
+        });
+      }
+    });
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'default',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
